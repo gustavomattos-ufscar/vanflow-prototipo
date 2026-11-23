@@ -1,0 +1,18 @@
+# Deploy gratuito no Render: render.com, New, Blueprint, escolher este repositório.
+# Um serviço só serve a web e a API, como no `npm run demo`.
+services:
+  - type: web
+    name: vanflow-prototipo
+    runtime: node
+    plan: free
+    region: virginia
+    branch: main
+    # O build da web usa Vite e o servidor roda com tsx: as dependências de desenvolvimento precisam vir junto.
+    buildCommand: npm ci --include=dev && npm run build -w @vanflow/web
+    startCommand: npm run start -w @vanflow/server
+    healthCheckPath: /api/demo/state
+    autoDeploy: true
+    envVars:
+      # node:sqlite precisa do Node 22.13 ou mais recente.
+      - key: NODE_VERSION
+        value: "24"

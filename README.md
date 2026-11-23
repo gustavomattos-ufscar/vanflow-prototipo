@@ -21,6 +21,17 @@ npm run demo       # sem internet: compila e sobe tudo em http://localhost:5173
 
 O banco fica em `data/vanflow.db` (SQLite embutido no Node, sem compilação nativa). Para usar outra porta: `PORT=8080 npm run demo`.
 
+## Link público no Render (gratuito)
+
+O arquivo `render.yaml` já configura tudo. Para publicar: entre em [render.com](https://render.com) com a conta do GitHub, clique em **New**, **Blueprint**, escolha este repositório e confirme. A cada `git push` na `main`, o Render publica de novo sozinho.
+
+No plano gratuito:
+- O serviço **dorme depois de 15 minutos sem acesso**. O primeiro acesso depois disso leva até 1 minuto. Abra o link uns minutos antes de mostrar.
+- O disco é temporário: quando o serviço dorme ou reinicia, **a demo volta para quarta, 11/11, 20h55**.
+- A demo é **uma só para todo mundo**: se duas pessoas usarem ao mesmo tempo, uma vê o que a outra fez. Use **Resetar demo** na Central da demo para recomeçar.
+
+Para a apresentação, prefira rodar local com `npm run demo`: funciona sem internet e ninguém mexe nos dados no meio.
+
 ## Perfis de entrada
 
 Abra `http://localhost:5173/entrar`. Não há senha.

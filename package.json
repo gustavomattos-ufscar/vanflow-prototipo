@@ -4,7 +4,7 @@
   "private": true,
   "description": "Protótipo funcional da VanFlow, 100% offline depois do npm install.",
   "type": "module",
-  "engines": { "node": ">=22.13" },
+  "engines": { "node": ">=22.13 <25" },
   "workspaces": ["apps/*", "packages/*"],
   "scripts": {
     "demo": "npm run build -w @vanflow/web && npm run start -w @vanflow/server",
