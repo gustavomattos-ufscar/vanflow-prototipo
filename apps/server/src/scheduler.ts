@@ -10,6 +10,7 @@ import {
 } from './context.ts';
 import { clock } from './integrations.ts';
 import { expireHolds } from './avulsas.ts';
+import { resumeDuePauses } from './pauses.ts';
 import { markOverdue, runDocumentAlerts, runInvoiceReminders, runMonthlyBilling } from './billing.ts';
 import { closeList, sendConfirmations, sendReminders } from './presence.ts';
 import { ensureTrips, passengersOf, tripsOfDay } from './trips.ts';
@@ -79,6 +80,7 @@ export function finishTrip(id: string): void {
 
 export function runJobs(): void {
   expireHolds();
+  resumeDuePauses();
   markOverdue();
   runTrialCheck();
   for (const operator of all<Operator>('operators')) {

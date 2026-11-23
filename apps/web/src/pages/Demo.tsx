@@ -23,7 +23,7 @@ const MODULES: Array<[string, string, 'MVP' | 'Próxima versão']> = [
 
 const ICONS: Record<string, typeof Bell> = {
   confirmacao: Send, resposta: MessageCircle, lembrete: Bell, fechamento: Users, oferta: Ticket, avulsa: Ticket, pagamento: CircleDollarSign, cobranca: CircleDollarSign,
-  atraso: CalendarClock, documento: FileWarning, assinatura: CircleDollarSign, lead: UserPlus, cadastro: Users, viagem: Route, demo: Play,
+  atraso: CalendarClock, mensagem: MessageCircle, documento: FileWarning, assinatura: CircleDollarSign, lead: UserPlus, cadastro: Users, viagem: Route, demo: Play,
 };
 
 function WebhookForm() {

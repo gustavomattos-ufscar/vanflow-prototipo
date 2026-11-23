@@ -4,6 +4,19 @@ import { weekdayOf } from './time.ts';
 
 const dayShort = (date: string) => WEEKDAY_SHORT[weekdayOf(date)];
 
+/** "na quinta (12/11)", "no sábado (14/11)". */
+export function onDay(date: string): string {
+  const weekday = weekdayOf(date);
+  return `${weekday === 0 || weekday === 6 ? 'no' : 'na'} ${WEEKDAY_LONG[weekday]} (${fmtDayMonth(date)})`;
+}
+
+/** Quando a falta vale: "na quinta (12/11)", "hoje (11/11)" ou "na volta de hoje (11/11)". */
+export function absenceWhen(date: string, today: string, directions: string[]): string {
+  if (date !== today) return onDay(date);
+  const day = `hoje (${fmtDayMonth(date)})`;
+  return directions.length === 1 ? `na ${directions[0]} de ${day}` : day;
+}
+
 /** Botões de quando a VanFlow não entende e não há pergunta de presença em aberto. */
 export const MENU_BUTTONS = ['Vaga avulsa', '2ª via do Pix'];
 export const PRESENCE_BUTTONS = ['Vou', 'Não vou'];
@@ -44,6 +57,17 @@ export const msg = {
   menu: () => 'Não entendi. Toque no que você precisa:',
   vanFull: () => 'Seu lugar já foi vendido e a van está cheia para esse dia. Se abrir vaga, avisamos por aqui.',
   noPendingTrip: () => 'Você não tem viagem aguardando resposta agora. A próxima confirmação chega na véspera, às 21h. Se precisar de outra coisa, toque em uma opção:',
+  gradeRequest: (name: string, link: string) =>
+    `Oi, ${firstName(name)}! Para a VanFlow saber em que dias você vai na van, preencha sua grade de aulas deste semestre neste link: ${link}`,
+  gradeReceived: (days: string) =>
+    days ? `Recebemos sua grade (${days}). Obrigado! A confirmação chega na véspera de cada aula.` : 'Recebemos sua grade. Obrigado!',
+  planPaused: (until: string | null) => until
+    ? `Seu plano foi pausado e volta ${onDay(until)}. Até lá você não recebe confirmações nem cobranças.`
+    : 'Seu plano foi pausado. Você não recebe confirmações nem cobranças até ele voltar.',
+  planResumed: () => 'Seu plano voltou! A confirmação chega de novo na véspera de cada aula.',
+  absenceMarked: (when: string) => `Anotamos que você não vai ${when}. Seu lugar foi liberado.`,
+  alertGradeUpdated: (name: string, note?: string) => `${firstName(name)} preencheu a grade pelo link.${note ? ` ${note}` : ''}`,
+  alertPlanResumed: (name: string) => `O plano de ${firstName(name)} voltou hoje.`,
   alertLateAbsence: (name: string, whenLabel: string) => `${firstName(name)} avisou que não vai ${whenLabel}.`,
   alertLateInvoices: (count: number) => `${count} ${count === 1 ? 'mensalidade atrasada' : 'mensalidades atrasadas'}.`,
 };

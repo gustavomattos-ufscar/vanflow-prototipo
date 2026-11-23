@@ -3,7 +3,7 @@ import { addDays, addMinutes, MENU_BUTTONS, msg, parseReply, PRESENCE_BUTTONS, w
 import { all, byId, sql } from './db.ts';
 import { HttpError, lineOf, linesOf, now, studentOf, today, type Passenger, type Student } from './context.ts';
 import { whatsapp, type Message } from './integrations.ts';
-import { availability, book } from './avulsas.ts';
+import { availability, book, type Availability } from './avulsas.ts';
 import { sendPixAgain } from './billing.ts';
 import { applyAnswer, saveReason } from './presence.ts';
 import { advanceMinutes } from './scheduler.ts';
@@ -62,23 +62,32 @@ function resolveDay(day: ParsedReply['day']): string | undefined {
   return undefined;
 }
 
-function answerAvulsa(student: Student, day: ParsedReply['day']): void {
+/** Próxima vaga aberta numa linha do aluno, em que ele ainda não está na lista. */
+export function findAvulsaOffer(student: Student, day?: ParsedReply['day']): Availability | undefined {
   const wanted = resolveDay(day);
   const lines = linesForStudent(student);
   const options = availability(student.operator_id).filter((a) => lines.includes(a.line_id) && (!wanted || a.date === wanted));
-  const offer = options.find((a) => !sql(
+  return options.find((a) => !sql(
     `SELECT 1 FROM trip_passengers tp JOIN trips t ON t.id = tp.trip_id
      WHERE tp.student_id = ? AND t.line_id = ? AND t.date = ? AND tp.status NOT IN ('expirado', 'nao_vai')`, student.id, a.line_id, a.date,
   ).length);
-  if (!offer) {
-    whatsapp.send({ operator_id: student.operator_id, student_id: student.id, kind: 'texto', body: msg.noAvailability() });
-    return;
-  }
+}
+
+export function sendAvulsaOffer(student: Student, offer: Availability): void {
   whatsapp.send({
     operator_id: student.operator_id, student_id: student.id, kind: 'oferta_avulsa',
     body: msg.availability(offer.date, offer.line_name, offer.departure_time, offer.free, offer.price_round),
     buttons: ['Reservar'], payload: { line_id: offer.line_id, date: offer.date },
   });
+}
+
+function answerAvulsa(student: Student, day: ParsedReply['day']): void {
+  const offer = findAvulsaOffer(student, day);
+  if (!offer) {
+    whatsapp.send({ operator_id: student.operator_id, student_id: student.id, kind: 'texto', body: msg.noAvailability() });
+    return;
+  }
+  sendAvulsaOffer(student, offer);
 }
 
 /** "Não vou" pelo botão, e o motivo vem na mensagem seguinte. */

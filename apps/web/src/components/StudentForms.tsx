@@ -7,7 +7,9 @@ import { Field, Modal } from './ui.tsx';
 
 const WEEKDAYS = [1, 2, 3, 4, 5, 6];
 
-export function StudentModal({ student, onClose, onSaved }: { student?: any; onClose: () => void; onSaved?: (id: string) => void }) {
+export function StudentModal({ student, interested, onClose, onSaved }: {
+  student?: any; interested?: boolean; onClose: () => void; onSaved?: (id: string) => void;
+}) {
   const act = useAct();
   const { shell, operatorId } = useOperator();
   const submit = async (event: FormEvent<HTMLFormElement>) => {
@@ -17,7 +19,8 @@ export function StudentModal({ student, onClose, onSaved }: { student?: any; onC
       const done = await act(() => patch(`/students/${student.id}`, data), 'Dados salvos.');
       if (done) onClose();
     } else {
-      const created = await act(() => post('/students', { ...data, operator_id: operatorId }), 'Aluno cadastrado.');
+      const extra = interested ? { status: 'interessado_avulsa' } : {};
+      const created = await act(() => post('/students', { ...data, ...extra, operator_id: operatorId }), interested ? 'Interessado cadastrado.' : 'Aluno cadastrado.');
       if (created) {
         onClose();
         onSaved?.(created.id);
@@ -25,8 +28,15 @@ export function StudentModal({ student, onClose, onSaved }: { student?: any; onC
     }
   };
   return (
-    <Modal title={student ? 'Editar aluno' : 'Novo aluno'} onClose={onClose}>
+    <Modal title={student ? 'Editar aluno' : interested ? 'Novo interessado em vaga avulsa' : 'Novo aluno'} onClose={onClose}>
       <form onSubmit={submit} className="form-grid">
+        {interested && (
+          <div className="full">
+            <Field label="Linha de interesse">
+              <select name="interest_line_id" required>{shell.lines.map((l: any) => <option key={l.id} value={l.id}>{l.name}</option>)}</select>
+            </Field>
+          </div>
+        )}
         <div className="full"><Field label="Nome"><input name="name" required defaultValue={student?.name} /></Field></div>
         <Field label="WhatsApp"><input name="phone" required defaultValue={student?.phone} placeholder="(15) 9XXXX-XXXX" /></Field>
         <Field label="Cidade"><input name="city" required defaultValue={student?.city} /></Field>
@@ -43,22 +53,30 @@ export function StudentModal({ student, onClose, onSaved }: { student?: any; onC
 }
 
 interface GradeRow { weekday: number; on: boolean; faculty_id: string; start: string; end: string }
+export type GradeEntry = Pick<GradeRow, 'weekday' | 'faculty_id' | 'start' | 'end'>;
 
-export function GradeModal({ student, schedule, onClose }: { student: any; schedule: any[]; onClose: () => void }) {
-  const act = useAct();
-  const { shell } = useOperator();
+/**
+ * Formulário da grade, seg a sáb. Usado pelo operador (no modal) e pelo próprio aluno
+ * (na página dele, pelo link que chega no WhatsApp).
+ */
+export function GradeEditor({ schedule, faculties, defaultFaculty, saveLabel = 'Salvar grade', onSave, onCancel }: {
+  schedule: any[]; faculties: any[]; defaultFaculty: string; saveLabel?: string;
+  onSave: (entries: GradeEntry[]) => Promise<unknown>; onCancel?: () => void;
+}) {
+  const [saving, setSaving] = useState(false);
   const [rows, setRows] = useState<GradeRow[]>(() => WEEKDAYS.map((weekday) => {
     const entry = schedule.find((s) => s.weekday === weekday);
-    return { weekday, on: !!entry, faculty_id: entry?.faculty_id ?? student.faculty_id, start: entry?.start ?? '19:00', end: entry?.end ?? '22:40' };
+    return { weekday, on: !!entry, faculty_id: entry?.faculty_id ?? defaultFaculty, start: entry?.start ?? '19:00', end: entry?.end ?? '22:40' };
   }));
   const set = (weekday: number, change: Partial<GradeRow>) => setRows((list) => list.map((r) => (r.weekday === weekday ? { ...r, ...change } : r)));
+  const chosen = rows.filter((r) => r.on);
   const save = async () => {
-    const entries = rows.filter((r) => r.on).map(({ weekday, faculty_id, start, end }) => ({ weekday, faculty_id, start, end }));
-    const done = await act(() => put(`/students/${student.id}/schedule`, { entries }), 'Grade salva. As próximas listas já seguem a nova grade.');
-    if (done) onClose();
+    setSaving(true);
+    await onSave(chosen.map(({ weekday, faculty_id, start, end }) => ({ weekday, faculty_id, start, end })));
+    setSaving(false);
   };
   return (
-    <Modal title={`Grade de ${student.name}`} onClose={onClose} wide>
+    <>
       <div className="table-wrap">
         <table className="data cards">
           <thead><tr><th>Dia</th><th>Faculdade</th><th>Início</th><th>Fim</th></tr></thead>
@@ -66,15 +84,32 @@ export function GradeModal({ student, schedule, onClose }: { student: any; sched
             {rows.map((row) => (
               <tr key={row.weekday}>
                 <td className="span"><label className="check"><input type="checkbox" checked={row.on} onChange={(e) => set(row.weekday, { on: e.target.checked })} />{WEEKDAY_LONG[row.weekday]}</label></td>
-                <td data-label="Faculdade" className="span"><select className="input" aria-label={`Faculdade de ${WEEKDAY_LONG[row.weekday]}`} disabled={!row.on} value={row.faculty_id} onChange={(e) => set(row.weekday, { faculty_id: e.target.value })}>{shell.faculties.map((f: any) => <option key={f.id} value={f.id}>{f.name}</option>)}</select></td>
-                <td data-label="Início"><input className="input" type="time" aria-label="Início" disabled={!row.on} value={row.start} onChange={(e) => set(row.weekday, { start: e.target.value })} /></td>
-                <td data-label="Fim"><input className="input" type="time" aria-label="Fim" disabled={!row.on} value={row.end} onChange={(e) => set(row.weekday, { end: e.target.value })} /></td>
+                <td data-label="Faculdade" className="span"><select className="input" aria-label={`Faculdade de ${WEEKDAY_LONG[row.weekday]}`} disabled={!row.on} value={row.faculty_id} onChange={(e) => set(row.weekday, { faculty_id: e.target.value })}>{faculties.map((f: any) => <option key={f.id} value={f.id}>{f.name}</option>)}</select></td>
+                <td data-label="Início"><input className="input" type="time" aria-label={`Início de ${WEEKDAY_LONG[row.weekday]}`} disabled={!row.on} value={row.start} onChange={(e) => set(row.weekday, { start: e.target.value })} /></td>
+                <td data-label="Fim"><input className="input" type="time" aria-label={`Fim de ${WEEKDAY_LONG[row.weekday]}`} disabled={!row.on} value={row.end} onChange={(e) => set(row.weekday, { end: e.target.value })} /></td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <div className="modal-actions"><button type="button" className="btn primary" onClick={save}>Salvar grade</button></div>
+      <div className="modal-actions">
+        {onCancel && <button type="button" className="btn ghost" onClick={onCancel}>Cancelar</button>}
+        <button type="button" className="btn primary" disabled={saving || chosen.length === 0} onClick={save}>{saveLabel}</button>
+      </div>
+    </>
+  );
+}
+
+export function GradeModal({ student, schedule, onClose }: { student: any; schedule: any[]; onClose: () => void }) {
+  const act = useAct();
+  const { shell } = useOperator();
+  const save = async (entries: GradeEntry[]) => {
+    const done = await act(() => put(`/students/${student.id}/schedule`, { entries }), 'Grade salva. As próximas listas já seguem a nova grade.');
+    if (done) onClose();
+  };
+  return (
+    <Modal title={`Grade de ${student.name}`} onClose={onClose} wide>
+      <GradeEditor schedule={schedule} faculties={shell.faculties} defaultFaculty={student.faculty_id} onSave={save} />
     </Modal>
   );
 }

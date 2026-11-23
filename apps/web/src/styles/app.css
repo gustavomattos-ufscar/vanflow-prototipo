@@ -219,6 +219,32 @@ input[type=range]{height:32px}
 .heat-cell span{font-size:12px}
 .heat-day{font-family:var(--f-mono);font-size:12px;text-transform:uppercase;color:var(--muted);text-align:center}
 
+/* Alunos: seleção, alertas, presença */
+.alert-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.quick-actions .alert-chips{margin-top:0}
+.presence{display:flex;flex-direction:column;line-height:1.2}
+.presence b{font-family:var(--f-mono);font-size:15px}
+.presence small{color:var(--muted);font-size:12.5px}
+.presence.low b{color:var(--amber-ink)}
+th.pick,td.pick{width:40px;padding-right:0}
+td.pick input,th.pick input{width:20px;height:20px;accent-color:var(--teal);cursor:pointer}
+/* A área de toque é o rótulo inteiro, maior que a caixinha. */
+.pick-hit{display:inline-grid;place-items:center;width:40px;height:40px;margin:-10px;cursor:pointer;border-radius:var(--r-sm)}
+.pick-hit:hover{background:color-mix(in srgb,var(--teal-soft) 60%,transparent)}
+table.data tr.picked{background:color-mix(in srgb,var(--teal-soft) 55%,transparent)}
+.bulk-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--navy);color:var(--on-navy);border-radius:var(--r-md);padding:8px 10px 8px 16px;margin-bottom:12px;position:sticky;top:64px;z-index:15}
+.bulk-bar b{margin-right:auto;font-size:14.5px}
+.bulk-bar .btn.quiet{background:var(--navy-2);color:var(--on-navy)}
+.bulk-bar .icon-btn{background:var(--navy-2);color:var(--on-navy);border-color:transparent}
+.filter-check{padding:0 6px;font-size:14.5px}
+.quick-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:-4px 0 16px}
+@media (max-width:640px){
+  table.data.cards td.pick{grid-column:1/-1;width:auto}
+  td.pick input,th.pick input{width:24px;height:24px}
+  .pick-hit{width:44px;height:44px;margin:-10px}
+  .bulk-bar{top:auto;bottom:70px;position:sticky}
+}
+
 /* Avulsas */
 .slot-grid{display:grid;grid-template-columns:150px repeat(7,minmax(0,1fr));gap:6px;align-items:stretch;min-width:720px}
 .slot-head{font-family:var(--f-mono);font-size:12px;text-transform:uppercase;color:var(--muted);text-align:center;padding-bottom:2px}

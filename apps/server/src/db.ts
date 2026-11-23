@@ -27,11 +27,12 @@ CREATE TABLE IF NOT EXISTS lines (id TEXT PRIMARY KEY, van_id TEXT, name TEXT, s
   origin TEXT, destinations TEXT, price_table TEXT);
 CREATE TABLE IF NOT EXISTS faculties (id TEXT PRIMARY KEY, name TEXT, full_name TEXT, campus TEXT, lat REAL, lng REAL, approx INTEGER);
 CREATE TABLE IF NOT EXISTS students (id TEXT PRIMARY KEY, operator_id TEXT, name TEXT, phone TEXT, city TEXT, neighborhood TEXT, pickup_label TEXT,
-  lat REAL, lng REAL, faculty_id TEXT, course TEXT, status TEXT, guardian_phone TEXT, created_at TEXT, interest_line_id TEXT, token TEXT UNIQUE);
+  lat REAL, lng REAL, faculty_id TEXT, course TEXT, status TEXT, guardian_phone TEXT, created_at TEXT, interest_line_id TEXT, token TEXT UNIQUE,
+  grade_requested_at TEXT, grade_updated_at TEXT);
 CREATE TABLE IF NOT EXISTS schedules (id TEXT PRIMARY KEY, student_id TEXT, semester TEXT, weekday INTEGER, faculty_id TEXT, "start" TEXT, "end" TEXT);
 CREATE TABLE IF NOT EXISTS plans (id TEXT PRIMARY KEY, operator_id TEXT, name TEXT, days_per_week INTEGER);
 CREATE TABLE IF NOT EXISTS enrollments (id TEXT PRIMARY KEY, student_id TEXT, line_id TEXT, plan_days INTEGER, weekdays TEXT, monthly_price REAL,
-  start_date TEXT, end_date TEXT, status TEXT);
+  start_date TEXT, end_date TEXT, status TEXT, paused_until TEXT, pause_reason TEXT);
 CREATE TABLE IF NOT EXISTS trips (id TEXT PRIMARY KEY, line_id TEXT, date TEXT, direction TEXT, departure_time TEXT, status TEXT,
   confirmations_sent_at TEXT, reminder_sent_at TEXT, closed_at TEXT, route_cache TEXT, UNIQUE(line_id, date, direction));
 CREATE TABLE IF NOT EXISTS trip_passengers (id TEXT PRIMARY KEY, trip_id TEXT, student_id TEXT, source TEXT, status TEXT, reason TEXT, responded_at TEXT,
@@ -76,7 +77,21 @@ function open(): Database {
   const database = new DatabaseSync(file);
   database.exec('PRAGMA journal_mode = WAL; PRAGMA synchronous = NORMAL;');
   database.exec(SCHEMA);
+  migrate(database);
   return database;
+}
+
+/** Colunas criadas depois da primeira versão. Bancos antigos ganham as colunas sem perder dados. */
+const ADDED_COLUMNS: Array<[table: string, column: string]> = [
+  ['students', 'grade_requested_at'], ['students', 'grade_updated_at'],
+  ['enrollments', 'paused_until'], ['enrollments', 'pause_reason'],
+];
+
+function migrate(database: Database): void {
+  for (const [table, column] of ADDED_COLUMNS) {
+    const existing = (database.prepare(`PRAGMA table_info(${table})`).all() as Array<{ name: string }>).map((c) => c.name);
+    if (!existing.includes(column)) database.exec(`ALTER TABLE ${table} ADD COLUMN ${column} TEXT`);
+  }
 }
 
 export const db = open();

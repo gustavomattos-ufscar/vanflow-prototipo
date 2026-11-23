@@ -22,6 +22,7 @@ export interface Van { id: string; operator_id: string; nickname: string; plate:
 export interface Student {
   id: string; operator_id: string; name: string; phone: string; city: string; neighborhood: string; pickup_label: string; lat: number; lng: number;
   faculty_id: string; course: string; status: string; guardian_phone: string | null; created_at: string; interest_line_id: string | null; token: string;
+  grade_requested_at?: string | null; grade_updated_at?: string | null;
 }
 export interface Trip {
   id: string; line_id: string; date: string; direction: 'ida' | 'volta'; departure_time: string; status: string;

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { brl, firstName, fmtClock, fmtDate, fmtHour, fmtWeekdayDate, monthName, plural, WEEKDAY_SHORT } from '@vanflow/domain';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { brl, firstName, fmtClock, fmtDate, fmtHour, fmtWeekdayDate, monthName, onDay, plural, WEEKDAY_SHORT } from '@vanflow/domain';
+import { GradeEditor, type GradeEntry } from '../components/StudentForms.tsx';
 import { RouteMap } from '../components/RouteMap.tsx';
 import { Empty, ErrorNote, Loading, LogoMark, Pill, PixPanel, ThemeButton } from '../components/ui.tsx';
 import { WeekGrid } from '../components/WeekGrid.tsx';
-import { post } from '../lib/api.ts';
+import { post, put } from '../lib/api.ts';
 import { useAct } from '../lib/context.tsx';
 import { useLive } from '../lib/live.ts';
 
@@ -33,6 +34,10 @@ export function AlunoPage() {
   const act = useAct();
   const { data, error } = useLive(`/aluno/${token}`);
   const [kind, setKind] = useState<'ida_volta' | 'so_ida' | 'so_volta'>('ida_volta');
+  const [params, setParams] = useSearchParams();
+  // O link do WhatsApp termina em ?grade=1: a página abre direto no formulário da grade.
+  const fromGradeLink = params.get('grade') === '1';
+  const [editingGrade, setEditingGrade] = useState(fromGradeLink);
 
   useEffect(() => {
     document.title = 'Minha van · VanFlow';
@@ -44,6 +49,32 @@ export function AlunoPage() {
   const canAnswer = next && next.source === 'plano' && ['planejada', 'confirmacoes_enviadas', 'lista_fechada', 'em_andamento'].includes(next.status) && !['embarcou'].includes(next.p_status);
   const respond = (answer: string) => act(() => post(`/aluno/${token}/respond`, { line_id: next.line_id, date: next.date, answer }), 'Resposta registrada.');
   const pay = (txid: string, amount: number) => act(() => post('/webhooks/pix', { txid, amount }), 'Pagamento recebido.');
+  const paused = enrollment?.status === 'pausada';
+  const saveGrade = async (entries: GradeEntry[]) => {
+    const done = await act(() => put(`/aluno/${token}/schedule`, { entries }), 'Grade enviada. Obrigado!');
+    if (done) {
+      setEditingGrade(false);
+      if (fromGradeLink) setParams({}, { replace: true });
+    }
+  };
+
+  const gradeSection = (
+    <section className="card stack" style={{ gap: 10 }} id="grade">
+      <div className="spread">
+        <h2>Minha grade</h2>
+        {!editingGrade && <button type="button" className="btn quiet small" onClick={() => setEditingGrade(true)}>{schedule.length ? 'Atualizar minha grade' : 'Preencher minha grade'}</button>}
+      </div>
+      {enrollment && <p className="small">Plano de {enrollment.plan_days} dias por semana ({enrollment.weekdays.map((d: number) => WEEKDAY_SHORT[d]).join(', ')}), {brl(enrollment.monthly_price)} por mês.</p>}
+      {!enrollment && <p className="small muted">Você compra vaga avulsa quando precisa.</p>}
+      {editingGrade ? (
+        <>
+          <p className="small">Marque os dias em que você tem aula neste semestre, com o horário de início e de fim. A VanFlow usa isso para saber em que dias você vai na van.</p>
+          <GradeEditor schedule={schedule} faculties={data.faculties} defaultFaculty={student.faculty_id} saveLabel="Enviar minha grade"
+            onSave={saveGrade} onCancel={schedule.length ? () => setEditingGrade(false) : undefined} />
+        </>
+      ) : schedule.length ? <WeekGrid entries={schedule} planDays={enrollment?.weekdays} /> : <p className="small muted">Você ainda não preencheu sua grade.</p>}
+    </section>
+  );
 
   return (
     <main className="student-page">
@@ -67,7 +98,14 @@ export function AlunoPage() {
             )}
           </>
         ) : <h1>Nenhuma viagem nos próximos dias.</h1>}
+        {paused && (
+          <p style={{ marginTop: 8, fontWeight: 600 }}>
+            Seu plano está pausado{enrollment.paused_until ? ` e volta ${onDay(enrollment.paused_until)}` : ''}. Até lá você não recebe confirmações nem cobranças.
+          </p>
+        )}
       </section>
+
+      {fromGradeLink && gradeSection}
 
       {booking && (
         <section className="card stack" style={{ gap: 10 }}>
@@ -91,12 +129,7 @@ export function AlunoPage() {
 
       {van && <VanStatus van={van} />}
 
-      <section className="card stack" style={{ gap: 10 }}>
-        <h2>Minha grade</h2>
-        {enrollment && <p className="small">Plano de {enrollment.plan_days} dias por semana ({enrollment.weekdays.map((d: number) => WEEKDAY_SHORT[d]).join(', ')}), {brl(enrollment.monthly_price)} por mês.</p>}
-        {!enrollment && <p className="small muted">Você compra vaga avulsa quando precisa.</p>}
-        <WeekGrid entries={schedule} planDays={enrollment?.weekdays} />
-      </section>
+      {!fromGradeLink && gradeSection}
 
       <section className="card stack" style={{ gap: 10 }}>
         <h2>Comprar vaga avulsa</h2>

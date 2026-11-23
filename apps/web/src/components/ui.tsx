@@ -45,7 +45,7 @@ export function ThemeButton({ className = 'icon-btn' }: { className?: string }) 
 const PILLS: Record<string, [string, string]> = {
   confirmado: ['vai', 'p-ok'], embarcou: ['embarcou', 'p-ok'], paga: ['paga', 'p-ok'], pago: ['pago', 'p-ok'], ativo: ['ativo', 'p-ok'], ativa: ['ativa', 'p-ok'],
   nao_vai: ['não vai', 'p-warn'], pendente: ['pendente', 'p-warn'], reservado: ['reservado', 'p-warn'], aviso: ['vence logo', 'p-warn'],
-  aguardando: ['aguardando', 'p-neu'], previsto: ['previsto', 'p-neu'], sem_resposta: ['sem resposta', 'p-neu'], cancelada: ['cancelada', 'p-neu'],
+  aguardando: ['aguardando', 'p-neu'], pausada: ['pausado', 'p-neu'], previsto: ['previsto', 'p-neu'], sem_resposta: ['sem resposta', 'p-neu'], cancelada: ['cancelada', 'p-neu'],
   cancelado: ['cancelada', 'p-neu'], expirado: ['expirou', 'p-neu'], inativo: ['inativo', 'p-neu'], interessado_avulsa: ['avulso', 'p-av'], ok: ['em dia', 'p-ok'],
   atrasada: ['atrasada', 'p-bad'], nao_apareceu: ['não apareceu', 'p-bad'], vencido: ['vencido', 'p-bad'],
 };

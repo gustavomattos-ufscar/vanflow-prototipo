@@ -1,7 +1,7 @@
 /** Leituras prontas para cada tela. Nenhuma função aqui altera dados. */
 import {
   addDays, addMonths, at, closeAt, confirmationAt, daysLate, diffDays, documentAlert, firstName, fmtDayMonth, minutesBetween,
-  monthOf, subscriptionMonthly, WEEKDAY_LONG, type Enrollment, type Line, type ScheduleEntry,
+  monthOf, subscriptionMonthly, WEEKDAY_LONG, WEEKDAY_SHORT, type Enrollment, type Line, type ScheduleEntry,
 } from '@vanflow/domain';
 import { all, byId, metaGet, one, sql } from './db.ts';
 import {
@@ -96,21 +96,91 @@ export function gradeView(operatorId: string) {
   };
 }
 
+const PRESENCE_DAYS = 28;
+const MISSED_ALERT = 2;
+
+/** Presença nas últimas 4 semanas, contando só as idas do plano que já aconteceram. */
+function presenceOf(studentId: string) {
+  const counts = Object.fromEntries(sql<{ status: string; n: number }>(
+    `SELECT tp.status, COUNT(*) AS n FROM trip_passengers tp JOIN trips t ON t.id = tp.trip_id
+     WHERE tp.student_id = ? AND tp.source = 'plano' AND t.direction = 'ida' AND t.status = 'concluida'
+       AND t.date >= ? AND t.date < ? AND tp.status IN ('embarcou', 'nao_vai', 'nao_apareceu') GROUP BY tp.status`,
+    studentId, addDays(today(), -PRESENCE_DAYS), today(),
+  ).map((r) => [r.status, r.n]));
+  const went = counts.embarcou ?? 0;
+  const told = counts.nao_vai ?? 0;
+  const missed = counts.nao_apareceu ?? 0;
+  const total = went + told + missed;
+  return { went, told, missed, total, pct: total ? Math.round((went / total) * 100) : null };
+}
+
+export interface StudentAlert { kind: 'sem_grade' | 'faltou' | 'atrasada' | 'fora_do_plano'; label: string; tone: 'bad' | 'warn' }
+
+/** O que o operador precisa resolver com este aluno. */
+function alertsOf(student: Student, enrollment: Enrollment | undefined, gradeWeekdays: number[], missed: number): StudentAlert[] {
+  const alerts: StudentAlert[] = [];
+  const late = countRows('invoices', "student_id = ? AND status = 'atrasada'", student.id);
+  if (late) alerts.push({ kind: 'atrasada', tone: 'bad', label: late === 1 ? 'mensalidade atrasada' : `${late} mensalidades atrasadas` });
+  if (missed >= MISSED_ALERT) alerts.push({ kind: 'faltou', tone: 'bad', label: `faltou sem avisar ${missed}x` });
+  if (student.status === 'ativo' && gradeWeekdays.length === 0) alerts.push({ kind: 'sem_grade', tone: 'warn', label: 'sem grade' });
+  if (enrollment?.status === 'ativa') {
+    const extra = gradeWeekdays.filter((d) => !enrollment.weekdays.includes(d));
+    if (extra.length) alerts.push({ kind: 'fora_do_plano', tone: 'warn', label: `aula fora do plano: ${extra.map((d) => WEEKDAY_SHORT[d]).join(', ')}` });
+  }
+  return alerts;
+}
+
+function insightsOf(student: Student, enrollment: Enrollment | undefined, schedule: ScheduleEntry[]) {
+  const gradeWeekdays = [...new Set(schedule.map((s) => s.weekday))].sort();
+  const presence = presenceOf(student.id);
+  return { grade_weekdays: gradeWeekdays, presence, alerts: alertsOf(student, enrollment, gradeWeekdays, presence.missed) };
+}
+
+const avulsaStatsOf = (studentId: string) => sql<{ count: number; total: number; last: string | null }>(
+  "SELECT COUNT(*) AS count, COALESCE(SUM(price), 0) AS total, MAX(date) AS last FROM avulsa_bookings WHERE student_id = ? AND status = 'pago'", studentId,
+)[0];
+
 export function studentsView(operatorId: string) {
   const faculties = facultyMap();
   const lines = new Map(linesOf(operatorId).map((l) => [l.id, l]));
   const month = monthOf(today());
+  const term = semester().id;
   return all<Student>('students', 'operator_id = ? ORDER BY name', operatorId).map((s) => {
     const enrollment = one<Enrollment>('enrollments', "student_id = ? AND status <> 'cancelada'", s.id);
     const line = enrollment ? lines.get(enrollment.line_id) : s.interest_line_id ? lines.get(s.interest_line_id) : undefined;
     const invoice = one<Invoice>('invoices', 'student_id = ? AND reference_month = ?', s.id, month);
+    const schedule = all<ScheduleEntry>('schedules', 'student_id = ? AND semester = ? ORDER BY weekday', s.id, term);
     return {
       id: s.id, name: s.name, phone: s.phone, city: s.city, neighborhood: s.neighborhood, status: s.status, course: s.course,
       faculty: faculties.get(s.faculty_id) ?? '', faculty_id: s.faculty_id, line_id: line?.id ?? null, line_name: line?.name ?? '', van_id: line?.van_id ?? null,
       van: line ? vanOf(line).nickname : '', plan_days: enrollment?.plan_days ?? null, weekdays: enrollment?.weekdays ?? [],
       monthly_price: enrollment?.monthly_price ?? null, invoice_status: invoice?.status ?? null,
+      enrollment_status: enrollment?.status ?? null, paused_until: enrollment?.paused_until ?? null, pause_reason: enrollment?.pause_reason ?? null,
+      grade_start: schedule[0]?.start ?? null, grade_end: schedule[0]?.end ?? null,
+      open_charges: countRows('invoices', "student_id = ? AND status IN ('pendente', 'atrasada')", s.id),
+      avulsas: avulsaStatsOf(s.id), grade_requested_at: s.grade_requested_at ?? null,
+      ...insightsOf(s, enrollment, schedule),
     };
   });
+}
+
+/** Dias em que o aluno está na lista e a falta ainda pode ser marcada. */
+function upcomingOf(studentId: string) {
+  const rows = sql<{ line_id: string; date: string; direction: string }>(
+    `SELECT t.line_id, t.date, t.direction FROM trip_passengers tp JOIN trips t ON t.id = tp.trip_id
+     WHERE tp.student_id = ? AND t.date >= ? AND t.status NOT IN ('concluida', 'cancelada', 'em_andamento')
+       AND tp.status NOT IN ('nao_vai', 'expirado', 'nao_apareceu', 'embarcou', 'reservado') ORDER BY t.date, t.direction`, studentId, today(),
+  );
+  const days = new Map<string, { line_id: string; date: string; line_name: string; directions: string[] }>();
+  for (const r of rows) {
+    const key = `${r.line_id}|${r.date}`;
+    if (!days.has(key)) days.set(key, { line_id: r.line_id, date: r.date, line_name: lineOf(r.line_id).name, directions: [] });
+    days.get(key)!.directions.push(r.direction);
+  }
+  return [...days.values()].map((d) => ({
+    ...d, today: d.date === today(),
+    label: d.directions.length === 1 ? `só a ${d.directions[0]}` : 'ida e volta',
+  }));
 }
 
 export function studentDetail(id: string) {
@@ -122,7 +192,10 @@ export function studentDetail(id: string) {
     `SELECT t.date, tp.status, tp.reason, tp.source FROM trip_passengers tp JOIN trips t ON t.id = tp.trip_id
      WHERE tp.student_id = ? AND t.direction = 'ida' AND tp.status <> 'expirado' ORDER BY t.date`, id,
   );
+  const { invoice: openInvoice, booking: openBooking } = openChargeOf(id);
   return {
+    ...insightsOf(student, enrollment ?? undefined, schedule), upcoming: upcomingOf(id), has_open_charge: !!(openInvoice || openBooking),
+    avulsas: avulsaStatsOf(id),
     student, enrollment, schedule, attendance, line: enrollment ? lineOf(enrollment.line_id) : null, faculty: faculties.get(student.faculty_id) ?? '',
     invoices: all<Invoice>('invoices', 'student_id = ? ORDER BY reference_month DESC', id),
     messages: all('messages', 'student_id = ? ORDER BY seq DESC LIMIT 30', id).reverse(),
@@ -302,7 +375,7 @@ export function studentPage(token: string) {
   return {
     now: now(), student: { ...student, token: undefined, faculty: detail.faculty }, operator: { trade_name: operator.trade_name, whatsapp: operator.whatsapp },
     enrollment: detail.enrollment, schedule: detail.schedule, line, next_trip: next, open_invoice: invoice ?? null, open_booking: booking ?? null,
-    payments, offers: offers.slice(0, 6), van,
+    payments, offers: offers.slice(0, 6), van, faculties: all('faculties'),
   };
 }
 

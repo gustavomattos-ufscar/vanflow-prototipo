@@ -27,6 +27,8 @@ export interface Line {
 export interface Enrollment {
   id: string; student_id: string; line_id: string; plan_days: number; weekdays: number[];
   monthly_price: number; start_date: string; end_date: string; status: 'ativa' | 'pausada' | 'cancelada';
+  /** Plano pausado: a data em que ele volta sozinho (ou null, sem data). */
+  paused_until?: string | null; pause_reason?: string | null;
 }
 
 export interface ScheduleEntry {

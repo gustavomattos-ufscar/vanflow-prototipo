@@ -17,7 +17,8 @@ function Linked({ text }: { text: string }) {
     <>
       {parts.map((part, i) => {
         if (!part.match(URL_PATTERN)) return part;
-        const path = new URL(part).pathname;
+        const { pathname, search } = new URL(part);
+        const path = pathname + search;
         return <a key={i} href={path} target="_blank" rel="noreferrer">{`${location.host}${path}`}</a>;
       })}
     </>

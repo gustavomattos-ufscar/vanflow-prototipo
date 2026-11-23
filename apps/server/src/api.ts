@@ -21,6 +21,10 @@ import {
   convertLead, createLead, createStudent, deleteStudent, importCsv, replaceSchedule, saveEnrollment, saveLine, saveVan, updateStudent,
 } from './records.ts';
 import { routeView } from './route.ts';
+import { pauseEnrollment, resumeEnrollment } from './pauses.ts';
+import {
+  bulkAction, markAbsence, offerAvulsaTo, requestGrade, resendPix, sendOperatorMessage, submitGradeByStudent,
+} from './students.ts';
 import { finishTrip, lastEvents } from './scheduler.ts';
 import { loadSeed } from './seed.ts';
 import { resyncOperator, tripOf } from './trips.ts';
@@ -192,6 +196,14 @@ write('delete', '/students/:id', (req) => deleteStudent(param(req, 'id')));
 write('put', '/students/:id/schedule', (req) => replaceSchedule(param(req, 'id'), req.body.entries));
 write('put', '/students/:id/enrollment', (req) => saveEnrollment(param(req, 'id'), req.body));
 write('post', '/students/import', (req) => importCsv(req.body.operator_id, req.body.line_id, req.body.csv));
+write('post', '/students/bulk', (req) => bulkAction(req.body.ids, req.body.action, req.body.text));
+write('post', '/students/:id/request-grade', (req) => requestGrade(param(req, 'id')));
+write('post', '/students/:id/pause', (req) => pauseEnrollment(param(req, 'id'), req.body.until || null, req.body.reason ?? ''));
+write('post', '/students/:id/resume', (req) => resumeEnrollment(param(req, 'id')));
+write('post', '/students/:id/absence', (req) => markAbsence(param(req, 'id'), req.body.line_id, req.body.date, req.body.reason));
+write('post', '/students/:id/message', (req) => sendOperatorMessage(param(req, 'id'), req.body.text));
+write('post', '/students/:id/pix', (req) => resendPix(param(req, 'id')));
+write('post', '/students/:id/offer-avulsa', (req) => offerAvulsaTo(param(req, 'id')));
 read('/students-import/sample', () => ({ csv: readFileSync(resolve(ROOT, 'dados-demo/alunos-exemplo.csv'), 'utf8') }));
 
 /* ---------- Viagens ---------- */
@@ -338,6 +350,7 @@ write('post', '/aluno/:token/respond', (req) => {
   applyAnswer(student.id, lineOf(line_id), date, answer);
 });
 write('post', '/aluno/:token/pix', (req) => sendPixAgain(studentByToken(req).id));
+write('put', '/aluno/:token/schedule', (req) => submitGradeByStudent(studentByToken(req).id, req.body.entries));
 write('post', '/aluno/:token/book', (req) => {
   const result = book(studentByToken(req).id, lineOf(req.body.line_id), req.body.date, req.body.kind ?? 'ida_volta');
   if (!result.ok) throw new HttpError(409, result.reason);
