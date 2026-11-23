@@ -4,6 +4,10 @@ import { weekdayOf } from './time.ts';
 
 const dayShort = (date: string) => WEEKDAY_SHORT[weekdayOf(date)];
 
+/** Botões de quando a VanFlow não entende e não há pergunta de presença em aberto. */
+export const MENU_BUTTONS = ['Vaga avulsa', '2ª via do Pix'];
+export const PRESENCE_BUTTONS = ['Vou', 'Não vou'];
+
 export const msg = {
   confirmation: (name: string, date: string, start: string, faculty: string) =>
     `Oi, ${firstName(name)}! Amanhã (${dayShort(date)}) você tem aula às ${fmtHour(start)} na ${faculty}. Vai na van?`,
@@ -36,10 +40,10 @@ export const msg = {
   pixAgain: (amount: number, description: string) => `Aqui está o Pix de ${brl(amount)}, referente a ${description}:`,
   noOpenInvoice: () => 'Você não tem nenhuma cobrança em aberto. Tudo certo por aqui!',
   receipt: (amount: number, description: string, link: string) => `Recebemos ${brl(amount)} referente a ${description}. Obrigado! Recibo: ${link}`,
-  notUnderstood: () => 'Não entendi. Toque em uma opção ou responda VOU ou NÃO VOU.',
-  menu: () => 'Não entendi. Você pode pedir "vaga avulsa" ou "2ª via do Pix".',
+  notUnderstood: () => 'Não entendi. Toque em uma opção:',
+  menu: () => 'Não entendi. Toque no que você precisa:',
   vanFull: () => 'Seu lugar já foi vendido e a van está cheia para esse dia. Se abrir vaga, avisamos por aqui.',
-  noPendingTrip: () => 'Você não tem viagem aguardando resposta agora. A próxima confirmação chega na véspera, às 21h.',
+  noPendingTrip: () => 'Você não tem viagem aguardando resposta agora. A próxima confirmação chega na véspera, às 21h. Se precisar de outra coisa, toque em uma opção:',
   alertLateAbsence: (name: string, whenLabel: string) => `${firstName(name)} avisou que não vai ${whenLabel}.`,
   alertLateInvoices: (count: number) => `${count} ${count === 1 ? 'mensalidade atrasada' : 'mensalidades atrasadas'}.`,
 };

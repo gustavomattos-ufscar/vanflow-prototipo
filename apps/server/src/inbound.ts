@@ -1,5 +1,5 @@
 /** O que acontece quando chega uma mensagem de aluno. Em produção, é o webhook da Meta. */
-import { addDays, addMinutes, msg, parseReply, weekdayOf, type Enrollment, type Line, type ParsedReply } from '@vanflow/domain';
+import { addDays, addMinutes, MENU_BUTTONS, msg, parseReply, PRESENCE_BUTTONS, weekdayOf, type Enrollment, type Line, type ParsedReply } from '@vanflow/domain';
 import { all, byId, sql } from './db.ts';
 import { HttpError, lineOf, linesOf, now, studentOf, today, type Passenger, type Student } from './context.ts';
 import { whatsapp, type Message } from './integrations.ts';
@@ -39,7 +39,7 @@ function reserve(student: Student, source?: Message): void {
   const offer = source?.buttons?.includes('Reservar') ? source : lastOffer(student.id);
   const payload = offer?.payload as { line_id?: string; date?: string } | undefined;
   if (!payload?.line_id || !payload.date) {
-    whatsapp.send({ operator_id: student.operator_id, student_id: student.id, kind: 'texto', body: msg.menu() });
+    whatsapp.send({ operator_id: student.operator_id, student_id: student.id, kind: 'texto', body: msg.menu(), buttons: MENU_BUTTONS });
     return;
   }
   book(student.id, lineOf(payload.line_id), payload.date);
@@ -102,11 +102,11 @@ function answerUnknown(student: Student, text: string): void {
   if (waiting) {
     whatsapp.send({
       operator_id: student.operator_id, student_id: student.id, kind: 'texto', body: msg.notUnderstood(),
-      buttons: ['Vou', 'Não vou'], payload: { line_id: waiting.line_id, date: waiting.date },
+      buttons: PRESENCE_BUTTONS, payload: { line_id: waiting.line_id, date: waiting.date },
     });
     return;
   }
-  whatsapp.send({ operator_id: student.operator_id, student_id: student.id, kind: 'texto', body: msg.menu() });
+  whatsapp.send({ operator_id: student.operator_id, student_id: student.id, kind: 'texto', body: msg.menu(), buttons: MENU_BUTTONS });
 }
 
 export function handleInbound({ student_id, text, message_id, keep_clock }: InboundInput): void {
@@ -135,7 +135,7 @@ export function handleInbound({ student_id, text, message_id, keep_clock }: Inbo
 
   const target = targetOf(student.id, source);
   if (!target) {
-    whatsapp.send({ operator_id: student.operator_id, student_id: student.id, kind: 'texto', body: msg.noPendingTrip() });
+    whatsapp.send({ operator_id: student.operator_id, student_id: student.id, kind: 'texto', body: msg.noPendingTrip(), buttons: MENU_BUTTONS });
     return;
   }
   applyAnswer(student.id, target.line, target.date, intent, reason);

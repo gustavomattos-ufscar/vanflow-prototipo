@@ -31,6 +31,11 @@ describe('parser de resposta livre', () => {
     expect(parseReply('quero ir sexta')).toEqual({ intent: 'avulsa', day: 5 });
   });
 
+  it('entende os botões do menu', () => {
+    expect(parseReply('Vaga avulsa').intent).toBe('avulsa');
+    expect(parseReply('2ª via do Pix').intent).toBe('pix');
+  });
+
   it('entende só ida e só volta', () => {
     expect(parseReply('só ida').intent).toBe('so_ida');
     expect(parseReply('so volta').intent).toBe('so_volta');

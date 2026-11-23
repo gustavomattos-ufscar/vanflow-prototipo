@@ -91,9 +91,26 @@ describe('passo 3: a confirmação das 21h', () => {
   it('resposta sem sentido repete os botões', () => {
     advance({ preset: '21h' });
     handleInbound({ student_id: 'st_bruno', text: 'qual é a placa da van?' });
-    expect(lastMessage('st_bruno').body).toBe('Não entendi. Toque em uma opção ou responda VOU ou NÃO VOU.');
+    expect(lastMessage('st_bruno').body).toBe('Não entendi. Toque em uma opção:');
     expect(lastMessage('st_bruno').buttons).toEqual(['Vou', 'Não vou']);
     expect(passenger('st_bruno').status).toBe('aguardando');
+  });
+
+  it('sem pergunta em aberto, o "não entendi" traz botões que funcionam ao tocar', () => {
+    handleInbound({ student_id: 'st_carla', text: 'qual é a placa da van?' });
+    const menu = lastMessage('st_carla');
+    expect(menu.body).toBe('Não entendi. Toque no que você precisa:');
+    expect(menu.buttons).toEqual(['Vaga avulsa', '2ª via do Pix']);
+    handleInbound({ student_id: 'st_carla', text: '2ª via do Pix', message_id: menu.id });
+    expect(lastMessage('st_carla').body).toContain('nenhuma cobrança em aberto');
+    handleInbound({ student_id: 'st_diego', text: 'oi' });
+    handleInbound({ student_id: 'st_diego', text: '2ª via do Pix', message_id: lastMessage('st_diego').id });
+    expect(lastMessage('st_diego').kind).toBe('pix');
+  });
+
+  it('"vou" sem viagem em aberto também traz os botões', () => {
+    handleInbound({ student_id: 'st_carla', text: 'vou' });
+    expect(lastMessage('st_carla').buttons).toEqual(['Vaga avulsa', '2ª via do Pix']);
   });
 
   it('simular respostas sobe os confirmados e é repetível', () => {
