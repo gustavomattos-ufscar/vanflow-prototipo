@@ -1,0 +1,715 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>VanFlow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Sans:opsz,wght@9..40,400..700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: landing page for small charter-van operators. Hero with an animated WhatsApp check-in and a rotating "30 dias grátis" seal, a route band where a van drives from the neighbouring towns to campus, pains, how it works, a differentials bento with illustrations, a before/after strip, a free-trial ticket, price, FAQ and sign-up. */
+:root{
+  --bg:#F4F2ED; --surface:#FDFCF9; --surface-2:#EAE6DE; --hair:#D6D0C4;
+  --ink:#13233A; --muted:#4B5667;
+  --navy:#13233A; --navy-2:#1C3150; --on-navy:#F3F1EC; --on-navy-muted:#B9C4D2;
+  --amber:#F2A62F; --amber-soft:#FBE3B8; --amber-ink:#8E5209;
+  --teal:#1D6B74; --teal-soft:#CFE7E6;
+  --chat:#E3EFEA; --chat-me:#D6F0C6; --chat-ink:#13233A;
+  --road:#C9C2B4;
+  --f-display:'Bricolage Grotesque', 'DM Sans', Arial, sans-serif;
+  --f-body:'DM Sans', Arial, sans-serif;
+  --f-mono:'IBM Plex Mono', 'Courier New', monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D131B; --surface:#141D28; --surface-2:#1B2634; --hair:#2A3646;
+  --ink:#EAEEF3; --muted:#A9B4C2;
+  --navy:#16243A; --navy-2:#20344F; --on-navy:#F3F1EC; --on-navy-muted:#C0CAD6;
+  --amber:#F2A62F; --amber-soft:#4A3712; --amber-ink:#F6BC63;
+  --teal:#6CC2C8; --teal-soft:#173B40;
+  --chat:#1C2A31; --chat-me:#24452D; --chat-ink:#EAEEF3;
+  --road:#3A4656; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D131B; --surface:#141D28; --surface-2:#1B2634; --hair:#2A3646;
+  --ink:#EAEEF3; --muted:#A9B4C2;
+  --navy:#16243A; --navy-2:#20344F; --on-navy:#F3F1EC; --on-navy-muted:#C0CAD6;
+  --amber:#F2A62F; --amber-soft:#4A3712; --amber-ink:#F6BC63;
+  --teal:#6CC2C8; --teal-soft:#173B40;
+  --chat:#1C2A31; --chat-me:#24452D; --chat-ink:#EAEEF3;
+  --road:#3A4656; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55;overflow-x:clip}
+.wrap{max-width:1140px;margin:0 auto;padding-inline:24px}
+h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.06;text-wrap:balance}
+h1{font-size:clamp(40px,6.2vw,70px);font-weight:800;letter-spacing:-.03em}
+h2{font-size:clamp(30px,4vw,46px);font-weight:780;letter-spacing:-.02em}
+h3{font-size:21px;font-weight:720}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:6px}
+.eyebrow{font-family:var(--f-mono);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-ink)}
+.muted{color:var(--muted)}
+.hl{background:linear-gradient(transparent 62%, var(--amber-soft) 62%);padding-inline:2px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:16px;text-decoration:none;border-radius:999px;padding:15px 26px;border:2px solid transparent;transition:transform .2s ease, box-shadow .2s ease, background .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--amber);color:#13233A;box-shadow:0 10px 24px -12px rgba(242,166,47,.9)}
+.btn.primary:hover{box-shadow:0 16px 30px -12px rgba(242,166,47,.95)}
+.btn.ghost{border-color:var(--ink);color:var(--ink)}
+.btn.dark{background:#13233A;color:#F3F1EC}
+.btn.small{padding:10px 18px;font-size:14px}
+.btn .free{font-family:var(--f-mono);font-size:12px;background:#13233A;color:var(--amber);padding:3px 8px;border-radius:99px}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-filter:blur(10px);background:color-mix(in srgb, var(--bg) 82%, transparent);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav.scrolled{border-bottom-color:var(--hair)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:800;font-size:22px;text-decoration:none}
+.logo svg{width:32px;height:32px}
+.nav-links{display:flex;gap:22px;align-items:center;font-size:15px}
+.nav-links a:not(.btn){text-decoration:none;color:var(--muted)}
+.nav-links a:not(.btn):hover{color:var(--ink)}
+@media (max-width:760px){.nav-links a.hide-sm{display:none}}
+
+/* top ribbon */
+.ribbon{background:var(--navy);color:var(--on-navy);font-size:14px;text-align:center;padding:9px 16px}
+.ribbon b{color:var(--amber)}
+.ribbon a{color:var(--amber);font-weight:700}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-block:48px 24px}
+.hero-copy{display:flex;flex-direction:column;gap:22px;min-width:0}
+.hero-copy .lead{font-size:20px;color:var(--muted);max-width:36ch}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.trust{display:flex;flex-wrap:wrap;gap:10px}
+.trust span{display:inline-flex;align-items:center;gap:6px;font-size:14px;background:var(--surface);border:1px solid var(--hair);padding:6px 12px;border-radius:99px}
+.trust svg{width:14px;height:14px;flex:none}
+@media (max-width:880px){.hero{grid-template-columns:1fr;padding-block:28px 8px}}
+
+.hero-visual{position:relative;justify-self:center;width:min(350px,100%);padding:34px 26px 10px 0}
+.blob{position:absolute;inset:6% -8% 0 4%;background:radial-gradient(closest-side, var(--amber-soft), transparent);filter:blur(8px);z-index:0}
+.phone{position:relative;z-index:1;background:var(--navy);border-radius:40px;padding:12px;box-shadow:0 40px 80px -36px rgba(19,35,58,.7);transform:rotate(-2deg)}
+.screen{background:var(--surface);border-radius:30px;overflow:hidden;display:flex;flex-direction:column}
+.notch{height:22px;display:flex;justify-content:center;align-items:center;background:var(--teal)}
+.notch i{width:70px;height:6px;border-radius:9px;background:rgba(0,0,0,.25)}
+.chat-head{background:var(--teal);color:#fff;padding:8px 16px 12px;display:flex;align-items:center;gap:10px}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--amber);color:#13233A;display:grid;place-items:center;font-weight:800;font-family:var(--f-display)}
+.chat-head b{display:block;font-size:15px}
+.chat-head small{font-size:12px;opacity:.85}
+.chat{padding:14px 12px 16px;display:flex;flex-direction:column;gap:8px;background:var(--chat);min-height:190px}
+.msg{max-width:86%;padding:9px 12px;border-radius:14px 14px 14px 4px;font-size:14px;line-height:1.4;color:var(--chat-ink);background:var(--surface);box-shadow:0 1px 0 rgba(0,0,0,.06)}
+.msg.me{align-self:flex-end;background:var(--chat-me);border-radius:14px 14px 4px 14px}
+.msg .t{display:block;text-align:right;font-size:11px;color:var(--muted);margin-top:2px;font-family:var(--f-mono)}
+.quick{display:flex;gap:6px}
+.quick span{flex:1;text-align:center;border:1px solid var(--teal);color:var(--teal);border-radius:10px;padding:6px 4px;font-size:13px;font-weight:700;background:var(--surface)}
+.quick span.on{background:var(--teal);color:#fff}
+.list{padding:14px 16px 18px;display:flex;flex-direction:column;gap:6px}
+.list-h{display:flex;justify-content:space-between;align-items:baseline}
+.list-h b{font-family:var(--f-display);font-size:16px}
+.count{font-family:var(--f-mono);font-size:12px;color:var(--muted);position:relative}
+.row{display:flex;justify-content:space-between;font-size:14px;padding-block:5px;border-bottom:1px dashed var(--hair)}
+.row:last-of-type{border-bottom:none}
+.ok{color:var(--teal);font-weight:700}
+.ana .name{position:relative}
+.ana .name::after{content:"";position:absolute;left:0;top:52%;height:1.5px;width:100%;background:var(--muted);transform-origin:left;transform:scaleX(1)}
+.ana .st{color:var(--muted)}
+.maps{margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--navy);color:var(--on-navy);border-radius:10px;padding:10px;font-size:13px;font-weight:700}
+
+.seal{position:absolute;z-index:2;right:-18px;top:-6px;width:112px;height:112px;filter:drop-shadow(0 10px 16px rgba(19,35,58,.25))}
+.seal .spin{transform-origin:64px 64px;transform-box:view-box}
+.seal-ring{font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:2.4px;fill:#13233A}
+
+/* route band */
+.route{position:relative;margin-top:8px}
+.route{overflow:hidden}
+.route svg{width:100%;height:auto;display:block}
+@media (max-width:700px){.route svg{width:180%;max-width:none;margin-left:-40%}}
+.road{fill:none;stroke:var(--road);stroke-width:14;stroke-linecap:round}
+.road-dash{fill:none;stroke:var(--surface);stroke-width:2.5;stroke-dasharray:10 12;stroke-linecap:round}
+.town-label{font-family:var(--f-mono);font-size:13px;font-weight:600;fill:var(--muted);letter-spacing:.06em}
+.dest-label{font-family:var(--f-display);font-size:16px;font-weight:800;fill:var(--ink)}
+.house{fill:var(--surface);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.roof{fill:var(--amber)}
+.pin{fill:var(--teal)}
+.campus{fill:var(--surface);stroke:var(--ink);stroke-width:2.4;stroke-linejoin:round}
+.campus-roof{fill:var(--navy)}
+.tree{fill:var(--teal);opacity:.75}
+
+/* van illustration (shared) */
+.v-body{fill:var(--amber)}
+.v-win{fill:#13233A}
+.v-stripe{fill:#13233A;opacity:.85}
+.v-wheel{fill:#13233A}
+.v-hub{fill:var(--road)}
+.v-light{fill:#FFF3C4}
+
+section.block{padding-block:88px;display:flex;flex-direction:column;gap:36px}
+.head{display:flex;flex-direction:column;gap:12px;max-width:740px}
+.head.center{align-self:center;text-align:center;align-items:center}
+
+/* pains */
+.pains{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.pain{background:var(--surface);border:1px solid var(--hair);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:transform .25s ease, box-shadow .25s ease}
+.pain:hover{transform:translateY(-4px);box-shadow:0 20px 40px -28px rgba(19,35,58,.45)}
+.pain svg{width:100%;height:130px;background:var(--surface-2);border-radius:14px}
+.pain .time{font-family:var(--f-mono);font-size:13px;color:var(--amber-ink);font-weight:600}
+.ill-line{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ill-fill{fill:var(--surface);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.ill-amber{fill:var(--amber)}
+.ill-teal{fill:var(--teal)}
+.ill-soft{fill:var(--teal-soft)}
+.ill-ink{fill:var(--ink)}
+.ill-text{font-family:var(--f-display);font-weight:800;fill:var(--ink)}
+.ill-mono{font-family:var(--f-mono);font-weight:600;fill:var(--muted)}
+.ill-white{font-family:var(--f-display);font-weight:800;fill:#fff}
+
+/* how it works */
+.dark{background:var(--navy);color:var(--on-navy);position:relative;overflow:hidden}
+.dark .muted{color:var(--on-navy-muted)}
+.dark .eyebrow{color:var(--amber)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative}
+@media (max-width:860px){.steps{grid-template-columns:1fr}}
+.step{background:var(--navy-2);border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:12px;position:relative}
+.step .n{position:absolute;top:-16px;left:22px;width:38px;height:38px;border-radius:50%;background:var(--amber);color:#13233A;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:18px;box-shadow:0 0 0 6px var(--navy)}
+.step svg{width:100%;height:140px;border-radius:14px;background:rgba(255,255,255,.05)}
+.dk-line{fill:none;stroke:#F3F1EC;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.dk-fill{fill:#24395A;stroke:#F3F1EC;stroke-width:2;stroke-linejoin:round}
+.dk-cell{fill:#2A4266}
+.dk-class{fill:#6CC2C8}
+.dk-today{fill:none;stroke:#F2A62F;stroke-width:3}
+.dk-text{font-family:var(--f-mono);font-size:11px;font-weight:600;fill:#C0CAD6}
+.dk-bubble{fill:#F3F1EC}
+.dk-bubble-me{fill:#D6F0C6}
+.dk-bubble-text{font-family:var(--f-body);font-size:13px;font-weight:600;fill:#13233A}
+.dk-amber{fill:#F2A62F}
+.dk-teal{fill:#6CC2C8}
+.track{position:relative;height:56px;margin-top:6px}
+.track .lane{position:absolute;left:0;right:0;top:34px;border-top:3px dashed rgba(255,255,255,.18)}
+.track .runner{position:absolute;top:0;left:0;width:84px;animation:drive 9s linear infinite}
+@keyframes drive{from{transform:translateX(-90px)}to{transform:translateX(calc(1140px))}}
+
+/* differentials bento */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(0,auto);gap:18px}
+.tile{background:var(--surface);border:1px solid var(--hair);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;transition:transform .25s ease, box-shadow .25s ease}
+.tile:hover{transform:translateY(-4px);box-shadow:0 24px 48px -30px rgba(19,35,58,.5)}
+.tile.big{grid-column:span 2;grid-row:span 2;background:var(--navy);color:var(--on-navy);border-color:var(--navy)}
+.tile.big .muted{color:var(--on-navy-muted)}
+.tile.wide{grid-column:span 2}
+.tile svg{width:100%;height:auto;border-radius:14px}
+.tile .tag{align-self:flex-start;font-family:var(--f-mono);font-size:12px;font-weight:600;background:var(--amber);color:#13233A;padding:4px 10px;border-radius:99px}
+.tile .kicker{font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
+.tile.big h3{font-size:clamp(26px,3vw,34px)}
+@media (max-width:980px){.bento{grid-template-columns:repeat(2,1fr)}.tile.big{grid-column:span 2;grid-row:auto}}
+@media (max-width:620px){.bento{grid-template-columns:1fr}.tile.big,.tile.wide{grid-column:auto}}
+
+/* before / after */
+.ba{display:grid;grid-template-columns:1fr 1fr;border-radius:24px;overflow:hidden;border:1px solid var(--hair)}
+.ba-col{padding:26px;display:flex;flex-direction:column;gap:14px}
+.ba-col.before{background:var(--surface-2)}
+.ba-col.after{background:var(--teal);color:#fff}
+.ba-col.after .ba-k{color:#D9F0EE}
+.ba-h{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:800;font-size:22px}
+.ba-row{display:flex;flex-direction:column;gap:2px;padding-top:12px;border-top:1px solid color-mix(in srgb, currentColor 20%, transparent)}
+.ba-k{font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ba-v{font-size:17px;font-weight:600}
+@media (max-width:720px){.ba{grid-template-columns:1fr}}
+
+/* free trial ticket */
+.trial{background:var(--amber);color:#13233A;position:relative;overflow:hidden}
+.trial::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(19,35,58,.12) 1.2px, transparent 1.4px);background-size:18px 18px}
+.ticket{position:relative;display:grid;grid-template-columns:auto 1fr;background:#FDFCF9;color:#13233A;border-radius:28px;box-shadow:0 30px 60px -30px rgba(19,35,58,.6);overflow:hidden}
+.ticket-l{background:#13233A;color:#F3F1EC;padding:30px 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;position:relative}
+.ticket-l::after{content:"";position:absolute;right:-1px;top:14px;bottom:14px;border-right:3px dashed rgba(242,166,47,.6)}
+.big30{font-family:var(--f-display);font-weight:800;font-size:clamp(88px,12vw,140px);line-height:.9;color:#F2A62F;letter-spacing:-.04em}
+.big30-s{font-family:var(--f-display);font-weight:800;font-size:24px;text-transform:uppercase;letter-spacing:.04em}
+.ticket-r{padding:32px 36px;display:flex;flex-direction:column;gap:16px;justify-content:center}
+.ticket-r h2{color:#13233A}
+.checks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+.checks li{display:flex;gap:8px;align-items:flex-start;font-weight:600;font-size:16px}
+.checks svg{flex:none;width:20px;height:20px;margin-top:2px}
+.notch-l,.notch-r{position:absolute;width:34px;height:34px;border-radius:50%;background:var(--amber);top:50%;transform:translateY(-50%)}
+.notch-l{left:-17px}.notch-r{right:-17px}
+@media (max-width:760px){.ticket{grid-template-columns:1fr}.ticket-l::after{display:none}.checks{grid-template-columns:1fr}.notch-l,.notch-r{display:none}}
+
+/* price */
+.price-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+@media (max-width:860px){.price-wrap{grid-template-columns:1fr}}
+.price{background:var(--surface);border:2px solid var(--ink);border-radius:26px;padding:30px;display:flex;flex-direction:column;gap:18px;position:relative}
+.price-badge{position:absolute;top:-16px;right:24px;background:var(--amber);color:#13233A;font-weight:800;font-family:var(--f-display);padding:8px 16px;border-radius:99px;transform:rotate(3deg);box-shadow:0 8px 18px -8px rgba(19,35,58,.5)}
+.timeline{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tl{border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:4px}
+.tl.free{background:var(--amber-soft)}
+.tl.paid{background:var(--surface-2)}
+.tl .k{font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.tl .v{font-family:var(--f-display);font-weight:800;font-size:34px;line-height:1}
+.tl .v small{font-family:var(--f-body);font-size:15px;font-weight:500;color:var(--muted)}
+.price ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.price li{display:flex;gap:8px;align-items:flex-start}
+.price li svg{flex:none;width:18px;height:18px;margin-top:3px}
+.math{background:var(--navy);color:var(--on-navy);border-radius:26px;padding:30px;display:flex;flex-direction:column;gap:14px;justify-content:center}
+.math .eyebrow{color:var(--amber)}
+.math .big{font-family:var(--f-display);font-weight:800;font-size:54px;color:var(--amber);line-height:1}
+.math p.muted{color:var(--on-navy-muted)}
+.meter{height:14px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+.meter i{display:block;height:100%;width:1.5%;min-width:8px;background:var(--amber);border-radius:99px}
+
+/* faq */
+.faq{display:flex;flex-direction:column;border-top:1px solid var(--hair)}
+details{border-bottom:1px solid var(--hair);padding-block:20px}
+summary{cursor:pointer;font-weight:700;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--f-mono);color:var(--amber-ink);font-size:22px;transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin-top:10px;color:var(--muted);max-width:70ch}
+
+/* join */
+.join{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+@media (max-width:780px){.join{grid-template-columns:1fr}}
+.card-join{border-radius:26px;padding:32px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.card-join.op{background:var(--navy);color:var(--on-navy)}
+.card-join.op p{color:var(--on-navy-muted)}
+.card-join.op .free-pill{align-self:flex-start;background:var(--amber);color:#13233A;font-family:var(--f-mono);font-weight:600;font-size:12px;padding:4px 10px;border-radius:99px}
+.card-join.st{background:var(--surface);border:1px solid var(--hair)}
+.card-join .deco{position:absolute;right:-20px;bottom:-14px;width:220px;opacity:.9;pointer-events:none}
+
+footer{padding-block:40px;border-top:1px solid var(--hair);font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+/* entrance + reveal */
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:translateY(10px) scale(.92)}70%{opacity:1;transform:translateY(-2px) scale(1.02)}100%{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes strike{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:rotate(-2deg) translateY(0)}50%{transform:rotate(-2deg) translateY(-8px)}}
+.hero-copy > *{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.hero-copy > *:nth-child(2){animation-delay:.08s}
+.hero-copy > *:nth-child(3){animation-delay:.16s}
+.hero-copy > *:nth-child(4){animation-delay:.24s}
+.hero-copy > *:nth-child(5){animation-delay:.32s}
+.phone{animation:rise .9s .1s cubic-bezier(.2,.7,.2,1) both, float 6s 1.2s ease-in-out infinite}
+.seal{animation:pop .7s .5s cubic-bezier(.2,.7,.2,1) both}
+.seal .spin{animation:spin 22s linear infinite}
+.m1{animation:pop .5s .5s both}
+.m2{animation:pop .5s .9s both}
+.m3{animation:pop .5s 1.3s both}
+.m4{animation:pop .5s 1.7s both}
+.ana .name::after{animation:strike .5s 2s cubic-bezier(.2,.7,.2,1) both}
+.ana .st{animation:fadeIn .4s 2s both}
+html.rv [data-reveal]{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+html.rv [data-reveal].in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  html.rv [data-reveal]{opacity:1;transform:none}
+}
+</style>
+
+<div class="ribbon"><b>30 dias grátis</b> para os primeiros operadores de fretado universitário da região de Sorocaba. <a href="#participe">Quero testar</a></div>
+
+<nav class="nav" id="nav" aria-label="Principal">
+  <div class="wrap nav-in">
+    <a class="logo" href="#topo" aria-label="VanFlow, início">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="9" fill="#13233A"/><path d="M8 20 C12 20 12 12 16 12 S20 20 24 20" fill="none" stroke="#F2A62F" stroke-width="3" stroke-linecap="round"/><circle cx="8" cy="20" r="2.5" fill="#F2A62F"/><circle cx="24" cy="20" r="2.5" fill="#F2A62F"/></svg>
+      VanFlow
+    </a>
+    <div class="nav-links">
+      <a class="hide-sm" href="#como-funciona">Como funciona</a>
+      <a class="hide-sm" href="#diferenciais">Diferenciais</a>
+      <a class="hide-sm" href="#preco">Preço</a>
+      <a class="btn primary small" href="#participe">Testar 30 dias grátis</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header class="hero" id="topo">
+    <div class="hero-copy">
+      <p class="eyebrow">Para fretado universitário</p>
+      <h1>Saiba quem vai amanhã <span class="hl">antes de ligar a van.</span></h1>
+      <p class="lead">A VanFlow confirma a presença dos alunos pelo WhatsApp, monta a lista do dia a partir da grade de aulas e cobra a mensalidade no Pix sozinha.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#participe">Testar grátis <span class="free">30 DIAS</span></a>
+        <a class="btn ghost" href="#como-funciona">Ver como funciona</a>
+      </div>
+      <div class="trust">
+        <span><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#1D6B74"/><path d="M4.5 8.2l2.2 2.2 4.8-4.8" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Aluno não precisa baixar app</span>
+        <span><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#1D6B74"/><path d="M4.5 8.2l2.2 2.2 4.8-4.8" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Rota no Maps ou no Waze</span>
+        <span><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#1D6B74"/><path d="M4.5 8.2l2.2 2.2 4.8-4.8" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Sem fidelidade</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="blob" aria-hidden="true"></div>
+      <svg class="seal" viewBox="0 0 128 128" role="img" aria-label="Selo: 30 dias grátis, sem fidelidade">
+        <circle cx="64" cy="64" r="62" fill="#F2A62F"/>
+        <circle cx="64" cy="64" r="40" fill="#13233A"/>
+        <defs><path id="sealPath" d="M64 64 m-51 0 a51 51 0 1 1 102 0 a51 51 0 1 1 -102 0"/></defs>
+        <g class="spin"><text class="seal-ring"><textPath href="#sealPath">30 DIAS GRÁTIS · SEM FIDELIDADE · TESTE JÁ ·</textPath></text></g>
+        <text x="64" y="66" text-anchor="middle" font-family="Bricolage Grotesque, DM Sans, Arial, sans-serif" font-weight="800" font-size="34" fill="#F2A62F">30</text>
+        <text x="64" y="84" text-anchor="middle" font-family="IBM Plex Mono, Courier New, monospace" font-weight="600" font-size="10" fill="#F3F1EC" letter-spacing="1.5">DIAS GRÁTIS</text>
+      </svg>
+      <div class="phone" role="img" aria-label="Exemplo no celular: a VanFlow pergunta no WhatsApp se a aluna vai amanhã, ela responde que não, e a lista do dia do motorista é atualizada">
+        <div class="screen">
+          <div class="notch"><i></i></div>
+          <div class="chat-head"><span class="avatar">V</span><div><b>VanFlow · Van do Seu Zé</b><small>Itu → Sorocaba</small></div></div>
+          <div class="chat">
+            <div class="msg m1">Oi, Ana! Amanhã (qui) você tem aula às 19h na Uniso. Vai na van?<span class="t">21:00</span></div>
+            <div class="quick m2"><span>Vou</span><span class="on">Não vou</span></div>
+            <div class="msg me m3">Não vou, a aula foi cancelada<span class="t">21:04</span></div>
+            <div class="msg m4">Anotado! Seu lugar foi liberado. Até sexta.<span class="t">21:04</span></div>
+          </div>
+          <div class="list">
+            <div class="list-h"><b>Lista de amanhã</b><span class="count">11 de 14 vão</span></div>
+            <div class="row"><span>Bruno · Centro</span><span class="ok">vai</span></div>
+            <div class="row"><span>Carla · Vila Nova</span><span class="ok">vai</span></div>
+            <div class="row ana"><span class="name">Ana · Jd. Paulista</span><span class="st">não vai</span></div>
+            <div class="row"><span>Diego · Rodoviária</span><span class="ok">vai</span></div>
+            <div class="maps"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c-2.6 0-4.6 2-4.6 4.6 0 3.5 4.6 8.4 4.6 8.4s4.6-4.9 4.6-8.4C12.6 3.5 10.6 1.5 8 1.5z" fill="#F2A62F"/><circle cx="8" cy="6.1" r="1.7" fill="#13233A"/></svg>Abrir rota no Maps</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="route" data-reveal role="img" aria-label="Ilustração: uma van percorre a estrada passando por Itu, Salto e Votorantim até chegar ao campus em Sorocaba">
+    <svg viewBox="0 0 1140 210" aria-hidden="true">
+      <path id="roadPath" class="road" d="M20 170 C 200 170, 260 92, 430 96 S 700 168, 860 132 S 1010 82, 1090 84"/>
+      <path class="road-dash" d="M20 170 C 200 170, 260 92, 430 96 S 700 168, 860 132 S 1010 82, 1090 84"/>
+      <!-- trees -->
+      <g class="tree"><circle cx="300" cy="150" r="14"/><circle cx="318" cy="158" r="10"/><circle cx="620" cy="96" r="12"/><circle cx="960" cy="150" r="15"/><circle cx="978" cy="160" r="9"/><circle cx="80" cy="120" r="11"/></g>
+      <!-- stop: Itu -->
+      <g transform="translate(150 112)"><path class="house" d="M0 22 L18 6 L36 22 V44 H0 Z"/><path class="roof" d="M-4 24 L18 4 L40 24 L36 26 L18 10 L0 26 Z"/><rect x="13" y="30" width="10" height="14" class="ill-ink"/></g>
+      <text class="town-label" x="168" y="200" text-anchor="middle">ITU</text>
+      <!-- stop: Salto -->
+      <g transform="translate(410 30)"><path class="house" d="M0 22 L18 6 L36 22 V44 H0 Z"/><path class="roof" d="M-4 24 L18 4 L40 24 L36 26 L18 10 L0 26 Z"/><rect x="13" y="30" width="10" height="14" class="ill-ink"/></g>
+      <text class="town-label" x="428" y="134" text-anchor="middle">SALTO</text>
+      <!-- stop: Votorantim -->
+      <g transform="translate(690 96)"><path class="house" d="M0 22 L18 6 L36 22 V44 H0 Z"/><path class="roof" d="M-4 24 L18 4 L40 24 L36 26 L18 10 L0 26 Z"/><rect x="13" y="30" width="10" height="14" class="ill-ink"/></g>
+      <text class="town-label" x="708" y="186" text-anchor="middle">VOTORANTIM</text>
+      <!-- campus -->
+      <g transform="translate(1000 6)">
+        <path class="campus-roof" d="M0 34 L60 6 L120 34 Z"/>
+        <rect class="campus" x="8" y="34" width="104" height="44"/>
+        <rect class="ill-ink" x="22" y="42" width="8" height="30"/><rect class="ill-ink" x="44" y="42" width="8" height="30"/><rect class="ill-ink" x="68" y="42" width="8" height="30"/><rect class="ill-ink" x="90" y="42" width="8" height="30"/>
+        <path d="M60 6 V-6" class="ill-line"/><path d="M60 -6 L74 -2 L60 2 Z" class="ill-amber"/>
+      </g>
+      <text class="dest-label" x="1060" y="118" text-anchor="middle">Sorocaba</text>
+      <!-- moving van -->
+      <g id="routeVan">
+        <g transform="translate(-30 -26) scale(.5)">
+          <path class="v-body" d="M8 44 V22 Q8 12 18 12 H82 Q92 12 98 20 L110 32 Q114 36 114 42 V46 H8 Z"/>
+          <path class="v-win" d="M20 18 H44 V30 H16 V22 Q16 18 20 18Z"/><rect class="v-win" x="48" y="18" width="22" height="12" rx="2"/><path class="v-win" d="M74 18 H86 Q91 18 95 23 L101 30 H74Z"/>
+          <rect class="v-stripe" x="8" y="36" width="106" height="3"/>
+          <circle class="v-wheel" cx="30" cy="46" r="9"/><circle class="v-hub" cx="30" cy="46" r="3.5"/><circle class="v-wheel" cx="92" cy="46" r="9"/><circle class="v-hub" cx="92" cy="46" r="3.5"/>
+          <circle class="v-light" cx="111" cy="38" r="2.4"/>
+        </g>
+        <animateMotion dur="12s" repeatCount="indefinite" rotate="auto"><mpath href="#roadPath"/></animateMotion>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="block" aria-labelledby="dor">
+    <div class="head" data-reveal>
+      <p class="eyebrow">Você reconhece isso?</p>
+      <h2 id="dor">O dia de quem faz fretado universitário começa no improviso.</h2>
+    </div>
+    <div class="pains">
+      <article class="pain" data-reveal style="--d:.0s">
+        <svg viewBox="0 0 260 130" aria-hidden="true">
+          <rect class="ill-fill" x="96" y="14" width="68" height="104" rx="12"/>
+          <rect class="ill-soft" x="104" y="28" width="52" height="78" rx="4"/>
+          <rect class="ill-fill" x="110" y="36" width="34" height="10" rx="5"/><rect class="ill-fill" x="116" y="52" width="34" height="10" rx="5"/><rect class="ill-fill" x="110" y="68" width="30" height="10" rx="5"/><rect class="ill-fill" x="118" y="84" width="32" height="10" rx="5"/>
+          <circle class="ill-amber" cx="164" cy="18" r="16"/><text class="ill-text" x="164" y="24" text-anchor="middle" font-size="15">40</text>
+          <path class="ill-line" d="M50 46 q10 -12 22 0 M58 30 q14 -14 30 0" opacity=".5"/>
+          <text class="ill-mono" x="196" y="70" font-size="12">21:00</text>
+        </svg>
+        <p class="time">21h, na véspera</p><h3>"Quem vai amanhã?"</h3><p class="muted">Aula cancelada, prova, feriado. A presença muda todo dia e você descobre lendo dezenas de mensagens no grupo.</p>
+      </article>
+      <article class="pain" data-reveal style="--d:.12s">
+        <svg viewBox="0 0 260 130" aria-hidden="true">
+          <circle class="ill-fill" cx="78" cy="64" r="42"/>
+          <path class="ill-line" d="M78 64 L78 34 M78 64 L102 76" stroke-width="3.5"/>
+          <circle class="ill-ink" cx="78" cy="64" r="4"/>
+          <g transform="translate(140 46) scale(.85)"><path class="v-body" d="M8 44 V22 Q8 12 18 12 H82 Q92 12 98 20 L110 32 Q114 36 114 42 V46 H8 Z"/><path class="v-win" d="M20 18 H44 V30 H16 V22 Q16 18 20 18Z"/><rect class="v-win" x="48" y="18" width="22" height="12" rx="2"/><path class="v-win" d="M74 18 H86 Q91 18 95 23 L101 30 H74Z"/><circle class="v-wheel" cx="30" cy="46" r="9"/><circle class="v-hub" cx="30" cy="46" r="3.5"/><circle class="v-wheel" cx="92" cy="46" r="9"/><circle class="v-hub" cx="92" cy="46" r="3.5"/></g>
+          <text class="ill-mono" x="166" y="36" font-size="12">esperando…</text>
+        </svg>
+        <p class="time">6h40, na saída</p><h3>Parada à toa</h3><p class="muted">Você passa na casa de quem não ia e ainda monta a rota de cabeça, gastando tempo e combustível.</p>
+      </article>
+      <article class="pain" data-reveal style="--d:.24s">
+        <svg viewBox="0 0 260 130" aria-hidden="true">
+          <rect class="ill-fill" x="54" y="22" width="92" height="92" rx="12"/>
+          <rect class="ill-amber" x="54" y="22" width="92" height="24" rx="12"/><rect class="ill-amber" x="54" y="34" width="92" height="12"/>
+          <text class="ill-text" x="100" y="96" text-anchor="middle" font-size="44">10</text>
+          <circle class="ill-teal" cx="176" cy="74" r="28"/><text class="ill-white" x="176" y="81" text-anchor="middle" font-size="18">Pix</text>
+          <path class="ill-line" d="M196 30 l10 10 m0 -10 l-10 10" stroke-width="3"/>
+        </svg>
+        <p class="time">Dia 10, no vencimento</p><h3>Cobrar um por um</h3><p class="muted">Conferir Pix, mandar lembrete, cobrar de novo. Todo mês, para cada aluno.</p>
+      </article>
+    </div>
+  </section>
+</div>
+
+<div class="dark" id="como-funciona">
+  <div class="wrap">
+    <section class="block" aria-labelledby="como">
+      <div class="head" data-reveal>
+        <p class="eyebrow">Como funciona</p>
+        <h2 id="como">Três passos, e o WhatsApp que todo mundo já usa.</h2>
+      </div>
+      <div class="steps">
+        <article class="step" data-reveal style="--d:0s">
+          <span class="n">1</span>
+          <svg viewBox="0 0 280 140" aria-hidden="true">
+            <text class="dk-text" x="44" y="26" text-anchor="middle">SEG</text><text class="dk-text" x="92" y="26" text-anchor="middle">TER</text><text class="dk-text" x="140" y="26" text-anchor="middle">QUA</text><text class="dk-text" x="188" y="26" text-anchor="middle">QUI</text><text class="dk-text" x="236" y="26" text-anchor="middle">SEX</text>
+            <g><rect class="dk-class" x="24" y="36" width="40" height="22" rx="5"/><rect class="dk-cell" x="72" y="36" width="40" height="22" rx="5"/><rect class="dk-class" x="120" y="36" width="40" height="22" rx="5"/><rect class="dk-class" x="168" y="36" width="40" height="22" rx="5"/><rect class="dk-cell" x="216" y="36" width="40" height="22" rx="5"/>
+            <rect class="dk-cell" x="24" y="64" width="40" height="22" rx="5"/><rect class="dk-class" x="72" y="64" width="40" height="22" rx="5"/><rect class="dk-cell" x="120" y="64" width="40" height="22" rx="5"/><rect class="dk-class" x="168" y="64" width="40" height="22" rx="5"/><rect class="dk-class" x="216" y="64" width="40" height="22" rx="5"/>
+            <rect class="dk-cell" x="24" y="92" width="40" height="22" rx="5"/><rect class="dk-cell" x="72" y="92" width="40" height="22" rx="5"/><rect class="dk-class" x="120" y="92" width="40" height="22" rx="5"/><rect class="dk-cell" x="168" y="92" width="40" height="22" rx="5"/><rect class="dk-cell" x="216" y="92" width="40" height="22" rx="5"/></g>
+            <rect class="dk-today" x="163" y="31" width="50" height="88" rx="8"/>
+          </svg>
+          <h3>O aluno informa a grade do semestre</h3><p class="muted">Uma vez só. A VanFlow já sabe em que dias e horários cada um vai.</p>
+        </article>
+        <article class="step" data-reveal style="--d:.12s">
+          <span class="n">2</span>
+          <svg viewBox="0 0 280 140" aria-hidden="true">
+            <rect class="dk-bubble" x="22" y="18" width="190" height="40" rx="14"/><text class="dk-bubble-text" x="36" y="43">Amanhã tem aula 19h. Vai?</text>
+            <rect class="dk-teal" x="22" y="66" width="90" height="26" rx="9"/><text x="67" y="84" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-weight="700" font-size="13" fill="#13233A">Vou</text>
+            <rect x="120" y="66" width="92" height="26" rx="9" fill="none" stroke="#6CC2C8" stroke-width="2"/><text x="166" y="84" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-weight="700" font-size="13" fill="#6CC2C8">Não vou</text>
+            <rect class="dk-bubble-me" x="150" y="100" width="108" height="30" rx="12"/><text class="dk-bubble-text" x="164" y="120">Vou!</text>
+            <path d="M222 115 l5 5 9 -10" fill="none" stroke="#1D6B74" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>Confirmação na noite anterior</h3><p class="muted">O aluno recebe uma mensagem no WhatsApp e só responde quando alguma coisa muda.</p>
+        </article>
+        <article class="step" data-reveal style="--d:.24s">
+          <span class="n">3</span>
+          <svg viewBox="0 0 280 140" aria-hidden="true">
+            <rect class="dk-fill" x="20" y="16" width="120" height="110" rx="12"/>
+            <rect x="34" y="34" width="70" height="8" rx="4" fill="#F3F1EC"/>
+            <circle class="dk-teal" cx="40" cy="60" r="5"/><rect x="52" y="56" width="70" height="8" rx="4" fill="#C0CAD6"/>
+            <circle class="dk-teal" cx="40" cy="80" r="5"/><rect x="52" y="76" width="60" height="8" rx="4" fill="#C0CAD6"/>
+            <circle class="dk-teal" cx="40" cy="100" r="5"/><rect x="52" y="96" width="66" height="8" rx="4" fill="#C0CAD6"/>
+            <rect x="150" y="16" width="110" height="110" rx="12" fill="#24395A"/>
+            <path d="M150 60 H260 M150 96 H260 M190 16 V126 M230 16 V126" stroke="#2F4A70" stroke-width="6"/>
+            <path d="M166 110 C 190 100, 186 70, 210 64 S 240 40, 246 30" fill="none" stroke="#F2A62F" stroke-width="3.5" stroke-dasharray="6 6" stroke-linecap="round"/>
+            <circle class="dk-teal" cx="166" cy="110" r="6"/><circle class="dk-teal" cx="210" cy="64" r="6"/>
+            <path d="M246 18 c-6 0 -10 4 -10 10 c0 8 10 18 10 18 s10 -10 10 -18 c0 -6 -4 -10 -10 -10z" class="dk-amber"/><circle cx="246" cy="28" r="3.5" fill="#13233A"/>
+          </svg>
+          <h3>Lista e rota prontas</h3><p class="muted">Você abre o app, vê quem vai e toca em "Abrir rota" para seguir no Google Maps ou no Waze.</p>
+        </article>
+      </div>
+      <div class="track" aria-hidden="true">
+        <div class="lane"></div>
+        <svg class="runner" viewBox="0 0 122 56"><path class="v-body" d="M8 44 V22 Q8 12 18 12 H82 Q92 12 98 20 L110 32 Q114 36 114 42 V46 H8 Z"/><path class="v-win" d="M20 18 H44 V30 H16 V22 Q16 18 20 18Z"/><rect class="v-win" x="48" y="18" width="22" height="12" rx="2"/><path class="v-win" d="M74 18 H86 Q91 18 95 23 L101 30 H74Z"/><circle class="v-wheel" cx="30" cy="46" r="9"/><circle class="v-hub" cx="30" cy="46" r="3.5"/><circle class="v-wheel" cx="92" cy="46" r="9"/><circle class="v-hub" cx="92" cy="46" r="3.5"/><circle class="v-light" cx="111" cy="38" r="2.4"/></svg>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="wrap" id="diferenciais">
+  <section class="block" aria-labelledby="dif">
+    <div class="head" data-reveal>
+      <p class="eyebrow">Por que a VanFlow</p>
+      <h2 id="dif">A maioria dos apps foi feita para a van escolar. <span class="hl">A VanFlow foi feita para o fretado universitário.</span></h2>
+      <p class="muted">Na escola, quase todo mundo vai todo dia. Na faculdade, a presença muda com a grade de cada aluno. É aí que a VanFlow faz diferença.</p>
+    </div>
+    <div class="bento">
+      <article class="tile big" data-reveal>
+        <span class="tag">Só na VanFlow</span>
+        <h3>A lista do dia sai da grade de aulas</h3>
+        <p class="muted">Cada aluno informa a grade do semestre uma vez. Na véspera, a VanFlow já sabe quem tem aula e pergunta só para confirmar. Você não precisa mais montar a lista lendo o grupo.</p>
+        <svg viewBox="0 0 480 250" aria-hidden="true">
+          <rect x="0" y="0" width="480" height="250" rx="16" fill="#1C3150"/>
+          <text class="dk-text" x="60" y="34" text-anchor="middle">SEG</text><text class="dk-text" x="150" y="34" text-anchor="middle">TER</text><text class="dk-text" x="240" y="34" text-anchor="middle">QUA</text><text class="dk-text" x="330" y="34" text-anchor="middle">QUI</text><text class="dk-text" x="420" y="34" text-anchor="middle">SEX</text>
+          <g font-family="DM Sans, Arial, sans-serif" font-size="12" font-weight="700">
+            <rect x="22" y="48" width="76" height="40" rx="8" fill="#6CC2C8"/><text x="60" y="73" text-anchor="middle" fill="#13233A">Ana · 19h</text>
+            <rect x="112" y="48" width="76" height="40" rx="8" fill="#2A4266"/>
+            <rect x="202" y="48" width="76" height="40" rx="8" fill="#6CC2C8"/><text x="240" y="73" text-anchor="middle" fill="#13233A">Ana · 19h</text>
+            <rect x="292" y="48" width="76" height="40" rx="8" fill="#6CC2C8"/><text x="330" y="73" text-anchor="middle" fill="#13233A">Ana · 19h</text>
+            <rect x="382" y="48" width="76" height="40" rx="8" fill="#2A4266"/>
+            <rect x="22" y="98" width="76" height="40" rx="8" fill="#2A4266"/>
+            <rect x="112" y="98" width="76" height="40" rx="8" fill="#F2A62F"/><text x="150" y="123" text-anchor="middle" fill="#13233A">Bruno · 21h</text>
+            <rect x="202" y="98" width="76" height="40" rx="8" fill="#2A4266"/>
+            <rect x="292" y="98" width="76" height="40" rx="8" fill="#F2A62F"/><text x="330" y="123" text-anchor="middle" fill="#13233A">Bruno · 21h</text>
+            <rect x="382" y="98" width="76" height="40" rx="8" fill="#F2A62F"/><text x="420" y="123" text-anchor="middle" fill="#13233A">Bruno · 21h</text>
+            <rect x="22" y="148" width="76" height="40" rx="8" fill="#D6F0C6"/><text x="60" y="173" text-anchor="middle" fill="#13233A">Carla · 19h</text>
+            <rect x="112" y="148" width="76" height="40" rx="8" fill="#D6F0C6"/><text x="150" y="173" text-anchor="middle" fill="#13233A">Carla · 19h</text>
+            <rect x="202" y="148" width="76" height="40" rx="8" fill="#2A4266"/>
+            <rect x="292" y="148" width="76" height="40" rx="8" fill="#D6F0C6"/><text x="330" y="173" text-anchor="middle" fill="#13233A">Carla · 19h</text>
+            <rect x="382" y="148" width="76" height="40" rx="8" fill="#2A4266"/>
+          </g>
+          <rect x="284" y="40" width="92" height="156" rx="12" fill="none" stroke="#F2A62F" stroke-width="3"/>
+          <rect x="250" y="206" width="210" height="32" rx="16" fill="#F2A62F"/>
+          <text x="355" y="227" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-weight="700" font-size="13" fill="#13233A">Quinta: 3 confirmações enviadas</text>
+        </svg>
+      </article>
+      <article class="tile" data-reveal style="--d:.08s">
+        <p class="kicker">Foco</p>
+        <svg viewBox="0 0 240 120" aria-hidden="true">
+          <rect width="240" height="120" rx="14" class="ill-soft"/>
+          <path class="campus-roof" d="M60 46 L120 20 L180 46 Z"/>
+          <rect class="campus" x="68" y="46" width="104" height="48"/>
+          <rect class="ill-ink" x="82" y="54" width="8" height="34"/><rect class="ill-ink" x="104" y="54" width="8" height="34"/><rect class="ill-ink" x="128" y="54" width="8" height="34"/><rect class="ill-ink" x="150" y="54" width="8" height="34"/>
+          <path d="M40 104 H200" style="stroke:var(--road)" stroke-width="8" stroke-linecap="round"/>
+          <path d="M150 16 l18 -8 18 8 -18 8z" class="ill-amber"/><path d="M158 20 v8 c6 4 14 4 20 0 v-8" class="ill-line"/>
+        </svg>
+        <h3>Feita para o fretado universitário</h3>
+        <p class="muted">Não é um app de van escolar adaptado. Começamos pelos operadores que levam alunos às faculdades de Sorocaba.</p>
+      </article>
+      <article class="tile" data-reveal style="--d:.16s">
+        <p class="kicker">Adoção</p>
+        <svg viewBox="0 0 240 120" aria-hidden="true">
+          <rect width="240" height="120" rx="14" class="ill-soft"/>
+          <rect x="22" y="18" width="150" height="34" rx="12" class="ill-fill"/><text x="36" y="40" font-family="DM Sans, Arial, sans-serif" font-size="13" font-weight="700" class="ill-text">Vai amanhã?</text>
+          <rect x="100" y="64" width="118" height="34" rx="12" fill="#D6F0C6" stroke="#13233A" stroke-width="2"/><text x="116" y="86" font-family="DM Sans, Arial, sans-serif" font-size="13" font-weight="700" fill="#13233A">Vou ✓</text>
+          <circle cx="196" cy="34" r="16" class="ill-teal"/><path d="M188 34 l6 6 10 -11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>Confirmação pelo WhatsApp, sem app</h3>
+        <p class="muted">O aluno não instala nada: responde a uma mensagem. Ninguém fica de fora por não querer baixar mais um app.</p>
+      </article>
+      <article class="tile wide" data-reveal style="--d:.24s">
+        <p class="kicker">Navegação</p>
+        <svg viewBox="0 0 520 130" aria-hidden="true">
+          <rect width="520" height="130" rx="14" class="ill-soft"/>
+          <path d="M0 44 H520 M0 92 H520 M120 0 V130 M260 0 V130 M400 0 V130" style="stroke:var(--surface)" stroke-width="10"/>
+          <path d="M60 104 C 120 104, 140 60, 200 58 S 300 98, 360 82 S 440 40, 470 34" fill="none" style="stroke:var(--amber)" stroke-width="5" stroke-dasharray="10 9" stroke-linecap="round"/>
+          <circle cx="60" cy="104" r="9" class="ill-teal"/><circle cx="200" cy="58" r="9" class="ill-teal"/><circle cx="360" cy="82" r="9" class="ill-teal"/>
+          <path d="M470 6 c-10 0 -17 7 -17 17 c0 13 17 30 17 30 s17 -17 17 -30 c0 -10 -7 -17 -17 -17z" class="ill-amber"/><circle cx="470" cy="23" r="6" class="ill-ink"/>
+        </svg>
+        <h3>A rota abre no Google Maps ou no Waze</h3>
+        <p class="muted">A VanFlow organiza a ordem das paradas de quem confirmou. A navegação fica com o app que você já usa, com trânsito e desvios em tempo real.</p>
+      </article>
+    </div>
+
+    <div class="ba" data-reveal>
+      <div class="ba-col before">
+        <p class="ba-h">Hoje: planilha e grupo</p>
+        <div class="ba-row"><span class="ba-k">Saber quem vai</span><span class="ba-v">Ler dezenas de mensagens no grupo</span></div>
+        <div class="ba-row"><span class="ba-k">Aluno que falta</span><span class="ba-v">Avisa em cima da hora, ou não avisa</span></div>
+        <div class="ba-row"><span class="ba-k">Mensalidade</span><span class="ba-v">Cobrar um por um no Pix</span></div>
+        <div class="ba-row"><span class="ba-k">Rota</span><span class="ba-v">Montada de cabeça</span></div>
+      </div>
+      <div class="ba-col after">
+        <p class="ba-h">Com a VanFlow</p>
+        <div class="ba-row"><span class="ba-k">Saber quem vai</span><span class="ba-v">Lista pronta na noite anterior</span></div>
+        <div class="ba-row"><span class="ba-k">Aluno que falta</span><span class="ba-v">Responde a uma mensagem na véspera</span></div>
+        <div class="ba-row"><span class="ba-k">Mensalidade</span><span class="ba-v">Lembrete e baixa automáticos</span></div>
+        <div class="ba-row"><span class="ba-k">Rota</span><span class="ba-v">Ordem pronta no Maps ou no Waze</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="trial">
+  <div class="wrap">
+    <section class="block" aria-labelledby="trial-t">
+      <div class="ticket" data-reveal>
+        <span class="notch-l" aria-hidden="true"></span><span class="notch-r" aria-hidden="true"></span>
+        <div class="ticket-l"><span class="big30">30</span><span class="big30-s">dias grátis</span></div>
+        <div class="ticket-r">
+          <p class="eyebrow" style="color:#8E5209">Teste sem risco</p>
+          <h2 id="trial-t">Use a VanFlow por 30 dias sem pagar nada.</h2>
+          <ul class="checks">
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#1D6B74"/><path d="M5.5 10.2l3 3 6-6.2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Todas as funções liberadas</li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#1D6B74"/><path d="M5.5 10.2l3 3 6-6.2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Alunos ilimitados</li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#1D6B74"/><path d="M5.5 10.2l3 3 6-6.2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Configuramos com você pelo WhatsApp</li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#1D6B74"/><path d="M5.5 10.2l3 3 6-6.2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Sem fidelidade</li>
+          </ul>
+          <div><a class="btn dark" href="#participe">Começar meus 30 dias grátis</a></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="wrap" id="preco">
+  <section class="block" aria-labelledby="preco-t">
+    <div class="head" data-reveal>
+      <p class="eyebrow">Preço</p>
+      <h2 id="preco-t">Um valor por van. Sem taxa sobre a mensalidade.</h2>
+    </div>
+    <div class="price-wrap">
+      <div class="price" data-reveal>
+        <span class="price-badge">30 dias grátis</span>
+        <div class="timeline">
+          <div class="tl free"><span class="k">Primeiros 30 dias</span><span class="v">R$ 0</span></div>
+          <div class="tl paid"><span class="k">Depois</span><span class="v">R$ 59,90 <small>por van/mês</small></span></div>
+        </div>
+        <ul>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#1D6B74"/><path d="M5.5 10.2l3 3 6-6.2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Alunos ilimitados em cada van</li>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#1D6B74"/><path d="M5.5 10.2l3 3 6-6.2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Sem fidelidade: cancele quando quiser</li>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#1D6B74"/><path d="M5.5 10.2l3 3 6-6.2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Suporte humano pelo WhatsApp</li>
+        </ul>
+        <a class="btn primary" href="#participe">Testar grátis <span class="free">30 DIAS</span></a>
+      </div>
+      <div class="math" data-reveal style="--d:.12s">
+        <p class="eyebrow">Faz a conta</p>
+        <p class="big">menos de 2%</p>
+        <div class="meter" role="img" aria-label="A assinatura equivale a cerca de 1,5% do faturamento mensal de uma van"><i></i></div>
+        <p class="muted">do que uma van com 12 a 15 alunos fatura no mês, que fica entre R$ 4 mil e R$ 9 mil segundo estimativa do Efí Bank. Basta evitar uma mensalidade não paga para a VanFlow se pagar.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <section class="block" aria-labelledby="faq-t">
+    <div class="head" data-reveal><p class="eyebrow">Dúvidas</p><h2 id="faq-t">Perguntas frequentes</h2></div>
+    <div class="faq" data-reveal>
+      <details><summary>Como funcionam os 30 dias grátis?</summary><p>Você usa a VanFlow completa por 30 dias, sem pagar nada. Se gostar, continua por R$ 59,90 por van por mês. Se não, é só avisar: não há fidelidade.</p></details>
+      <details><summary>O aluno precisa baixar algum app?</summary><p>Não. Ele confirma a presença respondendo a uma mensagem no WhatsApp. Se quiser acompanhar a van, abre um link no navegador.</p></details>
+      <details><summary>E se eu não souber mexer com tecnologia?</summary><p>A gente importa a sua planilha ou lista atual e configura tudo com você pelo WhatsApp. Leva poucos minutos.</p></details>
+      <details><summary>Preciso trocar o app de navegação?</summary><p>Não. A VanFlow só define a ordem das paradas. A navegação abre no Google Maps ou no Waze, que você já usa.</p></details>
+      <details><summary>Serve para fretado de funcionários ou escolar?</summary><p>Começamos pelo fretado universitário da região de Sorocaba. Se você atende outro tipo de passageiro, cadastre-se assim mesmo: queremos conversar.</p></details>
+      <details><summary>Quem está por trás da VanFlow?</summary><p>Mateus Baú, Gustavo Rodrigues e Nasser Shuqair, estudantes da UFSCar Sorocaba. A VanFlow nasceu da rotina de quem vai de van todos os dias para as faculdades da cidade.</p></details>
+    </div>
+  </section>
+</div>
+
+<div class="wrap" id="participe">
+  <section class="block" aria-labelledby="part-t">
+    <div class="head" data-reveal><p class="eyebrow">Participe</p><h2 id="part-t">Estamos escolhendo os primeiros operadores do teste.</h2></div>
+    <div class="join">
+      <div class="card-join op" data-reveal>
+        <span class="free-pill">30 DIAS GRÁTIS</span>
+        <h3>Sou motorista ou dono de van</h3>
+        <p>Deixe seu contato e a gente configura a VanFlow com você. Leva 1 minuto.</p>
+        <div><a class="btn primary" id="cta-operador" href="#participe" target="_blank" rel="noopener">Quero meus 30 dias grátis</a></div>
+        <svg class="deco" viewBox="0 0 122 56" aria-hidden="true"><path class="v-body" d="M8 44 V22 Q8 12 18 12 H82 Q92 12 98 20 L110 32 Q114 36 114 42 V46 H8 Z"/><path class="v-win" d="M20 18 H44 V30 H16 V22 Q16 18 20 18Z"/><rect class="v-win" x="48" y="18" width="22" height="12" rx="2"/><path class="v-win" d="M74 18 H86 Q91 18 95 23 L101 30 H74Z"/><circle class="v-wheel" cx="30" cy="46" r="9"/><circle class="v-hub" cx="30" cy="46" r="3.5"/><circle class="v-wheel" cx="92" cy="46" r="9"/><circle class="v-hub" cx="92" cy="46" r="3.5"/><circle class="v-light" cx="111" cy="38" r="2.4"/></svg>
+      </div>
+      <div class="card-join st" data-reveal style="--d:.12s">
+        <h3>Sou estudante</h3>
+        <p class="muted">Usa van ou fretado para ir à faculdade? Responda a nossa pesquisa de 2 minutos e ajude a construir a VanFlow.</p>
+        <div><a class="btn ghost" id="cta-estudante" href="#participe" target="_blank" rel="noopener">Responder a pesquisa</a></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <footer><span>VanFlow · Menos burocracia, mais segurança em cada viagem.</span><span>Sorocaba, SP · UFSCar</span></footer>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) {
+    document.querySelectorAll('svg').forEach(function(s){ if (s.pauseAnimations) { try { s.pauseAnimations(); } catch(e){} } });
+  }
+  var nav = document.getElementById('nav');
+  function onScroll(){ if (nav) nav.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  var items = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+  if (reduce || !('IntersectionObserver' in window) || !items.length) return;
+  document.documentElement.classList.add('rv');
+  var vh = window.innerHeight || 800;
+  items.forEach(function(el){ if (el.getBoundingClientRect().top < vh * 0.95) el.classList.add('in'); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.12});
+  items.forEach(function(el){ if (!el.classList.contains('in')) io.observe(el); });
+  window.addEventListener('beforeprint', function(){ items.forEach(function(el){ el.classList.add('in'); }); });
+})();
+</script>
+
+</body></html>

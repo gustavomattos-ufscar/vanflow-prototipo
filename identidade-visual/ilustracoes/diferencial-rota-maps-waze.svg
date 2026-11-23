@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 130" aria-hidden="true"><style>:root,svg{--bg:#F4F2ED;--surface:#FDFCF9;--surface-2:#EAE6DE;--hair:#D6D0C4;--ink:#13233A;--muted:#4B5667;--navy:#13233A;--navy-2:#1C3150;--on-navy:#F3F1EC;--on-navy-muted:#B9C4D2;--amber:#F2A62F;--amber-soft:#FBE3B8;--amber-ink:#8E5209;--teal:#1D6B74;--teal-soft:#CFE7E6;--chat:#E3EFEA;--chat-me:#D6F0C6;--chat-ink:#13233A;--road:#C9C2B4;--f-display:'Bricolage Grotesque','DM Sans',Arial,sans-serif;--f-body:'DM Sans',Arial,sans-serif;--f-mono:'IBM Plex Mono','Courier New',monospace}
+.ill-amber{fill:var(--amber)}
+.ill-teal{fill:var(--teal)}
+.ill-soft{fill:var(--teal-soft)}
+.ill-ink{fill:var(--ink)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+          <rect width="520" height="130" rx="14" class="ill-soft"/>
+          <path d="M0 44 H520 M0 92 H520 M120 0 V130 M260 0 V130 M400 0 V130" style="stroke:var(--surface)" stroke-width="10"/>
+          <path d="M60 104 C 120 104, 140 60, 200 58 S 300 98, 360 82 S 440 40, 470 34" fill="none" style="stroke:var(--amber)" stroke-width="5" stroke-dasharray="10 9" stroke-linecap="round"/>
+          <circle cx="60" cy="104" r="9" class="ill-teal"/><circle cx="200" cy="58" r="9" class="ill-teal"/><circle cx="360" cy="82" r="9" class="ill-teal"/>
+          <path d="M470 6 c-10 0 -17 7 -17 17 c0 13 17 30 17 30 s17 -17 17 -30 c0 -10 -7 -17 -17 -17z" class="ill-amber"/><circle cx="470" cy="23" r="6" class="ill-ink"/>
+        </svg>

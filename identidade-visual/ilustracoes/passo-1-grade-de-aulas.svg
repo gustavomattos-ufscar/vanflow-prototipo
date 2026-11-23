@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 140" aria-hidden="true"><style>:root,svg{--bg:#F4F2ED;--surface:#FDFCF9;--surface-2:#EAE6DE;--hair:#D6D0C4;--ink:#13233A;--muted:#4B5667;--navy:#13233A;--navy-2:#1C3150;--on-navy:#F3F1EC;--on-navy-muted:#B9C4D2;--amber:#F2A62F;--amber-soft:#FBE3B8;--amber-ink:#8E5209;--teal:#1D6B74;--teal-soft:#CFE7E6;--chat:#E3EFEA;--chat-me:#D6F0C6;--chat-ink:#13233A;--road:#C9C2B4;--f-display:'Bricolage Grotesque','DM Sans',Arial,sans-serif;--f-body:'DM Sans',Arial,sans-serif;--f-mono:'IBM Plex Mono','Courier New',monospace}
+.dk-cell{fill:#2A4266}
+.dk-class{fill:#6CC2C8}
+.dk-today{fill:none;stroke:#F2A62F;stroke-width:3}
+.dk-text{font-family:var(--f-mono);font-size:11px;font-weight:600;fill:#C0CAD6}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+            <text class="dk-text" x="44" y="26" text-anchor="middle">SEG</text><text class="dk-text" x="92" y="26" text-anchor="middle">TER</text><text class="dk-text" x="140" y="26" text-anchor="middle">QUA</text><text class="dk-text" x="188" y="26" text-anchor="middle">QUI</text><text class="dk-text" x="236" y="26" text-anchor="middle">SEX</text>
+            <g><rect class="dk-class" x="24" y="36" width="40" height="22" rx="5"/><rect class="dk-cell" x="72" y="36" width="40" height="22" rx="5"/><rect class="dk-class" x="120" y="36" width="40" height="22" rx="5"/><rect class="dk-class" x="168" y="36" width="40" height="22" rx="5"/><rect class="dk-cell" x="216" y="36" width="40" height="22" rx="5"/>
+            <rect class="dk-cell" x="24" y="64" width="40" height="22" rx="5"/><rect class="dk-class" x="72" y="64" width="40" height="22" rx="5"/><rect class="dk-cell" x="120" y="64" width="40" height="22" rx="5"/><rect class="dk-class" x="168" y="64" width="40" height="22" rx="5"/><rect class="dk-class" x="216" y="64" width="40" height="22" rx="5"/>
+            <rect class="dk-cell" x="24" y="92" width="40" height="22" rx="5"/><rect class="dk-cell" x="72" y="92" width="40" height="22" rx="5"/><rect class="dk-class" x="120" y="92" width="40" height="22" rx="5"/><rect class="dk-cell" x="168" y="92" width="40" height="22" rx="5"/><rect class="dk-cell" x="216" y="92" width="40" height="22" rx="5"/></g>
+            <rect class="dk-today" x="163" y="31" width="50" height="88" rx="8"/>
+          </svg>

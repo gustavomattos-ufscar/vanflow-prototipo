@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true"><style>:root,svg{--bg:#F4F2ED;--surface:#FDFCF9;--surface-2:#EAE6DE;--hair:#D6D0C4;--ink:#13233A;--muted:#4B5667;--navy:#13233A;--navy-2:#1C3150;--on-navy:#F3F1EC;--on-navy-muted:#B9C4D2;--amber:#F2A62F;--amber-soft:#FBE3B8;--amber-ink:#8E5209;--teal:#1D6B74;--teal-soft:#CFE7E6;--chat:#E3EFEA;--chat-me:#D6F0C6;--chat-ink:#13233A;--road:#C9C2B4;--f-display:'Bricolage Grotesque','DM Sans',Arial,sans-serif;--f-body:'DM Sans',Arial,sans-serif;--f-mono:'IBM Plex Mono','Courier New',monospace}
+
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style><circle cx="8" cy="8" r="8" fill="#1D6B74"/><path d="M4.5 8.2l2.2 2.2 4.8-4.8" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>

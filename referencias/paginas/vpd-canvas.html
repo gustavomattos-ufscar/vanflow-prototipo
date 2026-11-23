@@ -1,0 +1,597 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>VanFlow Value Proposition Canvas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Sans:opsz,wght@9..40,400..700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: a workshop sheet. The filled canvas in the standard geometry on top, then each block answered with the professor's guiding questions and a frequency x importance ranking. */
+:root{
+  --bg:#E7E5E0; --surface:#FBFAF7; --surface-2:#F2F0EB;
+  --ink:#14233A; --muted:#4A5566; --hair:#CBC6BC; --line:#14233A;
+  --amber:#E8962A; --amber-ink:#8F520A; --teal:#1D6B74;
+  --pain-bg:#F6DCCB; --pain-fg:#83360F; --gain-bg:#D2E9E7; --gain-fg:#12515A;
+  --hi-bg:#14233A; --hi-fg:#F3F1EC; --md-bg:#DCD8CF; --md-fg:#14233A; --lo-bg:transparent; --lo-fg:#4A5566;
+  --navy:#14233A; --on-navy:#F3F1EC; --on-navy-muted:#B8C3D1;
+  --f-display:'Bricolage Grotesque', 'DM Sans', Arial, sans-serif;
+  --f-body:'DM Sans', Arial, sans-serif;
+  --f-mono:'IBM Plex Mono', 'Courier New', monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F151E; --surface:#17202C; --surface-2:#1D2735;
+  --ink:#E8ECF1; --muted:#A8B3C1; --hair:#2E3A4A; --line:#C7D0DB;
+  --amber:#F2A62F; --amber-ink:#F4BA62; --teal:#6CC2C8;
+  --pain-bg:#4A2717; --pain-fg:#F5BE9C; --gain-bg:#153A3E; --gain-fg:#A4DEDF;
+  --hi-bg:#E8ECF1; --hi-fg:#0F151E; --md-bg:#34404F; --md-fg:#E8ECF1; --lo-bg:transparent; --lo-fg:#A8B3C1;
+  --navy:#22324A; --on-navy:#F3F1EC; --on-navy-muted:#C2CCD8; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F151E; --surface:#17202C; --surface-2:#1D2735;
+  --ink:#E8ECF1; --muted:#A8B3C1; --hair:#2E3A4A; --line:#C7D0DB;
+  --amber:#F2A62F; --amber-ink:#F4BA62; --teal:#6CC2C8;
+  --pain-bg:#4A2717; --pain-fg:#F5BE9C; --gain-bg:#153A3E; --gain-fg:#A4DEDF;
+  --hi-bg:#E8ECF1; --hi-fg:#0F151E; --md-bg:#34404F; --md-fg:#E8ECF1; --lo-bg:transparent; --lo-fg:#A8B3C1;
+  --navy:#22324A; --on-navy:#F3F1EC; --on-navy-muted:#C2CCD8; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:24px;padding-block:40px 72px;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(34px,5vw,56px);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(26px,3.2vw,36px);font-weight:700;letter-spacing:-.01em}
+h3{font-size:20px;font-weight:700}
+p{margin:0}
+a{color:var(--teal)}
+a:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.eyebrow{font-family:var(--f-mono);font-size:12.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-ink)}
+.lead{font-size:18px;color:var(--muted);max-width:70ch}
+.section{display:flex;flex-direction:column;gap:20px}
+.section-head{display:flex;flex-direction:column;gap:8px}
+.sub{display:flex;flex-direction:column;gap:14px;padding-top:8px}
+.sub-title{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sub-title .n{font-family:var(--f-mono);font-size:13px;font-weight:600;color:var(--amber-ink)}
+.muted{color:var(--muted)}
+
+.top{display:flex;flex-direction:column;gap:16px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--muted)}
+.toc{display:flex;flex-wrap:wrap;gap:8px}
+.toc a{font-size:13.5px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--hair);padding:5px 12px;border-radius:999px}
+.toc a:hover{border-color:var(--ink)}
+
+.fb{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.fb-item{background:var(--surface);border:1px solid var(--hair);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.fb-q{font-size:14px;color:var(--muted)}
+.fb-q b{color:var(--ink)}
+.fb-a{font-size:15px}
+
+/* canvas */
+.canvas-scroll{overflow-x:auto;background:var(--surface-2);border:1px solid var(--hair);border-radius:14px;padding:22px}
+.sheet{min-width:1080px;display:flex;flex-direction:column;gap:14px}
+.sheet-head{display:grid;grid-template-columns:700fr 100fr 700fr}
+.sheet-head .box{background:var(--surface);border:1px solid var(--hair);padding:8px 12px;border-radius:4px}
+.sheet-head .box span{display:block;font-size:11.5px;color:var(--muted);font-family:var(--f-mono);letter-spacing:.04em}
+.sheet-head .box b{font-size:14.5px}
+.sheet-foot{display:grid;grid-template-columns:700fr 100fr 700fr;text-align:center;font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cv{position:relative;width:100%;aspect-ratio:1500/760;container-type:inline-size}
+.cv svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.cv-shape{fill:var(--surface);stroke:var(--line);stroke-width:4}
+.cv-div{stroke:var(--line);stroke-width:1.6;fill:none}
+.cv-arrow{stroke:var(--line);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.cv-icon{fill:var(--surface);stroke:var(--line);stroke-width:4;stroke-linejoin:round}
+.cv-eye{fill:var(--line)}
+.rg{position:absolute;display:flex;flex-direction:column;gap:.45cqw;font-size:12px;font-size:1.04cqw;line-height:1.28;min-width:0}
+.rg h4{margin:0 0 .25cqw;font-family:var(--f-mono);font-weight:600;font-size:11px;font-size:.86cqw;letter-spacing:.06em;text-transform:uppercase;color:var(--teal)}
+.rg ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.38cqw}
+.rg li{display:flex;gap:.45cqw;align-items:baseline}
+.dot{flex:none;font-style:normal;font-family:var(--f-mono);font-size:.72cqw;font-weight:600;color:var(--amber-ink);min-width:1.1cqw}
+.bd{flex:none;font-family:var(--f-mono);font-weight:600;font-size:10px;font-size:.74cqw;padding:.05cqw .32cqw;border-radius:99px;line-height:1.4}
+.bd.p{background:var(--pain-bg);color:var(--pain-fg)}
+.bd.g{background:var(--gain-bg);color:var(--gain-fg)}
+.tag{font-family:var(--f-mono);font-size:.72cqw;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.legend{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;font-size:13.5px;color:var(--muted)}
+.order{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.order span.step{background:var(--surface);border:1px solid var(--hair);border-radius:99px;padding:3px 10px;color:var(--ink);font-size:13px}
+.legend .bd{font-size:11px;padding:1px 7px}
+.hint{font-size:13px;color:var(--muted)}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--hair);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card.navy{background:var(--navy);border-color:var(--navy);color:var(--on-navy)}
+.card.navy .muted,.card.navy li{color:var(--on-navy-muted)}
+.card.navy .eyebrow{color:var(--amber)}
+.card ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.kind{font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+.path{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px}
+.path .pill{border:1px solid var(--hair);background:var(--surface);border-radius:99px;padding:4px 12px}
+.path .pill.on{background:var(--amber);border-color:var(--amber);color:#14233A;font-weight:700}
+
+/* guiding questions */
+.qa{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+.qa div{background:var(--surface);border:1px solid var(--hair);border-radius:10px;padding:12px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.qa dt{font-size:13px;font-weight:700;color:var(--teal)}
+.qa dd{margin:0;font-size:15px}
+dl.qa{margin:0}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--hair);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--hair)}
+th{font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--surface-2)}
+tr:last-child td{border-bottom:none}
+td .bd{font-size:11px;padding:1px 7px;margin-right:8px}
+td.rk{font-family:var(--f-mono);font-weight:600;color:var(--amber-ink);width:44px;font-variant-numeric:tabular-nums}
+tr.us td{background:color-mix(in srgb, var(--amber) 14%, var(--surface))}
+.rank-tbl{min-width:860px}
+.pair-tbl{min-width:720px}
+.comp-tbl{min-width:900px}
+.lvl{display:inline-block;font-family:var(--f-mono);font-size:12px;font-weight:600;padding:2px 9px;border-radius:99px;white-space:nowrap;border:1px solid var(--hair)}
+.lvl.hi{background:var(--hi-bg);color:var(--hi-fg);border-color:var(--hi-bg)}
+.lvl.md{background:var(--md-bg);color:var(--md-fg);border-color:var(--md-bg)}
+.lvl.lo{background:var(--lo-bg);color:var(--lo-fg)}
+.tbl-note{font-size:13.5px;color:var(--muted)}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.stat{background:var(--navy);color:var(--on-navy);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.stat .n{font-family:var(--f-display);font-weight:800;font-size:40px;line-height:1;color:var(--amber);font-variant-numeric:tabular-nums}
+.stat .d{font-size:15px}
+.stat .s{font-family:var(--f-mono);font-size:12px;color:var(--on-navy-muted)}
+.note{border-left:4px solid var(--amber);background:var(--surface);padding:14px 18px;border-radius:0 10px 10px 0;font-size:15px}
+
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.step-c{background:var(--surface);border:1px solid var(--hair);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:6px}
+.step-c .k{font-family:var(--f-mono);font-size:12px;color:var(--amber-ink);font-weight:600}
+.diff{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.diff .card h3{font-size:18px}
+.sources{display:flex;flex-direction:column;gap:6px;font-size:14px;padding-left:18px;margin:0}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--hair);padding-top:16px}
+@media (max-width:560px){.wrap{padding-inline:16px}.stat .n{font-size:34px}}
+</style>
+
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow">Empreendedorismo · UFSCar Sorocaba</p>
+  <h1>VanFlow: Canvas da Proposta de Valor</h1>
+  <p class="lead">O Canvas da Construção da Proposta de Valor tem duas partes. À esquerda, a <b>criação do Mapa de Valor</b>; à direita, o <b>Entendimento da Necessidade do Cliente</b>. O <b>Fit de Valor</b> acontece quando as duas se alinham. Abaixo está o canvas preenchido e, em seguida, cada bloco respondido com as perguntas-guia, um ranking de frequência e importância e o contexto de cada item.</p>
+  <div class="meta"><span>Mateus Baú · Gustavo Rodrigues · Nasser Shuqair</span><span>Outubro de 2026</span></div>
+  <nav class="toc" aria-label="Seções">
+    <a href="#mudancas">O que mudou</a><a href="#canvas">Canvas</a><a href="#segmento">Segmento</a><a href="#mercado">Mercado</a><a href="#necessidade">Necessidade do cliente</a><a href="#mapa">Mapa de valor</a><a href="#fit">Fit de valor</a><a href="#concorrentes">Concorrentes</a><a href="#rotas">Rotas</a><a href="#estudante">Estudante</a><a href="#validacao">Validação e MVP</a><a href="#fontes">Fontes</a>
+  </nav>
+</header>
+
+<section class="section" id="mudancas">
+  <div class="section-head">
+    <p class="eyebrow">Feedback do BMC</p>
+    <h2>O que mudamos a partir das críticas</h2>
+  </div>
+  <div class="fb">
+    <div class="fb-item"><p class="fb-q"><b>Crítica:</b> começou apresentando em ordem inversa.</p><p class="fb-a">Seguimos a ordem do material: Atividades, Dores e Ganhos do cliente; depois Produtos e Serviços, Criadores de Ganhos e Atributos Analgésicos; por fim, o Fit de Valor.</p></div>
+    <div class="fb-item"><p class="fb-q"><b>Crítica:</b> ajustar o segmento de clientes.</p><p class="fb-a">Saímos de três segmentos ao mesmo tempo para um: o pequeno operador de fretado universitário da região de Sorocaba.</p></div>
+    <div class="fb-item"><p class="fb-q"><b>Crítica:</b> estudar os concorrentes para achar diferenciais.</p><p class="fb-a">Analisamos os cinco benchmarks indicados, trouxemos dados reais de mercado e marcamos, em cada Criador de Ganho, se copiamos ou superamos o que já existe.</p></div>
+    <div class="fb-item"><p class="fb-q"><b>Crítica:</b> rotas? Usar API que leva o usuário ao Maps ou ao Waze.</p><p class="fb-a">A VanFlow só calcula a ordem das paradas com quem confirmou presença. A navegação abre no Google Maps ou no Waze.</p></div>
+  </div>
+</section>
+
+<section class="section" id="canvas">
+  <div class="section-head">
+    <p class="eyebrow">O canvas</p>
+    <h2>Canvas da Proposta de Valor da VanFlow</h2>
+    <p class="muted">Cada bloco está em ordem de ranking (frequência × importância). Os códigos D e G ligam cada Dor ao Atributo Analgésico que a alivia e cada Ganho ao Criador de Ganho que o gera.</p>
+  </div>
+
+  <div class="canvas-scroll" tabindex="0" role="region" aria-label="Canvas da proposta de valor preenchido">
+    <div class="sheet">
+      <div class="sheet-head">
+        <div class="box"><span>Proposta de valor</span><b>VanFlow: a gestão do fretado universitário em um só app</b></div>
+        <div></div>
+        <div class="box"><span>Segmento de clientes</span><b>Pequeno operador de fretado universitário (1 a 3 vans), região de Sorocaba</b></div>
+      </div>
+
+      <div class="cv">
+        <svg viewBox="0 0 1500 760" aria-hidden="true">
+          <rect class="cv-shape" x="2" y="32" width="696" height="696"/>
+          <line class="cv-div" x1="2" y1="32" x2="350" y2="380"/>
+          <line class="cv-div" x1="2" y1="728" x2="350" y2="380"/>
+          <line class="cv-div" x1="350" y1="380" x2="698" y2="380"/>
+          <line class="cv-arrow" x1="698" y1="380" x2="738" y2="380"/>
+          <path class="cv-arrow" d="M726 368 L738 380 L726 392"/>
+          <path class="cv-arrow" d="M774 368 L762 380 L774 392"/>
+          <line class="cv-arrow" x1="762" y1="380" x2="802" y2="380"/>
+          <circle class="cv-shape" cx="1150" cy="380" r="348"/>
+          <line class="cv-div" x1="802" y1="380" x2="1150" y2="380"/>
+          <line class="cv-div" x1="1150" y1="380" x2="1396" y2="134"/>
+          <line class="cv-div" x1="1150" y1="380" x2="1396" y2="626"/>
+          <path class="cv-icon" d="M338 346 C318 318 298 326 304 340 C308 350 326 350 346 350 M362 346 C382 318 402 326 396 340 C392 350 374 350 354 350"/>
+          <rect class="cv-icon" x="302" y="350" width="96" height="26"/>
+          <rect class="cv-icon" x="310" y="376" width="80" height="58"/>
+          <line class="cv-div" x1="350" y1="350" x2="350" y2="434" style="stroke-width:4"/>
+          <path class="cv-icon" d="M1160 326 C1194 326 1214 352 1214 382 C1214 414 1190 436 1160 436 C1142 436 1128 428 1120 418 L1132 404 L1112 394 L1124 376 C1124 350 1134 326 1160 326 Z"/>
+          <circle class="cv-eye" cx="1160" cy="364" r="5"/>
+        </svg>
+
+        <div class="rg" style="left:1.2%;top:32.6%;width:13.4%">
+          <h4>4 · Produtos e serviços</h4>
+          <ul>
+            <li><i class="dot">1</i>Confirmação via WhatsApp</li>
+            <li><i class="dot">2</i>Presença pela grade</li>
+            <li><i class="dot">3</i>Cobrança Pix automática</li>
+            <li><i class="dot">4</i>Vagas avulsas</li>
+            <li><i class="dot">5</i>Rota do dia no Maps/Waze</li>
+            <li><i class="dot">6</i>Planos por dias</li>
+            <li><i class="dot">7</i>Painel do operador</li>
+            <li><i class="dot">8</i>Avisos e GPS ao vivo</li>
+          </ul>
+        </div>
+        <div class="rg" style="left:24.8%;top:6.6%;width:20.6%">
+          <h4>5 · Criadores de ganhos</h4>
+          <ul>
+            <li><span class="bd g">G1</span>Avulsos e planos trazem novos passageiros</li>
+            <li><span class="bd g">G2</span>Pagamento por Pix em um toque</li>
+            <li><span class="bd g">G3</span>Avisos automáticos respondem "cadê a van?"</li>
+            <li><span class="bd g">G4</span>Importa a planilha em minutos</li>
+            <li><span class="bd g">G5</span>Painel de receitas, gastos e lucro</li>
+            <li><span class="bd g">G6</span>Estudantes acompanham a van e indicam</li>
+          </ul>
+        </div>
+        <div class="rg" style="left:24.8%;top:59.2%;width:20.6%">
+          <h4>6 · Atributos analgésicos</h4>
+          <ul>
+            <li><span class="bd p">D1</span>Grade de aulas monta a lista do dia</li>
+            <li><span class="bd p">D2</span>Vaga livre vendida como avulsa</li>
+            <li><span class="bd p">D3</span>Cobrança Pix com lembretes</li>
+            <li><span class="bd p">D4</span>Paradas ordenadas, abertas no Maps/Waze</li>
+            <li><span class="bd p">D5</span>Lembrete de vencimento de documentos</li>
+            <li><span class="bd p">D6</span>Planos de 2 ou 3 dias por semana</li>
+          </ul>
+        </div>
+
+        <div class="rg" style="left:62.6%;top:14.7%;width:17.4%">
+          <h4>3 · Ganhos</h4>
+          <ul>
+            <li><span class="bd g">G1</span>Van cheia todos os dias</li>
+            <li><span class="bd g">G2</span>Receber em dia, sem cobrar</li>
+            <li><span class="bd g">G3</span>Menos tempo no celular</li>
+            <li><span class="bd g">G4</span>Começar no mesmo dia</li>
+            <li><span class="bd g">G5</span>Saber o lucro de cada van</li>
+            <li><span class="bd g">G6</span>Mais indicações</li>
+          </ul>
+        </div>
+        <div class="rg" style="left:62.6%;top:59.5%;width:17.4%">
+          <h4>2 · Dores</h4>
+          <ul>
+            <li><span class="bd p">D1</span>Não sabe quem vai no dia</li>
+            <li><span class="bd p">D2</span>Lugar vazio na van</li>
+            <li><span class="bd p">D3</span>Inadimplência</li>
+            <li><span class="bd p">D4</span>Rota feita de cabeça</li>
+            <li><span class="bd p">D5</span>Multas na fiscalização</li>
+            <li><span class="bd p">D6</span>Alunos de poucos dias</li>
+          </ul>
+        </div>
+        <div class="rg" style="left:84.2%;top:34.6%;width:13.8%">
+          <h4>1 · Atividades do cliente</h4>
+          <ul>
+            <li><i class="dot">1</i>Levar no horário certo</li>
+            <li><i class="dot">2</i>Saber quem vai no dia</li>
+            <li><i class="dot">3</i>Cobrar as mensalidades</li>
+            <li><i class="dot">4</i>Manter a van cheia</li>
+            <li><i class="dot">5</i>Documentos em dia</li>
+            <li><i class="dot">S</i><span><span class="tag">Social</span> ser confiável</span></li>
+            <li><i class="dot">E</i><span><span class="tag">Emoc.</span> renda estável</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="sheet-foot"><span>Criação do Mapa de Valor</span><span></span><span>Entendimento da Necessidade do Cliente</span></div>
+    </div>
+  </div>
+  <div class="legend">
+    <div class="order" aria-label="Ordem de leitura"><span>Ordem:</span>
+      <span class="step">1 Atividades</span><span>→</span><span class="step">2 Dores</span><span>→</span><span class="step">3 Ganhos</span><span>→</span><span class="step">4 Produtos e serviços</span><span>→</span><span class="step">5 Criadores de ganhos</span><span>→</span><span class="step">6 Atributos analgésicos</span><span>→</span><span class="step">Fit de valor</span>
+    </div>
+    <span><span class="bd p">D1</span> dor e o analgésico que a alivia</span>
+    <span><span class="bd g">G1</span> ganho e o criador que o gera</span>
+  </div>
+  <p class="hint">No celular, arraste o canvas para o lado para ver o círculo.</p>
+</section>
+
+<section class="section" id="segmento">
+  <div class="section-head">
+    <p class="eyebrow">Segmento de clientes ajustado</p>
+    <h2>Para quem é este canvas</h2>
+    <p class="lead">O canvas descreve um segmento por vez. Escolhemos o cliente que paga, com o perfil mais específico possível.</p>
+  </div>
+  <div class="grid2">
+    <div class="card navy">
+      <p class="eyebrow">Quem paga</p>
+      <h3>Pequeno operador de fretado universitário</h3>
+      <ul>
+        <li>Dono de 1 a 3 vans e, quase sempre, também o motorista.</li>
+        <li>Leva estudantes de cidades vizinhas, como Itu, Tatuí, Tietê e Cerquilho, até as faculdades de Sorocaba.</li>
+        <li>Hoje controla presença, cobrança e rota em planilha, Pix manual e grupo de WhatsApp.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <p class="kind">Quem usa</p>
+      <h3>Estudante universitário</h3>
+      <p class="muted">Confirma se vai, paga a mensalidade e acompanha a van. Pode comprar uma vaga avulsa em um dia específico, como o dia de prova. Tem um canvas resumido mais abaixo.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Por que começar pelo fretado universitário</h3>
+    <p class="muted">No escolar quase todo mundo vai todos os dias. No universitário, a presença muda com aula cancelada, prova, horário flexível e feriado, então saber quem vai e montar a rota do dia vale muito mais. Também é o segmento em que a equipe tem acesso direto aos clientes, já que estuda em Sorocaba. Os concorrentes analisados focam quase todos no escolar.</p>
+    <div class="path" aria-label="Ordem de expansão"><span class="muted">Expansão:</span><span class="pill on">1. Universitário</span><span>→</span><span class="pill">2. Funcionários</span><span>→</span><span class="pill">3. Escolar</span></div>
+  </div>
+</section>
+
+<section class="section" id="mercado">
+  <div class="section-head">
+    <p class="eyebrow">Dados reais de mercado</p>
+    <h2>O mercado em números</h2>
+  </div>
+  <div class="stats">
+    <div class="stat"><p class="n">5 milhões</p><p class="d">de universitários em cursos presenciais no Brasil (5.037.482 matrículas). É o público que precisa se deslocar até a faculdade.</p><p class="s">Inep, Censo da Educação Superior 2024</p></div>
+    <div class="stat"><p class="n">52%</p><p class="d">dos cerca de 8.500 alunos da Uniso não moram em Sorocaba, cidade com 15 instituições de ensino superior.</p><p class="s">Jornal Cruzeiro do Sul, 2023</p></div>
+    <div class="stat"><p class="n">50+</p><p class="d">estudantes pagam transporte só de Cerquilho até a Uniso, atendidos por um grupo de 3 motoristas.</p><p class="s">Focas Uniso, 2023</p></div>
+    <div class="stat"><p class="n">R$ 4 a 9 mil</p><p class="d">é o faturamento mensal estimado de uma van escolar com 12 a 15 alunos fixos, a R$ 300 a 600 por aluno. Usamos como referência para o fretado.</p><p class="s">Efí Bank, estimativa de 2025</p></div>
+    <div class="stat"><p class="n">388</p><p class="d">autuações em 902 veículos de fretamento (ônibus, vans e micro-ônibus) fiscalizados pela Artesp em um ano.</p><p class="s">Agência SP, janeiro de 2025</p></div>
+  </div>
+  <p class="note"><b>O que esses números dizem:</b> existe demanda concentrada em Sorocaba, o operador é pequeno, com faturamento de poucos milhares de reais por van, e a fiscalização é rígida. A assinatura de R$ 59,90 por van equivale a algo entre 0,7% e 1,5% do faturamento mensal de uma van.</p>
+</section>
+
+<section class="section" id="necessidade">
+  <div class="section-head">
+    <p class="eyebrow">Lado direito · o círculo</p>
+    <h2>Entendimento da Necessidade do Cliente</h2>
+    <p class="lead">Descreve o operador sem falar da VanFlow. Cada bloco responde às perguntas-guia do material e termina com o ranking de frequência e importância e o contexto. O ranking é uma estimativa da equipe e será validado nas entrevistas.</p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-title"><span class="n">BLOCO 1</span><h3>Atividades do cliente</h3></div>
+    <dl class="qa">
+      <div><dt>O que o segmento está tentando realizar?</dt><dd>Transportar estudantes até as faculdades todos os dias, com a van cheia e as mensalidades pagas.</dd></div>
+      <div><dt>O que é central e o que é atividade de apoio?</dt><dd>Central: levar os alunos no horário. Apoio: lista do dia, cobrança, captação de passageiros e documentação.</dd></div>
+      <div><dt>Qual é o papel do cliente?</dt><dd>O operador é comprador, decisor e usuário: paga, decide e usa o painel. Os primeiros operadores do piloto também são co-criadores. O estudante é usuário e influenciador.</dd></div>
+      <div><dt>Em qual elo da cadeia o cliente atua?</dt><dd>Na ponta de serviço ao consumidor final: o operador vende transporte direto ao estudante. A VanFlow vende para o operador (B2B).</dd></div>
+      <div><dt>Que trabalhos sociais e emocionais ajudamos a realizar?</dt><dd>Social: ser visto como um serviço confiável e organizado. Emocional: ter renda previsível e não viver preso ao celular.</dd></div>
+    </dl>
+    <div class="tbl-wrap"><table class="rank-tbl">
+      <tr><th>#</th><th style="width:28%">Atividade</th><th style="width:12%">Tipo</th><th style="width:12%">Frequência</th><th style="width:12%">Importância</th><th>Contexto</th></tr>
+      <tr><td class="rk">1</td><td><b>Levar os alunos às faculdades no horário</b></td><td>Funcional, central</td><td><span class="lvl hi">Diária</span></td><td><span class="lvl hi">Alta</span></td><td>Ida de manhã cedo (saída por volta das 6h30) e volta no fim das aulas.</td></tr>
+      <tr><td class="rk">2</td><td><b>Saber quem vai em cada dia</b></td><td>Funcional, apoio</td><td><span class="lvl hi">Diária</span></td><td><span class="lvl hi">Alta</span></td><td>Na noite anterior e antes de sair, pelo grupo de WhatsApp.</td></tr>
+      <tr><td class="rk">3</td><td><b>Cobrar e receber as mensalidades</b></td><td>Funcional, apoio</td><td><span class="lvl md">Mensal</span></td><td><span class="lvl hi">Alta</span></td><td>No vencimento, no começo do mês, conferindo Pix um por um.</td></tr>
+      <tr><td class="rk">4</td><td><b>Manter a van cheia</b></td><td>Funcional, apoio</td><td><span class="lvl md">Semestral</span></td><td><span class="lvl hi">Alta</span></td><td>No início de cada semestre, quando os alunos fecham o transporte.</td></tr>
+      <tr><td class="rk">5</td><td><b>Deixar documentos e autorização em dia</b></td><td>Funcional, apoio</td><td><span class="lvl lo">Anual</span></td><td><span class="lvl md">Média</span></td><td>Na renovação de CNH, seguro, vistoria e autorização de fretamento.</td></tr>
+      <tr><td class="rk">Soc.</td><td><b>Ser visto como confiável pelos alunos</b></td><td>Social</td><td><span class="lvl hi">Contínua</span></td><td><span class="lvl md">Média</span></td><td>Em cada viagem e nas indicações entre estudantes.</td></tr>
+      <tr><td class="rk">Emo.</td><td><b>Ter renda previsível no fim do mês</b></td><td>Emocional</td><td><span class="lvl md">Mensal</span></td><td><span class="lvl hi">Alta</span></td><td>Ao fechar as contas do mês e pagar combustível e manutenção.</td></tr>
+    </table></div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-title"><span class="n">BLOCO 2</span><h3>Dores</h3></div>
+    <dl class="qa">
+      <div><dt>Emoções negativas, custos e riscos antes, durante e depois</dt><dd>Antes: incerteza sobre quem vai. Durante: lugar vazio e rota longa. Depois: cobrar quem não pagou.</dd></div>
+      <div><dt>O que o cliente acha caro?</dt><dd>Combustível, sistemas feitos para grandes frotas e taxas que tiram parte de cada mensalidade.</dd></div>
+      <div><dt>Como as soluções atuais têm baixa performance?</dt><dd>Planilha e WhatsApp não cobram nem avisam sozinhos. Os apps existentes são pensados para van escolar, com presença fixa.</dd></div>
+      <div><dt>Que erros comuns o cliente comete?</dt><dd>Sair com a lista errada, esquecer de cobrar alguém e deixar documento vencer.</dd></div>
+      <div><dt>Que barreiras impedem a adoção?</dt><dd>Pouca familiaridade com tecnologia, medo de pagar por algo que não usa e estudantes que não querem instalar mais um app.</dd></div>
+      <div><dt>O que tira o sono do cliente?</dt><dd>Chegar o fim do mês sem receber e ter a van retida em uma fiscalização.</dd></div>
+    </dl>
+    <div class="tbl-wrap"><table class="rank-tbl">
+      <tr><th>#</th><th style="width:28%">Dor</th><th style="width:12%">Frequência</th><th style="width:12%">Importância</th><th>Contexto</th></tr>
+      <tr><td class="rk">1</td><td><span class="bd p">D1</span><b>Não sabe quem vai no dia</b></td><td><span class="lvl hi">Diária</span></td><td><span class="lvl hi">Alta</span></td><td>Antes da viagem: a presença muda com aula cancelada, prova e feriado.</td></tr>
+      <tr><td class="rk">2</td><td><span class="bd p">D2</span><b>Lugar vazio na van</b></td><td><span class="lvl hi">Diária</span></td><td><span class="lvl hi">Alta</span></td><td>Durante a viagem: quem falta não é substituído, e o lugar viaja vazio.</td></tr>
+      <tr><td class="rk">3</td><td><span class="bd p">D3</span><b>Inadimplência</b></td><td><span class="lvl md">Mensal</span></td><td><span class="lvl hi">Alta</span></td><td>Depois do vencimento: cobrar um por um no Pix e no WhatsApp.</td></tr>
+      <tr><td class="rk">4</td><td><span class="bd p">D4</span><b>Rota feita de cabeça</b></td><td><span class="lvl hi">Diária</span></td><td><span class="lvl md">Média</span></td><td>Durante a viagem: paradas fora de ordem gastam tempo e combustível.</td></tr>
+      <tr><td class="rk">5</td><td><span class="bd p">D5</span><b>Multas na fiscalização</b></td><td><span class="lvl lo">Eventual</span></td><td><span class="lvl hi">Alta</span></td><td>Em blitz: documento vencido gera multa e pode reter o veículo. A Artesp registrou 388 autuações em 902 veículos em um ano.</td></tr>
+      <tr><td class="rk">6</td><td><span class="bd p">D6</span><b>Alunos de poucos dias</b></td><td><span class="lvl md">Semestral</span></td><td><span class="lvl md">Média</span></td><td>No início do semestre: quem vai 2 ou 3 vezes por semana não fecha mensalidade.</td></tr>
+    </table></div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-title"><span class="n">BLOCO 3</span><h3>Ganhos</h3></div>
+    <dl class="qa">
+      <div><dt>O que o cliente espera, deseja ou o surpreenderia?</dt><dd>Espera receber em dia. Deseja a van cheia. Ficaria surpreso em ganhar dinheiro com o lugar de quem faltou.</dd></div>
+      <div><dt>Como as soluções atuais encantam o cliente?</dt><dd>O WhatsApp é grátis e todo mundo já usa. Por isso a VanFlow trabalha junto com ele, sem tentar substituí-lo.</dd></div>
+      <div><dt>Como o cliente mede sucesso e fracasso?</dt><dd>Van cheia, mensalidades pagas até o vencimento e lucro no fim do mês.</dd></div>
+      <div><dt>O que aumentaria a probabilidade de adoção?</dt><dd>Teste grátis, configuração em minutos e estudantes que não precisam instalar app.</dd></div>
+    </dl>
+    <div class="tbl-wrap"><table class="rank-tbl">
+      <tr><th>#</th><th style="width:28%">Ganho</th><th style="width:12%">Frequência</th><th style="width:12%">Importância</th><th>Contexto</th></tr>
+      <tr><td class="rk">1</td><td><span class="bd g">G1</span><b>Van cheia todos os dias</b></td><td><span class="lvl hi">Diária</span></td><td><span class="lvl hi">Alta</span></td><td>Todos os lugares pagos, mesmo quando alguém falta.</td></tr>
+      <tr><td class="rk">2</td><td><span class="bd g">G2</span><b>Receber em dia, sem cobrar</b></td><td><span class="lvl md">Mensal</span></td><td><span class="lvl hi">Alta</span></td><td>No vencimento, sem mandar mensagem para ninguém.</td></tr>
+      <tr><td class="rk">3</td><td><span class="bd g">G3</span><b>Menos tempo no celular</b></td><td><span class="lvl hi">Diária</span></td><td><span class="lvl md">Média</span></td><td>Menos perguntas no grupo, principalmente enquanto dirige.</td></tr>
+      <tr><td class="rk">4</td><td><span class="bd g">G4</span><b>Começar no mesmo dia</b></td><td><span class="lvl lo">Uma vez</span></td><td><span class="lvl hi">Alta</span></td><td>Na adoção: uma ferramenta simples, sem treinamento.</td></tr>
+      <tr><td class="rk">5</td><td><span class="bd g">G5</span><b>Saber o lucro de cada van</b></td><td><span class="lvl md">Mensal</span></td><td><span class="lvl md">Média</span></td><td>No fechamento do mês, depois de combustível e manutenção.</td></tr>
+      <tr><td class="rk">6</td><td><span class="bd g">G6</span><b>Mais indicações</b></td><td><span class="lvl lo">Eventual</span></td><td><span class="lvl md">Média</span></td><td>Quando um estudante recomenda o serviço a outro.</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<section class="section" id="mapa">
+  <div class="section-head">
+    <p class="eyebrow">Lado esquerdo · o quadrado</p>
+    <h2>Criação do Mapa de Valor</h2>
+    <p class="lead">Descreve o que a VanFlow oferece e como cada item responde à necessidade do cliente, também com ranking e contexto.</p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-title"><span class="n">BLOCO 4</span><h3>Produtos e serviços</h3></div>
+    <dl class="qa">
+      <div><dt>Onde o produto é usado na cadeia de valor do cliente?</dt><dd>Antes da viagem (presença e rota), durante (avisos e localização) e depois (cobrança e controle financeiro).</dd></div>
+      <div><dt>Que tipos de produtos e serviços oferecemos?</dt><dd>Digitais (app e painel), financeiros (cobrança Pix, vagas avulsas e planos) e intangíveis (suporte humano e onboarding).</dd></div>
+      <div><dt>Quais ajudam em cada papel do cliente?</dt><dd>Como comprador e decisor: teste grátis e preço fixo por van. Como usuário: o app do dia a dia.</dd></div>
+    </dl>
+    <div class="tbl-wrap"><table class="rank-tbl">
+      <tr><th>#</th><th style="width:26%">Produto ou serviço</th><th style="width:12%">Tipo</th><th style="width:12%">Crucial ou trivial</th><th style="width:12%">Frequência</th><th>Contexto em que é entregue</th></tr>
+      <tr><td class="rk">1</td><td><b>Confirmação de presença via WhatsApp</b></td><td>Digital</td><td><span class="lvl hi">Crucial</span></td><td><span class="lvl hi">Diária</span></td><td>Na noite anterior: o estudante responde a uma mensagem, sem instalar nada.</td></tr>
+      <tr><td class="rk">2</td><td><b>Presença pela grade de aulas</b></td><td>Digital</td><td><span class="lvl hi">Crucial</span></td><td><span class="lvl hi">Diária</span></td><td>A grade do semestre gera a lista do dia; cadastrada uma vez por semestre.</td></tr>
+      <tr><td class="rk">3</td><td><b>Cobrança Pix automática</b></td><td>Financeiro</td><td><span class="lvl hi">Crucial</span></td><td><span class="lvl md">Mensal</span></td><td>Lembretes antes do vencimento e recibo automático.</td></tr>
+      <tr><td class="rk">4</td><td><b>Vagas avulsas</b></td><td>Financeiro</td><td><span class="lvl md">Importante</span></td><td><span class="lvl hi">Diária</span></td><td>Quando alguém avisa que vai faltar, o lugar é oferecido por viagem.</td></tr>
+      <tr><td class="rk">5</td><td><b>Rota do dia no Maps ou Waze</b></td><td>Digital</td><td><span class="lvl md">Importante</span></td><td><span class="lvl hi">Diária</span></td><td>No início de cada viagem, com a ordem das paradas de quem confirmou.</td></tr>
+      <tr><td class="rk">6</td><td><b>Planos por dias da semana</b></td><td>Financeiro</td><td><span class="lvl md">Importante</span></td><td><span class="lvl md">Semestral</span></td><td>Na contratação: 2 dias, 3 dias ou a semana toda.</td></tr>
+      <tr><td class="rk">7</td><td><b>Painel do operador</b></td><td>Digital</td><td><span class="lvl md">Importante</span></td><td><span class="lvl md">Mensal</span></td><td>Passageiros, receitas, gastos e lucro de cada van.</td></tr>
+      <tr><td class="rk">8</td><td><b>Avisos e localização ao vivo</b></td><td>Digital</td><td><span class="lvl lo">Complementar</span></td><td><span class="lvl hi">Diária</span></td><td>Durante a viagem: embarque, atraso e chegada.</td></tr>
+      <tr><td class="rk">9</td><td><b>Suporte humano e onboarding</b></td><td>Intangível</td><td><span class="lvl md">Importante</span></td><td><span class="lvl lo">Eventual</span></td><td>Na adoção e quando o operador precisa, pelo WhatsApp.</td></tr>
+    </table></div>
+    <p class="tbl-note">Preço: assinatura de R$ 59,90 por van por mês.</p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-title"><span class="n">BLOCO 5</span><h3>Criadores de ganhos</h3></div>
+    <dl class="qa">
+      <div><dt>Como facilitamos o trabalho ou a vida do cliente?</dt><dd>Tiramos do operador a cobrança, a lista do dia e as respostas no grupo.</dd></div>
+      <div><dt>Copiar ou superar as soluções que já agradam?</dt><dd>Copiamos o básico que os concorrentes já fazem bem (Pix, avisos, painel) e superamos onde ninguém atua: vagas avulsas, planos por dias e presença pela grade.</dd></div>
+      <div><dt>Como facilitamos a adoção?</dt><dd>Importação da planilha atual, teste grátis e confirmação pelo WhatsApp, sem app para o estudante.</dd></div>
+    </dl>
+    <div class="tbl-wrap"><table class="rank-tbl">
+      <tr><th>#</th><th style="width:16%">Ganho</th><th style="width:34%">Como a VanFlow cria</th><th style="width:12%">Copiar ou superar</th><th>Contexto</th></tr>
+      <tr><td class="rk">1</td><td><span class="bd g">G1</span>Van cheia</td><td>Vagas avulsas e planos por dias trazem estudantes que hoje ficam de fora.</td><td><span class="lvl hi">Superar</span></td><td>Todo dia em que alguém falta e na contratação do semestre.</td></tr>
+      <tr><td class="rk">2</td><td><span class="bd g">G2</span>Receber em dia</td><td>Pagamento por Pix em um toque, com baixa automática no app.</td><td><span class="lvl md">Copiar</span></td><td>No vencimento de cada mês.</td></tr>
+      <tr><td class="rk">3</td><td><span class="bd g">G3</span>Menos tempo no celular</td><td>Avisos automáticos de embarque, atraso e chegada respondem "cadê a van?".</td><td><span class="lvl md">Copiar</span></td><td>Durante cada viagem.</td></tr>
+      <tr><td class="rk">4</td><td><span class="bd g">G4</span>Começar no mesmo dia</td><td>Importação da planilha atual e configuração em minutos.</td><td><span class="lvl hi">Superar</span></td><td>Na adoção, no primeiro dia de uso.</td></tr>
+      <tr><td class="rk">5</td><td><span class="bd g">G5</span>Saber o lucro</td><td>Painel com receitas, gastos e lucro de cada van.</td><td><span class="lvl md">Copiar</span></td><td>No fechamento do mês.</td></tr>
+      <tr><td class="rk">6</td><td><span class="bd g">G6</span>Mais indicações</td><td>Estudantes acompanham a van em tempo real e recomendam o serviço.</td><td><span class="lvl md">Copiar</span></td><td>Entre estudantes, ao longo do semestre.</td></tr>
+    </table></div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-title"><span class="n">BLOCO 6</span><h3>Atributos analgésicos</h3></div>
+    <dl class="qa">
+      <div><dt>Ajudam o cliente a dormir melhor à noite?</dt><dd>Sim: o operador sabe quem vai amanhã, quem pagou e quais documentos vencem.</dd></div>
+      <div><dt>Limitam ou erradicam erros comuns?</dt><dd>A lista do dia sai da grade e das confirmações, a cobrança não depende de memória e os vencimentos geram lembrete.</dd></div>
+      <div><dt>Mitigam as barreiras de adoção?</dt><dd>O estudante não precisa instalar app, a planilha é importada e o teste é grátis.</dd></div>
+    </dl>
+    <div class="tbl-wrap"><table class="rank-tbl">
+      <tr><th>#</th><th style="width:16%">Dor</th><th style="width:34%">Como a VanFlow alivia</th><th style="width:12%">Intensidade do alívio</th><th>Contexto</th></tr>
+      <tr><td class="rk">1</td><td><span class="bd p">D1</span>Não sabe quem vai</td><td>A grade de aulas monta a lista do dia; o estudante só avisa as exceções.</td><td><span class="lvl hi">Forte</span></td><td>Antes de cada viagem.</td></tr>
+      <tr><td class="rk">2</td><td><span class="bd p">D2</span>Lugar vazio</td><td>A vaga liberada é oferecida como avulsa e vendida por viagem.</td><td><span class="lvl md">Média</span></td><td>Quando alguém avisa que vai faltar; depende de haver estudantes interessados.</td></tr>
+      <tr><td class="rk">3</td><td><span class="bd p">D3</span>Inadimplência</td><td>Cobrança automática via Pix, com lembretes antes do vencimento.</td><td><span class="lvl hi">Forte</span></td><td>No vencimento de cada mês.</td></tr>
+      <tr><td class="rk">4</td><td><span class="bd p">D4</span>Rota de cabeça</td><td>Ordem das paradas calculada com os confirmados e aberta no Maps ou no Waze.</td><td><span class="lvl md">Média</span></td><td>No início de cada viagem.</td></tr>
+      <tr><td class="rk">5</td><td><span class="bd p">D5</span>Multas na fiscalização</td><td>Lembretes de vencimento de CNH, vistoria, seguro e autorização.</td><td><span class="lvl lo">Leve</span></td><td>Semanas antes de cada vencimento; não substitui a regularização.</td></tr>
+      <tr><td class="rk">6</td><td><span class="bd p">D6</span>Alunos de poucos dias</td><td>Planos de 2 ou 3 dias por semana, cobrados automaticamente.</td><td><span class="lvl hi">Forte</span></td><td>Na contratação, no início do semestre.</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<section class="section" id="fit">
+  <div class="section-head">
+    <p class="eyebrow">Alinhamento entre as duas partes</p>
+    <h2>Fit de valor</h2>
+  </div>
+  <div class="grid2">
+    <div class="card"><h3>As dores mais importantes têm os alívios mais fortes</h3><p class="muted">As três primeiras dores do ranking (não saber quem vai, lugar vazio e inadimplência) são respondidas pelos três produtos cruciais: presença pela grade, confirmação via WhatsApp e cobrança Pix. A vaga avulsa é o que transforma a segunda dor em receita.</p></div>
+    <div class="card"><h3>Todo item tem par</h3><p class="muted">As seis dores têm um atributo analgésico (D1 a D6) e os seis ganhos têm um criador de ganho (G1 a G6). Nenhum produto do mapa existe sem responder a algo do perfil.</p></div>
+  </div>
+  <p class="note"><b>Ainda é hipótese:</b> o fit no papel precisa ser confirmado com o cliente. O plano de validação está mais abaixo.</p>
+</section>
+
+<section class="section" id="concorrentes">
+  <div class="section-head">
+    <p class="eyebrow">Benchmarks indicados</p>
+    <h2>Concorrentes e diferenciais</h2>
+    <p class="lead">Levantamento feito nos sites e na loja de apps de cada concorrente, em outubro de 2026. Consideramos só o que cada um divulga publicamente.</p>
+  </div>
+  <div class="tbl-wrap"><table class="comp-tbl">
+    <tr><th style="width:13%">Concorrente</th><th style="width:15%">Foco</th><th style="width:19%">Preço</th><th style="width:30%">Destaques</th><th style="width:23%">Rotas</th></tr>
+    <tr><td><b>TotalVan</b></td><td>Van escolar</td><td>Mensalidade fixa, sem taxa no Pix; 30 dias grátis</td><td>Embarque e desembarque com foto; contrato digital com 11 cláusulas</td><td>Não menciona</td></tr>
+    <tr><td><b>Van360</b></td><td>Van escolar</td><td>R$ 39,90/mês ou R$ 399/ano, vans ilimitadas</td><td>Cobrança e recibo pelo WhatsApp, chamada digital, cálculo de lucro; mais de 500 transportadores</td><td>Ordem de embarque e mapa ao vivo para os pais</td></tr>
+    <tr><td><b>Meu Escolar</b></td><td>Van escolar</td><td>Não divulgado; teste grátis</td><td>Contratos digitais, alertas de manutenção, app dos pais; 1 mil+ downloads, nota 4,6</td><td>Gestão de rotas com GPS</td></tr>
+    <tr><td><b>Rotasegura</b></td><td>Escolar, frotas, escolas e prefeituras</td><td>A partir de R$ 8 por aluno/mês, pós-pago</td><td>Pix automático, carteirinha digital, alertas 10/5/3 minutos antes</td><td>Otimizador próprio que mostra a economia em R$ e se ajusta às faltas</td></tr>
+    <tr><td><b>Aura Pilot</b></td><td>Escolar e universitário</td><td>Não divulgado</td><td>Cobrança pelo WhatsApp; site com poucas informações públicas</td><td>Controle de rotas por GPS</td></tr>
+    <tr class="us"><td><b>VanFlow</b></td><td>Fretado universitário</td><td>R$ 59,90 por van/mês</td><td>Presença pela grade de aulas, vagas avulsas e planos por dias</td><td>Ordena as paradas e abre no Maps ou no Waze</td></tr>
+  </table></div>
+  <p class="muted">Todos fazem o básico: cobrança, presença e acompanhamento da van. O que nenhum dos cinco anuncia:</p>
+  <div class="diff">
+    <div class="card navy"><p class="eyebrow">Diferencial 1</p><h3>Presença pela grade de aulas</h3><p class="muted">A lista do dia sai da grade do semestre. Faz sentido no universitário, em que cada aluno tem horários diferentes.</p></div>
+    <div class="card navy"><p class="eyebrow">Diferencial 2</p><h3>Venda de vagas avulsas</h3><p class="muted">O lugar de quem faltou vira receita. Atinge direto a dor do lugar vazio e paga a assinatura.</p></div>
+    <div class="card navy"><p class="eyebrow">Diferencial 3</p><h3>Planos por dias da semana</h3><p class="muted">Atende quem vai só 2 ou 3 dias por semana, público que hoje o operador perde.</p></div>
+  </div>
+</section>
+
+<section class="section" id="rotas">
+  <div class="section-head">
+    <p class="eyebrow">Resposta à crítica sobre rotas</p>
+    <h2>A VanFlow calcula, o Maps e o Waze navegam</h2>
+    <p class="lead">Não vamos construir um navegador. Usamos uma API de rotas para ordenar as paradas e mandamos o motorista para o app de navegação que ele já usa.</p>
+  </div>
+  <div class="steps">
+    <div class="step-c"><p class="k">Passo 1</p><h3>Quem vai hoje</h3><p class="muted">A grade de aulas e os avisos dos estudantes definem a lista do dia.</p></div>
+    <div class="step-c"><p class="k">Passo 2</p><h3>Melhor ordem</h3><p class="muted">Uma API de rotas, como a Google Routes API, ordena as paradas dos confirmados.</p></div>
+    <div class="step-c"><p class="k">Passo 3</p><h3>Iniciar rota</h3><p class="muted">O motorista toca um botão no app da VanFlow.</p></div>
+    <div class="step-c"><p class="k">Passo 4</p><h3>Navegação</h3><p class="muted">Abre no Google Maps com até 9 paradas por trecho, ou no Waze, uma parada por vez.</p></div>
+  </div>
+  <div class="grid3">
+    <div class="card"><h3>Menos custo e risco</h3><p class="muted">Sem navegação própria, o time foca no que é diferente: presença, cobrança e vagas.</p></div>
+    <div class="card"><h3>Hábito do motorista</h3><p class="muted">Ele continua no app de navegação que já conhece.</p></div>
+    <div class="card"><h3>Trânsito em tempo real</h3><p class="muted">Desvios, trânsito e radares ficam com quem faz isso melhor.</p></div>
+  </div>
+</section>
+
+<section class="section" id="estudante">
+  <div class="section-head">
+    <p class="eyebrow">O outro lado da plataforma</p>
+    <h2>Canvas resumido do estudante</h2>
+    <p class="lead">O estudante não paga a assinatura, mas sem ele usar o app a proposta para o operador não funciona.</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <p class="kind">Necessidade do estudante</p>
+      <p><b>Atividades:</b> chegar na aula no horário, pagar o transporte, avisar quando não vai.</p>
+      <p><b>Dores:</b> esperar sem saber onde a van está, pagar o mês cheio indo poucos dias, grupo de WhatsApp lotado.</p>
+      <p><b>Ganhos:</b> saber a hora exata da chegada, pagar só pelo que usa, resolver tudo em um toque.</p>
+    </div>
+    <div class="card">
+      <p class="kind">Mapa de valor para o estudante</p>
+      <p><b>Produtos e serviços:</b> confirmação pelo WhatsApp, localização em tempo real, pagamento por Pix.</p>
+      <p><b>Criadores de ganhos:</b> vaga avulsa no dia de prova, recibo automático, histórico de pagamentos.</p>
+      <p><b>Atributos analgésicos:</b> aviso de chegada e de atraso, planos por dias da semana, confirmação sem grupo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="validacao">
+  <div class="section-head">
+    <p class="eyebrow">Get out of the building</p>
+    <h2>Validação e MVP</h2>
+    <p class="lead">Até aqui o canvas é um conjunto de hipóteses. Cada uma será testada com o cliente, pelos meios do material: entrevista, questionário, landing page e piloto. As metas são propostas da equipe.</p>
+  </div>
+  <div class="tbl-wrap"><table class="pair-tbl">
+    <tr><th style="width:30%">Hipótese</th><th style="width:14%">Método</th><th style="width:30%">Como testar</th><th>Meta</th></tr>
+    <tr><td>Não saber quem vai é a maior dor do operador universitário</td><td>Entrevista</td><td>Entrevistar 10 operadores de fretado universitário da região de Sorocaba</td><td>7 de 10 citam a dor sem serem induzidos</td></tr>
+    <tr><td>Estudantes comprariam vagas avulsas</td><td>Questionário</td><td>Questionário com 50 estudantes que vêm de outras cidades</td><td>30% dizem que comprariam em dia de prova ou aula extra</td></tr>
+    <tr><td>Operadores têm interesse em testar</td><td>Landing page</td><td>Página com a proposta e cadastro para o teste grátis, divulgada em grupos de transportadores</td><td>20 cadastros de operadores em 30 dias</td></tr>
+    <tr><td>A confirmação pelo WhatsApp tem adesão e o operador paga R$ 59,90</td><td>Piloto do MVP</td><td>MVP com 3 operadores por 30 dias</td><td>80% das confirmações respondidas até a noite anterior; 2 de 3 operadores continuam pagando</td></tr>
+  </table></div>
+  <div class="grid2">
+    <div class="card navy">
+      <p class="eyebrow">MVP</p>
+      <h3>O menor produto que já resolve a dor número 1</h3>
+      <ul>
+        <li>Confirmação de presença pelo WhatsApp</li>
+        <li>Lista do dia para o motorista</li>
+        <li>Cobrança Pix com lembretes</li>
+      </ul>
+      <p class="muted">Ataca as dores D1 e D3, que estão entre as três mais importantes do ranking. Vagas avulsas, planos por dias e rota entram depois, conforme o piloto confirmar o interesse.</p>
+    </div>
+    <div class="card">
+      <h3>Se uma hipótese falhar</h3>
+      <p class="muted">Ajustamos o canvas e testamos de novo (pivot). Exemplo: se os estudantes não quiserem vagas avulsas, o diferencial principal passa a ser a presença pela grade, e o lugar vazio é tratado só com os planos por dias.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="fontes">
+  <div class="section-head"><p class="eyebrow">Referências</p><h2>Fontes</h2></div>
+  <ul class="sources">
+    <li><a href="https://jeduca.org.br/noticia/censo-da-educacao-superior-2024-mostra-que-pela-primeira-vez-matriculas-na-ead-sao-maioria" target="_blank" rel="noopener">Jeduca: Censo da Educação Superior 2024 (Inep)</a></li>
+    <li><a href="https://www.jornalcruzeiro.com.br/sorocaba/noticias/2023/11/724124-sorocaba-recebe-milhares-de-estudantes-universitarios-da-regiao-todos-os-dias.html" target="_blank" rel="noopener">Jornal Cruzeiro do Sul: Sorocaba recebe milhares de estudantes universitários da região todos os dias</a></li>
+    <li><a href="https://focas.uniso.br/index.php/2023/11/06/a-rotina-dos-tios-de-van-na-uniso/" target="_blank" rel="noopener">Focas Uniso: A rotina dos "tios de van" na Uniso</a></li>
+    <li><a href="https://sejaefi.com.br/blog/transporte-escolar-282" target="_blank" rel="noopener">Efí Bank: Quando vale a pena investir em um negócio de transporte escolar?</a></li>
+    <li><a href="https://www.agenciasp.sp.gov.br/artesp-e-emtu-realizam-operacao-contra-servico-irregular-de-fretamento/" target="_blank" rel="noopener">Agência SP: Artesp e EMTU realizam operação contra serviço irregular de fretamento</a></li>
+    <li><a href="https://www.totalvan.com.br/" target="_blank" rel="noopener">TotalVan</a> · <a href="https://www.van360.com.br/" target="_blank" rel="noopener">Van360</a> · <a href="https://play.google.com/store/apps/details?id=com.meuescolar.app" target="_blank" rel="noopener">Meu Escolar (Google Play)</a> · <a href="https://rotasegura.app/" target="_blank" rel="noopener">Rotasegura</a> · <a href="https://www.auramovetech.com.br/" target="_blank" rel="noopener">Aura Pilot</a></li>
+    <li>Modelo do canvas: Osterwalder et al., Value Proposition Design (Strategyzer), conforme material da disciplina</li>
+  </ul>
+</section>
+
+<footer>VanFlow · Mateus Baú, Gustavo Rodrigues e Nasser Shuqair · UFSCar Sorocaba</footer>
+</div>
+
+</body></html>

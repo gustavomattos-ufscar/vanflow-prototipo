@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 130" aria-hidden="true"><style>:root,svg{--bg:#F4F2ED;--surface:#FDFCF9;--surface-2:#EAE6DE;--hair:#D6D0C4;--ink:#13233A;--muted:#4B5667;--navy:#13233A;--navy-2:#1C3150;--on-navy:#F3F1EC;--on-navy-muted:#B9C4D2;--amber:#F2A62F;--amber-soft:#FBE3B8;--amber-ink:#8E5209;--teal:#1D6B74;--teal-soft:#CFE7E6;--chat:#E3EFEA;--chat-me:#D6F0C6;--chat-ink:#13233A;--road:#C9C2B4;--f-display:'Bricolage Grotesque','DM Sans',Arial,sans-serif;--f-body:'DM Sans',Arial,sans-serif;--f-mono:'IBM Plex Mono','Courier New',monospace}
+.ill-line{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ill-fill{fill:var(--surface);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.ill-amber{fill:var(--amber)}
+.ill-teal{fill:var(--teal)}
+.ill-text{font-family:var(--f-display);font-weight:800;fill:var(--ink)}
+.ill-white{font-family:var(--f-display);font-weight:800;fill:#fff}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+          <rect class="ill-fill" x="54" y="22" width="92" height="92" rx="12"/>
+          <rect class="ill-amber" x="54" y="22" width="92" height="24" rx="12"/><rect class="ill-amber" x="54" y="34" width="92" height="12"/>
+          <text class="ill-text" x="100" y="96" text-anchor="middle" font-size="44">10</text>
+          <circle class="ill-teal" cx="176" cy="74" r="28"/><text class="ill-white" x="176" y="81" text-anchor="middle" font-size="18">Pix</text>
+          <path class="ill-line" d="M196 30 l10 10 m0 -10 l-10 10" stroke-width="3"/>
+        </svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" aria-hidden="true"><style>:root,svg{--bg:#F4F2ED;--surface:#FDFCF9;--surface-2:#EAE6DE;--hair:#D6D0C4;--ink:#13233A;--muted:#4B5667;--navy:#13233A;--navy-2:#1C3150;--on-navy:#F3F1EC;--on-navy-muted:#B9C4D2;--amber:#F2A62F;--amber-soft:#FBE3B8;--amber-ink:#8E5209;--teal:#1D6B74;--teal-soft:#CFE7E6;--chat:#E3EFEA;--chat-me:#D6F0C6;--chat-ink:#13233A;--road:#C9C2B4;--f-display:'Bricolage Grotesque','DM Sans',Arial,sans-serif;--f-body:'DM Sans',Arial,sans-serif;--f-mono:'IBM Plex Mono','Courier New',monospace}
+.ill-fill{fill:var(--surface);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.ill-teal{fill:var(--teal)}
+.ill-soft{fill:var(--teal-soft)}
+.ill-text{font-family:var(--f-display);font-weight:800;fill:var(--ink)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+          <rect width="240" height="120" rx="14" class="ill-soft"/>
+          <rect x="22" y="18" width="150" height="34" rx="12" class="ill-fill"/><text x="36" y="40" font-family="DM Sans, Arial, sans-serif" font-size="13" font-weight="700" class="ill-text">Vai amanhã?</text>
+          <rect x="100" y="64" width="118" height="34" rx="12" fill="#D6F0C6" stroke="#13233A" stroke-width="2"/><text x="116" y="86" font-family="DM Sans, Arial, sans-serif" font-size="13" font-weight="700" fill="#13233A">Vou ✓</text>
+          <circle cx="196" cy="34" r="16" class="ill-teal"/><path d="M188 34 l6 6 10 -11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>

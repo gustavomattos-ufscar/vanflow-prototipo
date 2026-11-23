@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 140" aria-hidden="true"><style>:root,svg{--bg:#F4F2ED;--surface:#FDFCF9;--surface-2:#EAE6DE;--hair:#D6D0C4;--ink:#13233A;--muted:#4B5667;--navy:#13233A;--navy-2:#1C3150;--on-navy:#F3F1EC;--on-navy-muted:#B9C4D2;--amber:#F2A62F;--amber-soft:#FBE3B8;--amber-ink:#8E5209;--teal:#1D6B74;--teal-soft:#CFE7E6;--chat:#E3EFEA;--chat-me:#D6F0C6;--chat-ink:#13233A;--road:#C9C2B4;--f-display:'Bricolage Grotesque','DM Sans',Arial,sans-serif;--f-body:'DM Sans',Arial,sans-serif;--f-mono:'IBM Plex Mono','Courier New',monospace}
+.dk-fill{fill:#24395A;stroke:#F3F1EC;stroke-width:2;stroke-linejoin:round}
+.dk-amber{fill:#F2A62F}
+.dk-teal{fill:#6CC2C8}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+            <rect class="dk-fill" x="20" y="16" width="120" height="110" rx="12"/>
+            <rect x="34" y="34" width="70" height="8" rx="4" fill="#F3F1EC"/>
+            <circle class="dk-teal" cx="40" cy="60" r="5"/><rect x="52" y="56" width="70" height="8" rx="4" fill="#C0CAD6"/>
+            <circle class="dk-teal" cx="40" cy="80" r="5"/><rect x="52" y="76" width="60" height="8" rx="4" fill="#C0CAD6"/>
+            <circle class="dk-teal" cx="40" cy="100" r="5"/><rect x="52" y="96" width="66" height="8" rx="4" fill="#C0CAD6"/>
+            <rect x="150" y="16" width="110" height="110" rx="12" fill="#24395A"/>
+            <path d="M150 60 H260 M150 96 H260 M190 16 V126 M230 16 V126" stroke="#2F4A70" stroke-width="6"/>
+            <path d="M166 110 C 190 100, 186 70, 210 64 S 240 40, 246 30" fill="none" stroke="#F2A62F" stroke-width="3.5" stroke-dasharray="6 6" stroke-linecap="round"/>
+            <circle class="dk-teal" cx="166" cy="110" r="6"/><circle class="dk-teal" cx="210" cy="64" r="6"/>
+            <path d="M246 18 c-6 0 -10 4 -10 10 c0 8 10 18 10 18 s10 -10 10 -18 c0 -6 -4 -10 -10 -10z" class="dk-amber"/><circle cx="246" cy="28" r="3.5" fill="#13233A"/>
+          </svg>

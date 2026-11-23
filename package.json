@@ -1,0 +1,22 @@
+{
+  "name": "vanflow-prototipo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Protótipo funcional da VanFlow, 100% offline depois do npm install.",
+  "type": "module",
+  "engines": { "node": ">=22.13" },
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "demo": "npm run build -w @vanflow/web && npm run start -w @vanflow/server",
+    "dev": "concurrently -n api,web -c yellow,cyan \"npm run dev -w @vanflow/server\" \"npm run dev -w @vanflow/web\"",
+    "reset": "npm run reset -w @vanflow/server",
+    "test": "vitest run",
+    "typecheck": "tsc -p packages/domain && tsc -p apps/server && tsc -p apps/web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  }
+}

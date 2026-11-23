@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" aria-hidden="true"><style>:root,svg{--bg:#F4F2ED;--surface:#FDFCF9;--surface-2:#EAE6DE;--hair:#D6D0C4;--ink:#13233A;--muted:#4B5667;--navy:#13233A;--navy-2:#1C3150;--on-navy:#F3F1EC;--on-navy-muted:#B9C4D2;--amber:#F2A62F;--amber-soft:#FBE3B8;--amber-ink:#8E5209;--teal:#1D6B74;--teal-soft:#CFE7E6;--chat:#E3EFEA;--chat-me:#D6F0C6;--chat-ink:#13233A;--road:#C9C2B4;--f-display:'Bricolage Grotesque','DM Sans',Arial,sans-serif;--f-body:'DM Sans',Arial,sans-serif;--f-mono:'IBM Plex Mono','Courier New',monospace}
+.dk-text{font-family:var(--f-mono);font-size:11px;font-weight:600;fill:#C0CAD6}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+          <rect x="0" y="0" width="480" height="250" rx="16" fill="#1C3150"/>
+          <text class="dk-text" x="60" y="34" text-anchor="middle">SEG</text><text class="dk-text" x="150" y="34" text-anchor="middle">TER</text><text class="dk-text" x="240" y="34" text-anchor="middle">QUA</text><text class="dk-text" x="330" y="34" text-anchor="middle">QUI</text><text class="dk-text" x="420" y="34" text-anchor="middle">SEX</text>
+          <g font-family="DM Sans, Arial, sans-serif" font-size="12" font-weight="700">
+            <rect x="22" y="48" width="76" height="40" rx="8" fill="#6CC2C8"/><text x="60" y="73" text-anchor="middle" fill="#13233A">Ana · 19h</text>
+            <rect x="112" y="48" width="76" height="40" rx="8" fill="#2A4266"/>
+            <rect x="202" y="48" width="76" height="40" rx="8" fill="#6CC2C8"/><text x="240" y="73" text-anchor="middle" fill="#13233A">Ana · 19h</text>
+            <rect x="292" y="48" width="76" height="40" rx="8" fill="#6CC2C8"/><text x="330" y="73" text-anchor="middle" fill="#13233A">Ana · 19h</text>
+            <rect x="382" y="48" width="76" height="40" rx="8" fill="#2A4266"/>
+            <rect x="22" y="98" width="76" height="40" rx="8" fill="#2A4266"/>
+            <rect x="112" y="98" width="76" height="40" rx="8" fill="#F2A62F"/><text x="150" y="123" text-anchor="middle" fill="#13233A">Bruno · 21h</text>
+            <rect x="202" y="98" width="76" height="40" rx="8" fill="#2A4266"/>
+            <rect x="292" y="98" width="76" height="40" rx="8" fill="#F2A62F"/><text x="330" y="123" text-anchor="middle" fill="#13233A">Bruno · 21h</text>
+            <rect x="382" y="98" width="76" height="40" rx="8" fill="#F2A62F"/><text x="420" y="123" text-anchor="middle" fill="#13233A">Bruno · 21h</text>
+            <rect x="22" y="148" width="76" height="40" rx="8" fill="#D6F0C6"/><text x="60" y="173" text-anchor="middle" fill="#13233A">Carla · 19h</text>
+            <rect x="112" y="148" width="76" height="40" rx="8" fill="#D6F0C6"/><text x="150" y="173" text-anchor="middle" fill="#13233A">Carla · 19h</text>
+            <rect x="202" y="148" width="76" height="40" rx="8" fill="#2A4266"/>
+            <rect x="292" y="148" width="76" height="40" rx="8" fill="#D6F0C6"/><text x="330" y="173" text-anchor="middle" fill="#13233A">Carla · 19h</text>
+            <rect x="382" y="148" width="76" height="40" rx="8" fill="#2A4266"/>
+          </g>
+          <rect x="284" y="40" width="92" height="156" rx="12" fill="none" stroke="#F2A62F" stroke-width="3"/>
+          <rect x="250" y="206" width="210" height="32" rx="16" fill="#F2A62F"/>
+          <text x="355" y="227" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-weight="700" font-size="13" fill="#13233A">Quinta: 3 confirmações enviadas</text>
+        </svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 210" aria-hidden="true"><style>:root,svg{--bg:#F4F2ED;--surface:#FDFCF9;--surface-2:#EAE6DE;--hair:#D6D0C4;--ink:#13233A;--muted:#4B5667;--navy:#13233A;--navy-2:#1C3150;--on-navy:#F3F1EC;--on-navy-muted:#B9C4D2;--amber:#F2A62F;--amber-soft:#FBE3B8;--amber-ink:#8E5209;--teal:#1D6B74;--teal-soft:#CFE7E6;--chat:#E3EFEA;--chat-me:#D6F0C6;--chat-ink:#13233A;--road:#C9C2B4;--f-display:'Bricolage Grotesque','DM Sans',Arial,sans-serif;--f-body:'DM Sans',Arial,sans-serif;--f-mono:'IBM Plex Mono','Courier New',monospace}
+.road{fill:none;stroke:var(--road);stroke-width:14;stroke-linecap:round}
+.road-dash{fill:none;stroke:var(--surface);stroke-width:2.5;stroke-dasharray:10 12;stroke-linecap:round}
+.town-label{font-family:var(--f-mono);font-size:13px;font-weight:600;fill:var(--muted);letter-spacing:.06em}
+.dest-label{font-family:var(--f-display);font-size:16px;font-weight:800;fill:var(--ink)}
+.house{fill:var(--surface);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.roof{fill:var(--amber)}
+.campus{fill:var(--surface);stroke:var(--ink);stroke-width:2.4;stroke-linejoin:round}
+.campus-roof{fill:var(--navy)}
+.tree{fill:var(--teal);opacity:.75}
+.v-body{fill:var(--amber)}
+.v-win{fill:#13233A}
+.v-stripe{fill:#13233A;opacity:.85}
+.v-wheel{fill:#13233A}
+.v-hub{fill:var(--road)}
+.v-light{fill:#FFF3C4}
+.ill-line{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ill-amber{fill:var(--amber)}
+.ill-ink{fill:var(--ink)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+      <path id="roadPath" class="road" d="M20 170 C 200 170, 260 92, 430 96 S 700 168, 860 132 S 1010 82, 1090 84"/>
+      <path class="road-dash" d="M20 170 C 200 170, 260 92, 430 96 S 700 168, 860 132 S 1010 82, 1090 84"/>
+      <!-- trees -->
+      <g class="tree"><circle cx="300" cy="150" r="14"/><circle cx="318" cy="158" r="10"/><circle cx="620" cy="96" r="12"/><circle cx="960" cy="150" r="15"/><circle cx="978" cy="160" r="9"/><circle cx="80" cy="120" r="11"/></g>
+      <!-- stop: Itu -->
+      <g transform="translate(150 112)"><path class="house" d="M0 22 L18 6 L36 22 V44 H0 Z"/><path class="roof" d="M-4 24 L18 4 L40 24 L36 26 L18 10 L0 26 Z"/><rect x="13" y="30" width="10" height="14" class="ill-ink"/></g>
+      <text class="town-label" x="168" y="200" text-anchor="middle">ITU</text>
+      <!-- stop: Salto -->
+      <g transform="translate(410 30)"><path class="house" d="M0 22 L18 6 L36 22 V44 H0 Z"/><path class="roof" d="M-4 24 L18 4 L40 24 L36 26 L18 10 L0 26 Z"/><rect x="13" y="30" width="10" height="14" class="ill-ink"/></g>
+      <text class="town-label" x="428" y="134" text-anchor="middle">SALTO</text>
+      <!-- stop: Votorantim -->
+      <g transform="translate(690 96)"><path class="house" d="M0 22 L18 6 L36 22 V44 H0 Z"/><path class="roof" d="M-4 24 L18 4 L40 24 L36 26 L18 10 L0 26 Z"/><rect x="13" y="30" width="10" height="14" class="ill-ink"/></g>
+      <text class="town-label" x="708" y="186" text-anchor="middle">VOTORANTIM</text>
+      <!-- campus -->
+      <g transform="translate(1000 6)">
+        <path class="campus-roof" d="M0 34 L60 6 L120 34 Z"/>
+        <rect class="campus" x="8" y="34" width="104" height="44"/>
+        <rect class="ill-ink" x="22" y="42" width="8" height="30"/><rect class="ill-ink" x="44" y="42" width="8" height="30"/><rect class="ill-ink" x="68" y="42" width="8" height="30"/><rect class="ill-ink" x="90" y="42" width="8" height="30"/>
+        <path d="M60 6 V-6" class="ill-line"/><path d="M60 -6 L74 -2 L60 2 Z" class="ill-amber"/>
+      </g>
+      <text class="dest-label" x="1060" y="118" text-anchor="middle">Sorocaba</text>
+      <!-- moving van -->
+      <g id="routeVan">
+        <g transform="translate(-30 -26) scale(.5)">
+          <path class="v-body" d="M8 44 V22 Q8 12 18 12 H82 Q92 12 98 20 L110 32 Q114 36 114 42 V46 H8 Z"/>
+          <path class="v-win" d="M20 18 H44 V30 H16 V22 Q16 18 20 18Z"/><rect class="v-win" x="48" y="18" width="22" height="12" rx="2"/><path class="v-win" d="M74 18 H86 Q91 18 95 23 L101 30 H74Z"/>
+          <rect class="v-stripe" x="8" y="36" width="106" height="3"/>
+          <circle class="v-wheel" cx="30" cy="46" r="9"/><circle class="v-hub" cx="30" cy="46" r="3.5"/><circle class="v-wheel" cx="92" cy="46" r="9"/><circle class="v-hub" cx="92" cy="46" r="3.5"/>
+          <circle class="v-light" cx="111" cy="38" r="2.4"/>
+        </g>
+        <animateMotion dur="12s" repeatCount="indefinite" rotate="auto"><mpath href="#roadPath"/></animateMotion>
+      </g>
+    </svg>

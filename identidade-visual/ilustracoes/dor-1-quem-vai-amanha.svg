@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 130" aria-hidden="true"><style>:root,svg{--bg:#F4F2ED;--surface:#FDFCF9;--surface-2:#EAE6DE;--hair:#D6D0C4;--ink:#13233A;--muted:#4B5667;--navy:#13233A;--navy-2:#1C3150;--on-navy:#F3F1EC;--on-navy-muted:#B9C4D2;--amber:#F2A62F;--amber-soft:#FBE3B8;--amber-ink:#8E5209;--teal:#1D6B74;--teal-soft:#CFE7E6;--chat:#E3EFEA;--chat-me:#D6F0C6;--chat-ink:#13233A;--road:#C9C2B4;--f-display:'Bricolage Grotesque','DM Sans',Arial,sans-serif;--f-body:'DM Sans',Arial,sans-serif;--f-mono:'IBM Plex Mono','Courier New',monospace}
+.ill-line{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ill-fill{fill:var(--surface);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.ill-amber{fill:var(--amber)}
+.ill-soft{fill:var(--teal-soft)}
+.ill-text{font-family:var(--f-display);font-weight:800;fill:var(--ink)}
+.ill-mono{font-family:var(--f-mono);font-weight:600;fill:var(--muted)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+          <rect class="ill-fill" x="96" y="14" width="68" height="104" rx="12"/>
+          <rect class="ill-soft" x="104" y="28" width="52" height="78" rx="4"/>
+          <rect class="ill-fill" x="110" y="36" width="34" height="10" rx="5"/><rect class="ill-fill" x="116" y="52" width="34" height="10" rx="5"/><rect class="ill-fill" x="110" y="68" width="30" height="10" rx="5"/><rect class="ill-fill" x="118" y="84" width="32" height="10" rx="5"/>
+          <circle class="ill-amber" cx="164" cy="18" r="16"/><text class="ill-text" x="164" y="24" text-anchor="middle" font-size="15">40</text>
+          <path class="ill-line" d="M50 46 q10 -12 22 0 M58 30 q14 -14 30 0" opacity=".5"/>
+          <text class="ill-mono" x="196" y="70" font-size="12">21:00</text>
+        </svg>

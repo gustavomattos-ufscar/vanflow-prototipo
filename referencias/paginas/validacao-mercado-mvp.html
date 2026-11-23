@@ -1,0 +1,453 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>VanFlow Validação e MVP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Sans:opsz,wght@9..40,400..700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: a field report. Hypotheses first, then market size, then what we heard from customers, then the MVP and what we learned. Same visual family as the VPD. */
+:root{
+  --bg:#E7E5E0; --surface:#FBFAF7; --surface-2:#F2F0EB;
+  --ink:#14233A; --muted:#4A5566; --hair:#CBC6BC;
+  --amber:#E8962A; --amber-ink:#8F520A; --teal:#1D6B74;
+  --ok-bg:#D2E9E7; --ok-fg:#12515A; --bad-bg:#F6DCCB; --bad-fg:#83360F; --mid-bg:#ECE3C9; --mid-fg:#6B4E06;
+  --navy:#14233A; --on-navy:#F3F1EC; --on-navy-muted:#B8C3D1;
+  --bar:#1D6B74; --bar-2:#E8962A;
+  --f-display:'Bricolage Grotesque', 'DM Sans', Arial, sans-serif;
+  --f-body:'DM Sans', Arial, sans-serif;
+  --f-mono:'IBM Plex Mono', 'Courier New', monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F151E; --surface:#17202C; --surface-2:#1D2735;
+  --ink:#E8ECF1; --muted:#A8B3C1; --hair:#2E3A4A;
+  --amber:#F2A62F; --amber-ink:#F4BA62; --teal:#6CC2C8;
+  --ok-bg:#153A3E; --ok-fg:#A4DEDF; --bad-bg:#4A2717; --bad-fg:#F5BE9C; --mid-bg:#40361A; --mid-fg:#F0D58F;
+  --navy:#22324A; --on-navy:#F3F1EC; --on-navy-muted:#C2CCD8;
+  --bar:#6CC2C8; --bar-2:#F2A62F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F151E; --surface:#17202C; --surface-2:#1D2735;
+  --ink:#E8ECF1; --muted:#A8B3C1; --hair:#2E3A4A;
+  --amber:#F2A62F; --amber-ink:#F4BA62; --teal:#6CC2C8;
+  --ok-bg:#153A3E; --ok-fg:#A4DEDF; --bad-bg:#4A2717; --bad-fg:#F5BE9C; --mid-bg:#40361A; --mid-fg:#F0D58F;
+  --navy:#22324A; --on-navy:#F3F1EC; --on-navy-muted:#C2CCD8;
+  --bar:#6CC2C8; --bar-2:#F2A62F; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:24px;padding-block:40px 72px;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(34px,5vw,54px);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(26px,3.2vw,36px);font-weight:700;letter-spacing:-.01em}
+h3{font-size:20px;font-weight:700}
+p{margin:0}
+a{color:var(--teal)}
+a:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.eyebrow{font-family:var(--f-mono);font-size:12.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-ink)}
+.lead{font-size:18px;color:var(--muted);max-width:72ch}
+.muted{color:var(--muted)}
+.section{display:flex;flex-direction:column;gap:20px}
+.section-head{display:flex;flex-direction:column;gap:8px}
+.top{display:flex;flex-direction:column;gap:16px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--muted)}
+.toc{display:flex;flex-wrap:wrap;gap:8px}
+.toc a{font-size:13.5px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--hair);padding:5px 12px;border-radius:999px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--hair);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card.navy{background:var(--navy);border-color:var(--navy);color:var(--on-navy)}
+.card.navy .muted,.card.navy li{color:var(--on-navy-muted)}
+.card.navy .eyebrow{color:var(--amber)}
+.card ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.kind{font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+.note{border-left:4px solid var(--amber);background:var(--surface);padding:14px 18px;border-radius:0 10px 10px 0;font-size:15px}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--hair);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--hair)}
+th{font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--surface-2)}
+tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.t-min{min-width:760px}
+.st{display:inline-block;font-family:var(--f-mono);font-size:12px;font-weight:600;padding:2px 9px;border-radius:99px;white-space:nowrap}
+.st.ok{background:var(--ok-bg);color:var(--ok-fg)}
+.st.bad{background:var(--bad-bg);color:var(--bad-fg)}
+.st.mid{background:var(--mid-bg);color:var(--mid-fg)}
+
+/* market funnel */
+.mkt{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:28px;align-items:center}
+@media (max-width:820px){.mkt{grid-template-columns:1fr}}
+.rings{position:relative;aspect-ratio:1/1;max-width:420px;width:100%}
+.rings svg{width:100%;height:100%}
+.ring-tam{fill:var(--surface);stroke:var(--hair);stroke-width:2}
+.ring-sam{fill:var(--surface-2);stroke:var(--teal);stroke-width:2}
+.ring-som{fill:var(--amber)}
+.mkt-list{display:flex;flex-direction:column;gap:14px}
+.mkt-item{background:var(--surface);border:1px solid var(--hair);border-radius:12px;padding:16px 20px;display:grid;grid-template-columns:72px 1fr auto;gap:14px;align-items:baseline}
+.mkt-item .k{font-family:var(--f-mono);font-weight:600;color:var(--amber-ink)}
+.mkt-item .v{font-family:var(--f-display);font-weight:800;font-size:24px;white-space:nowrap;font-variant-numeric:tabular-nums}
+@media (max-width:560px){.mkt-item{grid-template-columns:1fr}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:14px}
+.grid2f{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:700px){.grid2f{grid-template-columns:1fr}}
+.stat{background:var(--navy);color:var(--on-navy);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:6px}
+.stat .n{font-family:var(--f-display);font-weight:800;font-size:38px;line-height:1;color:var(--amber);font-variant-numeric:tabular-nums}
+.stat .d{font-size:14.5px;color:var(--on-navy-muted)}
+
+/* bar charts */
+.chart{background:var(--surface);border:1px solid var(--hair);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.chart h3{font-size:16px}
+.bars{display:flex;flex-direction:column;gap:8px}
+.bar-row{display:grid;grid-template-columns:minmax(120px,38%) 1fr 64px;gap:10px;align-items:center;font-size:14px}
+.bar-track{height:14px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.bar-fill{height:100%;background:var(--bar);border-radius:99px}
+.bar-row .pct{font-family:var(--f-mono);font-size:13px;text-align:right;font-variant-numeric:tabular-nums}
+.chart .base{font-size:12.5px;color:var(--muted);font-family:var(--f-mono)}
+
+.quote{background:var(--surface);border-left:4px solid var(--teal);border-radius:0 12px 12px 0;padding:16px 20px;display:flex;flex-direction:column;gap:6px}
+.quote p:first-child{font-size:17px}
+.quote .who{font-size:13px;color:var(--muted);font-family:var(--f-mono)}
+
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.step-c{background:var(--surface);border:1px solid var(--hair);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.step-c .k{font-family:var(--f-mono);font-size:12px;color:var(--amber-ink);font-weight:600}
+.sources{display:flex;flex-direction:column;gap:6px;font-size:14px;padding-left:18px;margin:0}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--hair);padding-top:16px}
+@media (max-width:560px){.wrap{padding-inline:16px}}
+</style>
+
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow">Empreendedorismo · UFSCar Sorocaba</p>
+  <h1>VanFlow: Validação do Mercado e MVP</h1>
+  <p class="lead">O BMC e o VPD eram hipóteses. Nesta etapa saímos do prédio: medimos o tamanho do mercado, ouvimos estudantes e operadores de fretado e colocamos no ar uma landing page para testar o interesse. Abaixo estão o que testamos, o que encontramos e o MVP que sai disso.</p>
+  <div class="meta"><span>Mateus Baú · Gustavo Rodrigues · Nasser Shuqair</span><span>Outubro de 2026</span></div>
+  <nav class="toc" aria-label="Seções">
+    <a href="#resumo">Resumo</a><a href="#hipoteses">Hipóteses</a><a href="#mercado">Tamanho do mercado</a><a href="#metodo">Como validamos</a><a href="#estudantes">Estudantes</a><a href="#operadores">Operadores</a><a href="#landing">Landing page</a><a href="#veredito">Veredito</a><a href="#mvp">MVP</a><a href="#metricas">Métricas</a><a href="#fontes">Fontes</a>
+  </nav>
+</header>
+
+<section class="section" id="resumo">
+  <div class="section-head">
+    <p class="eyebrow">Resumo</p>
+    <h2>O que a validação mostrou</h2>
+  </div>
+  <div class="stats">
+    <div class="stat"><p class="n">87</p><p class="d">estudantes responderam ao questionário; 60 deles vão de van ou fretado</p></div>
+    <div class="stat"><p class="n">7</p><p class="d">operadores entrevistados, somando 14 vans</p></div>
+    <div class="stat"><p class="n">89%</p><p class="d">dos estudantes confirmariam presença pelo WhatsApp na noite anterior</p></div>
+    <div class="stat"><p class="n">82%</p><p class="d">dos estudantes usariam um plano de 2 ou 3 dias por semana</p></div>
+    <div class="stat"><p class="n">7 de 7</p><p class="d">operadores deixaram o contato para testar a VanFlow</p></div>
+    <div class="stat"><p class="n">5 de 7</p><p class="d">operadores aceitaram o preço de R$ 59,90 por van</p></div>
+  </div>
+  <p class="note"><b>Em uma frase:</b> o problema existe e dói dos dois lados. O operador sofre com a comunicação (quem vai) e com a cobrança, e o estudante sofre com a falta de flexibilidade (pagar o mês cheio indo poucos dias). O preço foi aceito, e a rota, que imaginávamos importante, apareceu pouco.</p>
+</section>
+
+<section class="section" id="hipoteses">
+  <div class="section-head">
+    <p class="eyebrow">Ponto de partida</p>
+    <h2>As hipóteses que fomos testar</h2>
+    <p class="lead">Saíram do Canvas da Proposta de Valor. Cada uma tem um critério definido antes da coleta, para não ajustarmos a régua depois de ver o resultado.</p>
+  </div>
+  <div class="tbl-wrap"><table class="t-min">
+    <tr><th style="width:5%">#</th><th style="width:37%">Hipótese</th><th style="width:22%">Como testamos</th><th>Critério de validação</th></tr>
+    <tr><td>H1</td><td><b>Problema:</b> não saber quem vai em cada dia é a principal dor do operador de fretado universitário.</td><td>Entrevista com operadores</td><td>A maioria dos operadores cita essa dor espontaneamente, antes de ouvir a proposta.</td></tr>
+    <tr><td>H2</td><td><b>Problema:</b> a presença dos estudantes varia ao longo da semana.</td><td>Questionário com estudantes</td><td>Pelo menos 40% dos que usam van faltam a um dia já pago ao menos 1 a 2 vezes por mês.</td></tr>
+    <tr><td>H3</td><td><b>Solução:</b> o estudante aceita confirmar presença pelo WhatsApp na noite anterior.</td><td>Questionário com estudantes</td><td>Pelo menos 70% respondem "sim".</td></tr>
+    <tr><td>H4</td><td><b>Solução:</b> o operador ainda não usa app de gestão; o problema hoje é resolvido no improviso.</td><td>Entrevista com operadores</td><td>A maioria usa só WhatsApp, planilha ou caderno.</td></tr>
+    <tr><td>H5</td><td><b>Preço:</b> o operador pagaria R$ 59,90 por van por mês.</td><td>Entrevista com operadores</td><td>Pelo menos metade aceita o preço ou propõe valor próximo.</td></tr>
+    <tr><td>H6</td><td><b>Interesse:</b> operadores querem testar a VanFlow.</td><td>Entrevista e landing page</td><td>Operadores deixam o WhatsApp para o teste grátis.</td></tr>
+  </table></div>
+</section>
+
+<section class="section" id="mercado">
+  <div class="section-head">
+    <p class="eyebrow">Dimensionando a oportunidade</p>
+    <h2>Tamanho do mercado: TAM, SAM e SOM</h2>
+    <p class="lead">Medimos o mercado em empresas de transporte de passageiros que poderiam assinar a VanFlow, multiplicadas pela assinatura anual de uma van (R$ 59,90 × 12 = R$ 718,80). Contamos uma van por empresa, então os valores são conservadores.</p>
+  </div>
+  <div class="mkt">
+    <div class="rings" role="img" aria-label="Três círculos concêntricos: o maior é o TAM, o do meio o SAM e o menor o SOM">
+      <svg viewBox="0 0 420 420">
+        <circle class="ring-tam" cx="210" cy="210" r="205"/>
+        <circle class="ring-sam" cx="210" cy="262" r="140"/>
+        <circle class="ring-som" cx="210" cy="330" r="62"/>
+      </svg>
+    </div>
+    <div class="mkt-list">
+      <div class="mkt-item"><span class="k">TAM</span><div><b>Brasil</b><p class="muted">63.923 empresas ativas de transporte escolar (CNAE 4924-8/00).</p></div><span class="v">R$ 45,9 mi/ano</span></div>
+      <div class="mkt-item"><span class="k">SAM</span><div><b>Estado de São Paulo</b><p class="muted">16.607 dessas empresas estão em SP, o estado com mais empresas do setor.</p></div><span class="v">R$ 11,9 mi/ano</span></div>
+      <div class="mkt-item"><span class="k">SOM</span><div><b>Região de Sorocaba, 1º ano</b><p class="muted">Meta de 30 vans assinantes. Para comparação, Sorocaba tem 630 vans escolares cadastradas na Urbes.</p></div><span class="v">R$ 21,6 mil/ano</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <p class="kind">Conferência de baixo para cima</p>
+    <h3>Só os estudantes de fora da Uniso já justificam a meta</h3>
+    <p class="muted">A Uniso tem cerca de 8.500 alunos, e 52% (4.420) moram em outras cidades. Se a mesma proporção da nossa amostra usar van (69%), são cerca de 3.050 estudantes, ou aproximadamente 200 vans de 15 lugares. Isso dá cerca de R$ 146 mil por ano em assinaturas, só em uma faculdade. A meta de 30 vans no primeiro ano equivale a 15% disso.</p>
+    <p class="muted"><b>Cuidado com o número:</b> o questionário circulou em grupos de estudantes, e quem usa van tende a responder mais. Os 69% provavelmente superestimam a média, por isso usamos o cálculo só como conferência do SOM.</p>
+  </div>
+  <p class="note"><b>Por que o TAM é conservador:</b> o fretado universitário e o de funcionários costumam ser registrados como fretamento (outro CNAE) e não entram na conta. Também contamos só uma van por empresa, quando muitas têm mais de uma.</p>
+</section>
+
+<section class="section" id="metodo">
+  <div class="section-head">
+    <p class="eyebrow">Get out of the building</p>
+    <h2>Como validamos</h2>
+  </div>
+  <div class="grid3">
+    <div class="card"><p class="kind">Questionário</p><h3>Estudantes</h3><p class="muted">Google Forms respondido por estudantes da UFSCar, Uniso, Facens e outras faculdades da região.</p><p><b>87 respostas</b>, sendo 60 de quem vai de van ou fretado.</p></div>
+    <div class="card"><p class="kind">Entrevista</p><h3>Operadores de van</h3><p class="muted">Entrevistas individuais com roteiro. Perguntamos sobre o que já aconteceu e só apresentamos a VanFlow no final, para não induzir as respostas.</p><p><b>7 entrevistas</b>, com operadores de 1 a 4 vans, somando 14 vans.</p></div>
+    <div class="card"><p class="kind">Landing page</p><h3>Teste de interesse</h3><p class="muted">Página da VanFlow com preço e oferta de 30 dias grátis. A métrica é o número de operadores que deixam o contato.</p><p><b>No ar desde 26/10/2026.</b> Os cadastros passam a ser contados a partir desta entrega.</p></div>
+  </div>
+</section>
+
+<section class="section" id="estudantes">
+  <div class="section-head">
+    <p class="eyebrow">Questionário · 87 estudantes</p>
+    <h2>O que os estudantes disseram</h2>
+    <p class="lead">Cada gráfico indica a base de respostas. As perguntas sobre a rotina na van foram respondidas só por quem usa van (60); as perguntas sobre a solução, por todos (87), exceto a da vaga avulsa.</p>
+  </div>
+
+  <h3>Perfil</h3>
+  <div class="grid3">
+    <div class="chart"><h3>Faculdade</h3><div class="bars">
+      <div class="bar-row"><span>UFSCar</span><div class="bar-track"><div class="bar-fill" style="width:41%"></div></div><span class="pct">41%</span></div>
+      <div class="bar-row"><span>Uniso</span><div class="bar-track"><div class="bar-fill" style="width:32%"></div></div><span class="pct">32%</span></div>
+      <div class="bar-row"><span>Facens</span><div class="bar-track"><div class="bar-fill" style="width:19%"></div></div><span class="pct">19%</span></div>
+      <div class="bar-row"><span>Outras</span><div class="bar-track"><div class="bar-fill" style="width:8%"></div></div><span class="pct">8%</span></div>
+    </div><p class="base">Base: 87 estudantes</p></div>
+    <div class="chart"><h3>Cidade onde mora</h3><div class="bars">
+      <div class="bar-row"><span>Sorocaba</span><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div><span class="pct">45%</span></div>
+      <div class="bar-row"><span>Votorantim</span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="pct">20%</span></div>
+      <div class="bar-row"><span>Itu</span><div class="bar-track"><div class="bar-fill" style="width:15%"></div></div><span class="pct">15%</span></div>
+      <div class="bar-row"><span>Salto</span><div class="bar-track"><div class="bar-fill" style="width:12%"></div></div><span class="pct">12%</span></div>
+      <div class="bar-row"><span>Outras</span><div class="bar-track"><div class="bar-fill" style="width:8%"></div></div><span class="pct">8%</span></div>
+    </div><p class="base">Base: 87 estudantes</p></div>
+    <div class="chart"><h3>Como vai para a faculdade</h3><div class="bars">
+      <div class="bar-row"><span>Van ou fretado</span><div class="bar-track"><div class="bar-fill" style="width:69%"></div></div><span class="pct">69%</span></div>
+      <div class="bar-row"><span>Carro próprio</span><div class="bar-track"><div class="bar-fill" style="width:16%"></div></div><span class="pct">16%</span></div>
+      <div class="bar-row"><span>Ônibus intermunicipal</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="pct">10%</span></div>
+      <div class="bar-row"><span>Ônibus urbano e outros</span><div class="bar-track"><div class="bar-fill" style="width:5%"></div></div><span class="pct">5%</span></div>
+    </div><p class="base">Base: 87 estudantes</p></div>
+  </div>
+
+  <h3>A rotina de quem usa van</h3>
+  <div class="grid3">
+    <div class="chart"><h3>Com que frequência falta a um dia já pago</h3><div class="bars">
+      <div class="bar-row"><span>1 a 2 vezes por mês</span><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div><span class="pct">45%</span></div>
+      <div class="bar-row"><span>1 vez por semana</span><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="pct">30%</span></div>
+      <div class="bar-row"><span>Mais de 1 vez por semana</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="pct">10%</span></div>
+      <div class="bar-row"><span>Nunca</span><div class="bar-track"><div class="bar-fill" style="width:15%"></div></div><span class="pct">15%</span></div>
+    </div><p class="base">Base: 60 usuários de van</p></div>
+    <div class="chart"><h3>Como avisa que não vai</h3><div class="bars">
+      <div class="bar-row"><span>Grupo de WhatsApp</span><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><span class="pct">70%</span></div>
+      <div class="bar-row"><span>Mensagem direta</span><div class="bar-track"><div class="bar-fill" style="width:15%"></div></div><span class="pct">15%</span></div>
+      <div class="bar-row"><span>Não avisa</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="pct">10%</span></div>
+      <div class="bar-row"><span>Ligação</span><div class="bar-track"><div class="bar-fill" style="width:5%"></div></div><span class="pct">5%</span></div>
+    </div><p class="base">Base: 60 usuários de van</p></div>
+    <div class="chart"><h3>Problemas que já teve</h3><div class="bars">
+      <div class="bar-row"><span>Pagar o mês cheio indo poucos dias</span><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div><span class="pct">78%</span></div>
+      <div class="bar-row"><span>Atraso sem aviso</span><div class="bar-track"><div class="bar-fill" style="width:65%"></div></div><span class="pct">65%</span></div>
+      <div class="bar-row"><span>Grupo lotado, mensagens perdidas</span><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><span class="pct">50%</span></div>
+      <div class="bar-row"><span>Não saber onde a van está</span><div class="bar-track"><div class="bar-fill" style="width:42%"></div></div><span class="pct">42%</span></div>
+    </div><p class="base">Base: 60 usuários de van · múltipla escolha</p></div>
+    <div class="chart"><h3>Dias por semana na van</h3><div class="bars">
+      <div class="bar-row"><span>5 ou mais</span><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div><span class="pct">55%</span></div>
+      <div class="bar-row"><span>4</span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="pct">20%</span></div>
+      <div class="bar-row"><span>3</span><div class="bar-track"><div class="bar-fill" style="width:15%"></div></div><span class="pct">15%</span></div>
+      <div class="bar-row"><span>1 a 2</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="pct">10%</span></div>
+    </div><p class="base">Base: 60 usuários de van</p></div>
+    <div class="chart"><h3>Mensalidade paga</h3><div class="bars">
+      <div class="bar-row"><span>Até R$ 200</span><div class="bar-track"><div class="bar-fill" style="width:5%"></div></div><span class="pct">5%</span></div>
+      <div class="bar-row"><span>R$ 201 a 350</span><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="pct">40%</span></div>
+      <div class="bar-row"><span>R$ 351 a 500</span><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div><span class="pct">45%</span></div>
+      <div class="bar-row"><span>Mais de R$ 500</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="pct">10%</span></div>
+    </div><p class="base">Base: 60 usuários de van</p></div>
+  </div>
+
+  <h3>Reação à solução</h3>
+  <div class="grid2f">
+    <div class="chart"><h3>Confirmaria presença pelo WhatsApp na noite anterior</h3><div class="bars">
+      <div class="bar-row"><span>Sim</span><div class="bar-track"><div class="bar-fill" style="width:89%"></div></div><span class="pct">89%</span></div>
+      <div class="bar-row"><span>Talvez</span><div class="bar-track"><div class="bar-fill" style="width:8%"></div></div><span class="pct">8%</span></div>
+      <div class="bar-row"><span>Não</span><div class="bar-track"><div class="bar-fill" style="width:3%"></div></div><span class="pct">3%</span></div>
+    </div><p class="base">Base: 87 estudantes</p></div>
+    <div class="chart"><h3>Usaria um plano de 2 ou 3 dias por semana</h3><div class="bars">
+      <div class="bar-row"><span>Sim</span><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div><span class="pct">82%</span></div>
+      <div class="bar-row"><span>Talvez</span><div class="bar-track"><div class="bar-fill" style="width:12%"></div></div><span class="pct">12%</span></div>
+      <div class="bar-row"><span>Não</span><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div><span class="pct">6%</span></div>
+    </div><p class="base">Base: 87 estudantes</p></div>
+    <div class="chart"><h3>Pagaria por uma vaga avulsa em um dia específico</h3><div class="bars">
+      <div class="bar-row"><span>Sim</span><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div><span class="pct">75%</span></div>
+      <div class="bar-row"><span>Talvez</span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="pct">20%</span></div>
+      <div class="bar-row"><span>Não</span><div class="bar-track"><div class="bar-fill" style="width:5%"></div></div><span class="pct">5%</span></div>
+    </div><p class="base">Base: 60 usuários de van</p></div>
+    <div class="chart"><h3>Quanto pagaria por uma viagem avulsa (ida e volta)</h3><div class="bars">
+      <div class="bar-row"><span>Até R$ 15</span><div class="bar-track"><div class="bar-fill" style="width:12%"></div></div><span class="pct">12%</span></div>
+      <div class="bar-row"><span>R$ 16 a 25</span><div class="bar-track"><div class="bar-fill" style="width:48%"></div></div><span class="pct">48%</span></div>
+      <div class="bar-row"><span>R$ 26 a 35</span><div class="bar-track"><div class="bar-fill" style="width:32%"></div></div><span class="pct">32%</span></div>
+      <div class="bar-row"><span>Não pagaria</span><div class="bar-track"><div class="bar-fill" style="width:8%"></div></div><span class="pct">8%</span></div>
+    </div><p class="base">Base: 87 estudantes</p></div>
+  </div>
+  <div class="grid3">
+    <div class="card"><h3>A presença varia, sim</h3><p class="muted">85% de quem usa van já faltou a um dia pago pelo menos 1 a 2 vezes por mês, e 70% avisam pelo grupo de WhatsApp. É exatamente a mensagem que o motorista precisa caçar toda noite.</p></div>
+    <div class="card"><h3>O WhatsApp é aceito</h3><p class="muted">89% confirmariam presença respondendo a uma mensagem na véspera. A confirmação sem app, que era uma aposta, é o ponto mais forte da pesquisa.</p></div>
+    <div class="card"><h3>A maior dor do estudante é outra</h3><p class="muted">Não era a localização da van (42%), e sim pagar o mês cheio indo poucos dias (78%). Isso aparece de novo nos 82% que usariam um plano de 2 ou 3 dias.</p></div>
+  </div>
+</section>
+
+<section class="section" id="operadores">
+  <div class="section-head">
+    <p class="eyebrow">Entrevistas · 7 operadores</p>
+    <h2>O que os operadores disseram</h2>
+    <p class="lead">A maior dor não é a rota: é a comunicação e a cobrança. Os motoristas contam que perdem de 30 a 45 minutos toda noite cruzando mensagens no WhatsApp para saber quem vai, e não gostam de fazer o papel de cobrador quando o aluno atrasa o Pix.</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><p class="n">14</p><p class="d">vans somadas entre os 7 entrevistados (de 1 a 4 por operador)</p></div>
+    <div class="stat"><p class="n">6,1</p><p class="d">lugares vazios por van por semana (86 no total)</p></div>
+    <div class="stat"><p class="n">4,3</p><p class="d">mensalidades atrasadas por van por mês (60 no total)</p></div>
+    <div class="stat"><p class="n">6 de 7</p><p class="d">não usam nenhum app; o único que usa acha caro</p></div>
+  </div>
+  <div class="grid2">
+    <div class="chart"><h3>Dor citada espontaneamente, antes de ouvir a proposta</h3><div class="bars">
+      <div class="bar-row"><span>Saber quem vai</span><div class="bar-track"><div class="bar-fill" style="width:42.9%"></div></div><span class="pct">3 de 7</span></div>
+      <div class="bar-row"><span>Cobrança</span><div class="bar-track"><div class="bar-fill" style="width:28.6%"></div></div><span class="pct">2 de 7</span></div>
+      <div class="bar-row"><span>Rotas</span><div class="bar-track"><div class="bar-fill" style="width:14.3%"></div></div><span class="pct">1 de 7</span></div>
+      <div class="bar-row"><span>Manutenção e fiscalização</span><div class="bar-track"><div class="bar-fill" style="width:14.3%"></div></div><span class="pct">1 de 7</span></div>
+    </div><p class="base">Base: 7 operadores · classificação da pergunta 9 do roteiro</p></div>
+    <div class="chart"><h3>Reação ao preço de R$ 59,90 por van</h3><div class="bars">
+      <div class="bar-row"><span>Aceita</span><div class="bar-track"><div class="bar-fill" style="width:71.4%"></div></div><span class="pct">5 de 7</span></div>
+      <div class="bar-row"><span>Talvez</span><div class="bar-track"><div class="bar-fill" style="width:14.3%"></div></div><span class="pct">1 de 7</span></div>
+      <div class="bar-row"><span>Propõe pacote</span><div class="bar-track"><div class="bar-fill" style="width:14.3%"></div></div><span class="pct">1 de 7</span></div>
+    </div><p class="base">Base: 7 operadores</p></div>
+  </div>
+  <div class="tbl-wrap"><table class="t-min" style="min-width:980px">
+    <tr><th>Entrevistado</th><th>Vans</th><th style="width:30%">Dor citada espontaneamente</th><th>Tema</th><th>Lugares vazios por semana</th><th>Atrasos por mês</th><th>Usa app</th><th>R$ 59,90 por van</th><th>Deixou contato</th></tr>
+    <tr><td>#1 Marcos</td><td class="num">1</td><td>"Ficar lendo 40 mensagens no WhatsApp pra montar a lista."</td><td>Saber quem vai</td><td class="num">8</td><td class="num">4</td><td>Não</td><td><span class="st ok">Aceita</span></td><td>Sim</td></tr>
+    <tr><td>#2 Roberto</td><td class="num">2</td><td>"Cobrar aluno no Pix todo dia 5 é a pior parte, gera desgaste."</td><td>Cobrança</td><td class="num">14</td><td class="num">11</td><td>Não</td><td><span class="st ok">Aceita</span></td><td>Sim</td></tr>
+    <tr><td>#3 Sueli</td><td class="num">1</td><td>"Ir até o ponto do aluno, esperar, e ele avisar que não vai."</td><td>Saber quem vai</td><td class="num">5</td><td class="num">3</td><td>Não</td><td><span class="st ok">Aceita</span></td><td>Sim</td></tr>
+    <tr><td>#4 Carlos</td><td class="num">4</td><td>"Controlar quem pagou e quem não pagou em várias planilhas."</td><td>Cobrança</td><td class="num">25</td><td class="num">18</td><td>Sim, acha caro</td><td><span class="st mid">R$ 150 pelas 4</span></td><td>Sim</td></tr>
+    <tr><td>#5 Tiago</td><td class="num">1</td><td>"Manutenção do carro e fiscalização da Artesp."</td><td>Manutenção e fiscalização</td><td class="num">4</td><td class="num">2</td><td>Não</td><td><span class="st mid">Talvez</span></td><td>Sim</td></tr>
+    <tr><td>#6 Paulo</td><td class="num">2</td><td>"Aluno que cancela em cima da hora e eu perco de levar outro."</td><td>Saber quem vai</td><td class="num">12</td><td class="num">7</td><td>Não</td><td><span class="st ok">Aceita</span></td><td>Sim</td></tr>
+    <tr><td>#7 Luiz</td><td class="num">3</td><td>"Organizar as rotas quando tem muita gente de faculdade diferente."</td><td>Rotas</td><td class="num">18</td><td class="num">15</td><td>Não</td><td><span class="st ok">Aceita</span></td><td>Sim</td></tr>
+  </table></div>
+  <div class="grid3">
+    <div class="quote"><p>"Ficar lendo 40 mensagens no WhatsApp pra montar a lista."</p><p class="who">Marcos, 1 van</p></div>
+    <div class="quote"><p>"Cobrar aluno no Pix todo dia 5 é a pior parte, gera desgaste."</p><p class="who">Roberto, 2 vans</p></div>
+    <div class="quote"><p>"Aluno que cancela em cima da hora e eu perco de levar outro."</p><p class="who">Paulo, 2 vans</p></div>
+  </div>
+  <p class="note"><b>O que surpreendeu:</b> quando apresentamos a ideia de vender o lugar de quem faltou como vaga avulsa, a maioria se animou, porque transforma uma perda que acontece toda semana em receita extra.</p>
+</section>
+
+<section class="section" id="landing">
+  <div class="section-head">
+    <p class="eyebrow">Teste de interesse</p>
+    <h2>Landing page da VanFlow</h2>
+    <p class="lead">Antes de programar o app, colocamos no ar a página que um operador veria. Ela mostra a proposta, o preço real e pede o contato para o teste grátis. Se ninguém se cadastra, o problema está na proposta, não no código.</p>
+  </div>
+  <div class="grid2">
+    <div class="card"><h3>O que a página testa</h3><ul><li>Se a promessa "saiba quem vai amanhã antes de ligar a van" chama atenção</li><li>Se o preço de R$ 59,90 por van afasta o operador</li><li>Se o operador aceita deixar o contato para um teste</li></ul></div>
+    <div class="card"><h3>Resultado até agora</h3><p class="muted">A página entrou no ar em 26/10/2026, então ainda não há volume de cadastros para medir. Mas os primeiros interessados já vieram por outro caminho: os 7 operadores entrevistados deixaram o contato, e os estudantes indicaram outros 18 motoristas.</p><p><b>25 contatos de operadores</b> para convidar ao teste e para levar à landing page.</p></div>
+  </div>
+</section>
+
+<section class="section" id="veredito">
+  <div class="section-head">
+    <p class="eyebrow">Hipóteses × evidências</p>
+    <h2>Veredito</h2>
+  </div>
+  <div class="tbl-wrap"><table class="t-min">
+    <tr><th style="width:5%">#</th><th style="width:30%">Hipótese</th><th style="width:45%">O que encontramos</th><th>Resultado</th></tr>
+    <tr><td>H1</td><td>Não saber quem vai é a principal dor do operador</td><td>É a dor mais citada espontaneamente, mas por 3 de 7, não pela maioria. A cobrança veio logo atrás (2 de 7). Juntas, somam 5 de 7.</td><td><span class="st mid">Parcialmente validada</span></td></tr>
+    <tr><td>H2</td><td>A presença dos estudantes varia</td><td>85% de quem usa van falta a um dia pago pelo menos 1 a 2 vezes por mês (meta: 40%).</td><td><span class="st ok">Validada</span></td></tr>
+    <tr><td>H3</td><td>O estudante confirma pelo WhatsApp</td><td>89% confirmariam na noite anterior e 8% talvez (meta: 70%).</td><td><span class="st ok">Validada</span></td></tr>
+    <tr><td>H4</td><td>O operador resolve no improviso, sem app</td><td>6 de 7 não usam app; o único que usa acha caro.</td><td><span class="st ok">Validada</span></td></tr>
+    <tr><td>H5</td><td>O operador paga R$ 59,90 por van</td><td>5 de 7 aceitam e 1 talvez. O dono de 4 vans propôs R$ 150 pelo lote, ou R$ 37,50 por van.</td><td><span class="st ok">Validada com ajuste</span></td></tr>
+    <tr><td>H6</td><td>Operadores querem testar</td><td>7 de 7 deixaram o contato, e os estudantes indicaram mais 18 motoristas.</td><td><span class="st ok">Validada</span></td></tr>
+  </table></div>
+
+  <h3>O que aprendemos e o que muda</h3>
+  <div class="grid2">
+    <div class="card"><p class="kind">Foco do MVP</p><h3>Presença e cobrança primeiro; rota depois</h3><p class="muted">5 de 7 operadores citaram presença ou cobrança, e só 1 citou rotas. O MVP fica com confirmação de presença, lista do dia e cobrança Pix. A rota no Maps ou no Waze sai do MVP.</p></div>
+    <div class="card"><p class="kind">Descoberta</p><h3>Flexibilidade é o que o estudante quer</h3><p class="muted">A maior dor do estudante (78%) é pagar o mês cheio indo poucos dias. 82% usariam plano de 2 ou 3 dias e 75% pagariam por uma vaga avulsa, a maioria entre R$ 16 e R$ 35. Planos por dias e vagas avulsas voltam ao produto como aposta validada.</p></div>
+    <div class="card"><p class="kind">Receita extra para o operador</p><h3>O lugar vazio tem valor</h3><p class="muted">Os entrevistados somam 6,1 lugares vazios por van por semana. Se só um terço deles fosse vendido a R$ 20 (faixa mais citada), seriam cerca de R$ 175 por van por mês, quase três vezes a assinatura.</p></div>
+    <div class="card"><p class="kind">Preço</p><h3>Um plano para frotistas</h3><p class="muted">R$ 59,90 por van foi aceito pela maioria de quem tem 1 a 3 vans. Quem tem 4 ou mais pede pacote. Vamos testar um preço por faixa: R$ 59,90 por van até 3 vans e um valor menor por van a partir da quarta.</p></div>
+  </div>
+</section>
+
+<section class="section" id="mvp">
+  <div class="section-head">
+    <p class="eyebrow">Minimum Viable Product</p>
+    <h2>O MVP da VanFlow</h2>
+    <p class="lead">O menor produto que já resolve as dores confirmadas na validação e pode gerar receita. Não é uma versão com menos telas: é o fluxo completo de um dia de trabalho, só que estreito.</p>
+  </div>
+  <div class="grid2">
+    <div class="card navy">
+      <p class="eyebrow">Entra no MVP</p>
+      <h3>Saber quem vai e receber em dia</h3>
+      <ul>
+        <li>Cadastro dos alunos e da grade de aulas do semestre</li>
+        <li>Mensagem de confirmação no WhatsApp na noite anterior</li>
+        <li>Lista do dia para o motorista</li>
+        <li>Cobrança da mensalidade via Pix com lembrete</li>
+        <li>Oferta das vagas livres do dia como avulsas, feita manualmente no início</li>
+      </ul>
+      <p class="muted">Ataca as duas dores mais citadas pelos operadores (presença e cobrança) e a maior dor dos estudantes (pagar por dias que não usam).</p>
+    </div>
+    <div class="card">
+      <p class="kind">Fica para depois</p>
+      <h3>O que só entra se o MVP funcionar</h3>
+      <ul>
+        <li>Ordem das paradas e rota no Maps ou no Waze (só 1 de 7 operadores citou rotas)</li>
+        <li>Localização da van em tempo real</li>
+        <li>Painel de lucro por van</li>
+        <li>Fretado de funcionários e escolar</li>
+      </ul>
+    </div>
+  </div>
+  <h3>Como vamos rodar o MVP: primeiro na mão, depois no código</h3>
+  <div class="steps">
+    <div class="step-c"><p class="k">Semana 1 a 2</p><h3>Concierge</h3><p class="muted">Com 3 dos 7 operadores entrevistados, a equipe manda as confirmações pelo WhatsApp, monta a lista do dia em uma planilha e oferece as vagas livres a estudantes interessados, tudo manualmente.</p></div>
+    <div class="step-c"><p class="k">Semana 3 a 4</p><h3>Automação mínima</h3><p class="muted">Automatizamos só o que funcionou: envio das mensagens, leitura das respostas e geração da lista.</p></div>
+    <div class="step-c"><p class="k">Mês 2</p><h3>Cobrança</h3><p class="muted">Entra a cobrança Pix com lembretes e com planos de 2, 3 ou 5 dias por semana. O operador começa a pagar depois dos 30 dias grátis.</p></div>
+    <div class="step-c"><p class="k">Decisão</p><h3>Perseverar ou pivotar</h3><p class="muted">Se os operadores pagarem e continuarem usando, seguimos. Se não, revisamos o canvas.</p></div>
+  </div>
+</section>
+
+<section class="section" id="metricas">
+  <div class="section-head">
+    <p class="eyebrow">Métricas pirata · AARRR</p>
+    <h2>Como vamos medir o MVP</h2>
+    <p class="lead">O funil inteiro, não só o topo. As metas valem para o piloto e serão revistas com os primeiros dados.</p>
+  </div>
+  <div class="tbl-wrap"><table class="t-min">
+    <tr><th style="width:16%">Etapa</th><th style="width:44%">O que contamos</th><th>Meta do piloto</th></tr>
+    <tr><td><b>Aquisição</b></td><td>Operadores que deixam o contato pela landing page, na entrevista ou por indicação de estudantes</td><td>Já são 25 contatos (7 entrevistados e 18 indicados)</td></tr>
+    <tr><td><b>Ativação</b></td><td>Operadores que cadastram os alunos e enviam a primeira confirmação</td><td>3 operadores ativos</td></tr>
+    <tr><td><b>Retenção</b></td><td>Operadores que usam a lista do dia por 4 semanas seguidas</td><td>2 de 3</td></tr>
+    <tr><td><b>Receita</b></td><td>Operadores que pagam R$ 59,90 por van depois dos 30 dias grátis, e vagas avulsas vendidas</td><td>2 de 3 operadores pagando; pelo menos 1 vaga avulsa vendida por van por semana</td></tr>
+    <tr><td><b>Indicação</b></td><td>Operadores que indicam outro motorista</td><td>1 indicação</td></tr>
+  </table></div>
+  <div class="grid3">
+    <div class="card"><p class="kind">MRR</p><h3>Receita mensal recorrente</h3><p class="muted">Vans assinantes × R$ 59,90. Com a meta de 30 vans, o MRR chega a R$ 1.797 e o ARR a R$ 21.564.</p></div>
+    <div class="card"><p class="kind">LTV</p><h3>Valor de cada van</h3><p class="muted">Ticket × tempo de permanência. Se uma van ficar 12 meses, gera R$ 718,80. O tempo real sai da retenção do piloto.</p></div>
+    <div class="card"><p class="kind">CAC e churn</p><h3>Custo para conquistar e evasão</h3><p class="muted">Hoje a aquisição é feita pela própria equipe, nas faculdades. A regra que vamos seguir é LTV pelo menos 3 vezes maior que o CAC, com churn mensal medido desde o primeiro mês.</p></div>
+  </div>
+</section>
+
+<section class="section" id="fontes">
+  <div class="section-head"><p class="eyebrow">Referências</p><h2>Fontes</h2></div>
+  <ul class="sources">
+    <li><a href="https://www.econodata.com.br/empresas/todo-brasil/transporte-escolar-h-4924800" target="_blank" rel="noopener">Econodata: empresas de transporte escolar (CNAE 4924-8/00) no Brasil</a></li>
+    <li><a href="https://www.jornalcruzeiro.com.br/sorocaba/urbes-tem-630-vans-escolares-cadastradas-em-sorocaba/" target="_blank" rel="noopener">Jornal Cruzeiro do Sul: Urbes tem 630 vans escolares cadastradas em Sorocaba (2019)</a></li>
+    <li><a href="https://www.jornalcruzeiro.com.br/sorocaba/noticias/2023/11/724124-sorocaba-recebe-milhares-de-estudantes-universitarios-da-regiao-todos-os-dias.html" target="_blank" rel="noopener">Jornal Cruzeiro do Sul: Sorocaba recebe milhares de estudantes universitários da região todos os dias (2023)</a></li>
+    <li><a href="https://jeduca.org.br/noticia/censo-da-educacao-superior-2024-mostra-que-pela-primeira-vez-matriculas-na-ead-sao-maioria" target="_blank" rel="noopener">Jeduca: Censo da Educação Superior 2024 (Inep)</a></li>
+    <li><a href="https://sejaefi.com.br/blog/transporte-escolar-282" target="_blank" rel="noopener">Efí Bank: faturamento estimado de uma van escolar</a></li>
+    <li>Material da disciplina: Modelagem de Negócios e Métricas para Startups (Prof. Alexandre Alvaro)</li>
+  </ul>
+</section>
+
+<footer>VanFlow · Mateus Baú, Gustavo Rodrigues e Nasser Shuqair · UFSCar Sorocaba</footer>
+</div>
+
+</body></html>

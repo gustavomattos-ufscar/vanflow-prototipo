@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122 56" role="img" aria-label="Van da VanFlow">
+<path d="M8 44 V22 Q8 12 18 12 H82 Q92 12 98 20 L110 32 Q114 36 114 42 V46 H8 Z" fill="#F2A62F" stroke="#13233A" stroke-width="2.2" stroke-linejoin="round"/>
+<path d="M20 18 H44 V30 H16 V22 Q16 18 20 18Z" fill="#13233A"/>
+<rect x="48" y="18" width="22" height="12" rx="2" fill="#13233A"/>
+<path d="M74 18 H86 Q91 18 95 23 L101 30 H74Z" fill="#13233A"/>
+<rect x="8" y="36" width="106" height="3" fill="#13233A"/>
+<circle cx="30" cy="46" r="9" fill="#13233A"/><circle cx="30" cy="46" r="3.5" fill="#F3F1EC"/>
+<circle cx="92" cy="46" r="9" fill="#13233A"/><circle cx="92" cy="46" r="3.5" fill="#F3F1EC"/>
+<circle cx="111" cy="38" r="2.4" fill="#FFF3C4"/>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" aria-hidden="true"><style>:root,svg{--bg:#F4F2ED;--surface:#FDFCF9;--surface-2:#EAE6DE;--hair:#D6D0C4;--ink:#13233A;--muted:#4B5667;--navy:#13233A;--navy-2:#1C3150;--on-navy:#F3F1EC;--on-navy-muted:#B9C4D2;--amber:#F2A62F;--amber-soft:#FBE3B8;--amber-ink:#8E5209;--teal:#1D6B74;--teal-soft:#CFE7E6;--chat:#E3EFEA;--chat-me:#D6F0C6;--chat-ink:#13233A;--road:#C9C2B4;--f-display:'Bricolage Grotesque','DM Sans',Arial,sans-serif;--f-body:'DM Sans',Arial,sans-serif;--f-mono:'IBM Plex Mono','Courier New',monospace}
+.campus{fill:var(--surface);stroke:var(--ink);stroke-width:2.4;stroke-linejoin:round}
+.campus-roof{fill:var(--navy)}
+.ill-line{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ill-amber{fill:var(--amber)}
+.ill-soft{fill:var(--teal-soft)}
+.ill-ink{fill:var(--ink)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+          <rect width="240" height="120" rx="14" class="ill-soft"/>
+          <path class="campus-roof" d="M60 46 L120 20 L180 46 Z"/>
+          <rect class="campus" x="68" y="46" width="104" height="48"/>
+          <rect class="ill-ink" x="82" y="54" width="8" height="34"/><rect class="ill-ink" x="104" y="54" width="8" height="34"/><rect class="ill-ink" x="128" y="54" width="8" height="34"/><rect class="ill-ink" x="150" y="54" width="8" height="34"/>
+          <path d="M40 104 H200" style="stroke:var(--road)" stroke-width="8" stroke-linecap="round"/>
+          <path d="M150 16 l18 -8 18 8 -18 8z" class="ill-amber"/><path d="M158 20 v8 c6 4 14 4 20 0 v-8" class="ill-line"/>
+        </svg>

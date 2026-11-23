@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Selo: 30 dias grátis, sem fidelidade"><style>:root,svg{--bg:#F4F2ED;--surface:#FDFCF9;--surface-2:#EAE6DE;--hair:#D6D0C4;--ink:#13233A;--muted:#4B5667;--navy:#13233A;--navy-2:#1C3150;--on-navy:#F3F1EC;--on-navy-muted:#B9C4D2;--amber:#F2A62F;--amber-soft:#FBE3B8;--amber-ink:#8E5209;--teal:#1D6B74;--teal-soft:#CFE7E6;--chat:#E3EFEA;--chat-me:#D6F0C6;--chat-ink:#13233A;--road:#C9C2B4;--f-display:'Bricolage Grotesque','DM Sans',Arial,sans-serif;--f-body:'DM Sans',Arial,sans-serif;--f-mono:'IBM Plex Mono','Courier New',monospace}
+
+.spin{transform-origin:64px 64px;transform-box:view-box}
+.seal-ring{font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:2.4px;fill:#13233A}
+
+.spin{animation:spin 22s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pop{0%{opacity:0;transform:translateY(10px) scale(.92)}70%{opacity:1;transform:translateY(-2px) scale(1.02)}100%{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+        <circle cx="64" cy="64" r="62" fill="#F2A62F"/>
+        <circle cx="64" cy="64" r="40" fill="#13233A"/>
+        <defs><path id="sealPath" d="M64 64 m-51 0 a51 51 0 1 1 102 0 a51 51 0 1 1 -102 0"/></defs>
+        <g class="spin"><text class="seal-ring"><textPath href="#sealPath" textLength="314" lengthAdjust="spacing">30 DIAS GRÁTIS · SEM FIDELIDADE · TESTE JÁ ·</textPath></text></g>
+        <text x="64" y="66" text-anchor="middle" font-family="Bricolage Grotesque, DM Sans, Arial, sans-serif" font-weight="800" font-size="34" fill="#F2A62F">30</text>
+        <text x="64" y="84" text-anchor="middle" font-family="IBM Plex Mono, Courier New, monospace" font-weight="600" font-size="10" fill="#F3F1EC" letter-spacing="1.5" textLength="62" lengthAdjust="spacingAndGlyphs">DIAS GRÁTIS</text>
+      </svg>

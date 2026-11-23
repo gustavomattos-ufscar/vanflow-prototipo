@@ -1,0 +1,6364 @@
+{
+  "_info": {
+    "descricao": "Dados de demonstração do protótipo VanFlow. Tudo fictício, exceto startup_baseline (agregados reais da validação).",
+    "gerado_por": "dados-demo/gerar_seed.py",
+    "fuso": "America/Sao_Paulo",
+    "cenario_padrao": "Quarta 11/11/2026 20h55. Às 21h saem as confirmações de quinta 12/11. Na Van 1 (Itu e Salto, noite) 14 alunos têm aula na quinta; Ana (st_ana) é a aluna da demo; Carla (st_carla) compra a vaga avulsa.",
+    "coordenadas": "aproximadas, só para o mapa esquemático e para ordenar paradas"
+  },
+  "demo_state": {
+    "now": "2026-11-11T20:55:00-03:00",
+    "scenario": "quarta_antes_das_21h",
+    "speed": 1
+  },
+  "semester": {
+    "id": "2026/2",
+    "start": "2026-08-03",
+    "end": "2026-12-12"
+  },
+  "faculties": [
+    {
+      "id": "fac_ufscar",
+      "name": "UFSCar",
+      "full_name": "Universidade Federal de São Carlos",
+      "campus": "Campus Sorocaba",
+      "lat": -23.5813,
+      "lng": -47.5243,
+      "approx": true
+    },
+    {
+      "id": "fac_uniso",
+      "name": "Uniso",
+      "full_name": "Universidade de Sorocaba",
+      "campus": "Cidade Universitária",
+      "lat": -23.517,
+      "lng": -47.412,
+      "approx": true
+    },
+    {
+      "id": "fac_facens",
+      "name": "Facens",
+      "full_name": "Centro Universitário Facens",
+      "campus": "Sorocaba",
+      "lat": -23.4706,
+      "lng": -47.4291,
+      "approx": true
+    }
+  ],
+  "operators": [
+    {
+      "id": "op_ze",
+      "name": "José Almeida Fretados",
+      "trade_name": "Van do Seu Zé",
+      "owner_name": "José Almeida",
+      "whatsapp": "(15) 90000-0001",
+      "city": "Itu",
+      "pix_key": "vanflow.demo@exemplo.com",
+      "pix_key_type": "email",
+      "pix_merchant_name": "JOSE ALMEIDA FRETADOS",
+      "pix_city": "ITU",
+      "created_at": "2026-10-27T10:00:00-03:00",
+      "trial_ends_at": "2026-11-26T23:59:00-03:00",
+      "status": "trial"
+    },
+    {
+      "id": "op_rita",
+      "name": "Rita Moraes Transportes",
+      "trade_name": "Rita Transportes",
+      "owner_name": "Rita Moraes",
+      "whatsapp": "(15) 90000-0002",
+      "city": "Salto",
+      "pix_key": "rita.demo@exemplo.com",
+      "pix_key_type": "email",
+      "pix_merchant_name": "RITA MORAES TRANSPORTES",
+      "pix_city": "SALTO",
+      "created_at": "2026-11-04T15:00:00-03:00",
+      "trial_ends_at": "2026-12-04T23:59:00-03:00",
+      "status": "trial"
+    }
+  ],
+  "operator_settings": [
+    {
+      "operator_id": "op_ze",
+      "confirmation_time": "21:00",
+      "reminder_time": "22:30",
+      "reminder_enabled": true,
+      "close_minutes_before_departure": 180,
+      "close_time_morning": "05:30",
+      "no_answer_counts_as_going": true,
+      "invoice_day": 1,
+      "due_day": 5,
+      "avulsa_hold_minutes": 30,
+      "avulsa_auto_offer": true
+    },
+    {
+      "operator_id": "op_rita",
+      "confirmation_time": "21:00",
+      "reminder_time": "22:30",
+      "reminder_enabled": true,
+      "close_minutes_before_departure": 180,
+      "close_time_morning": "05:30",
+      "no_answer_counts_as_going": true,
+      "invoice_day": 1,
+      "due_day": 5,
+      "avulsa_hold_minutes": 30,
+      "avulsa_auto_offer": true
+    }
+  ],
+  "subscriptions": [
+    {
+      "operator_id": "op_ze",
+      "price_per_van": 59.9,
+      "vans_count": 2,
+      "started_at": null,
+      "status": "trial",
+      "plan": "padrao"
+    },
+    {
+      "operator_id": "op_rita",
+      "price_per_van": 59.9,
+      "vans_count": 1,
+      "started_at": null,
+      "status": "trial",
+      "plan": "padrao"
+    }
+  ],
+  "drivers": [
+    {
+      "id": "drv_ze",
+      "operator_id": "op_ze",
+      "name": "José Almeida",
+      "phone": "(15) 90000-0001",
+      "is_owner": true
+    },
+    {
+      "id": "drv_edson",
+      "operator_id": "op_ze",
+      "name": "Edson Pereira",
+      "phone": "(15) 90000-0003",
+      "is_owner": false
+    },
+    {
+      "id": "drv_rita",
+      "operator_id": "op_rita",
+      "name": "Rita Moraes",
+      "phone": "(15) 90000-0002",
+      "is_owner": true
+    }
+  ],
+  "vans": [
+    {
+      "id": "van_itu",
+      "operator_id": "op_ze",
+      "nickname": "Van 1 · Itu",
+      "plate": "FRT2A26",
+      "model": "Van 15 lugares",
+      "seats": 15,
+      "color": "Branca",
+      "driver_id": "drv_ze"
+    },
+    {
+      "id": "van_voto",
+      "operator_id": "op_ze",
+      "nickname": "Van 2 · Votorantim",
+      "plate": "FRT4C71",
+      "model": "Van 15 lugares",
+      "seats": 15,
+      "color": "Prata",
+      "driver_id": "drv_edson"
+    },
+    {
+      "id": "van_rita",
+      "operator_id": "op_rita",
+      "nickname": "Van da Rita",
+      "plate": "FRT7E19",
+      "model": "Van 12 lugares",
+      "seats": 12,
+      "color": "Branca",
+      "driver_id": "drv_rita"
+    }
+  ],
+  "lines": [
+    {
+      "id": "line_itu_noite",
+      "van_id": "van_itu",
+      "name": "Itu e Salto → Sorocaba",
+      "shift": "noite",
+      "departure_time": "17:40",
+      "return_time": "22:50",
+      "origin": {
+        "label": "Garagem · Itu",
+        "lat": -23.2705,
+        "lng": -47.3061
+      },
+      "destinations": [
+        "fac_uniso",
+        "fac_facens",
+        "fac_ufscar"
+      ],
+      "price_table": {
+        "plan_5": 420.0,
+        "plan_3": 300.0,
+        "plan_2": 220.0,
+        "avulsa_round": 20.0,
+        "avulsa_one_way": 12.0
+      }
+    },
+    {
+      "id": "line_voto_manha",
+      "van_id": "van_voto",
+      "name": "Votorantim → Sorocaba",
+      "shift": "manha",
+      "departure_time": "06:30",
+      "return_time": "12:20",
+      "origin": {
+        "label": "Ponto inicial · Votorantim Centro",
+        "lat": -23.544,
+        "lng": -47.44
+      },
+      "destinations": [
+        "fac_facens",
+        "fac_ufscar"
+      ],
+      "price_table": {
+        "plan_5": 320.0,
+        "plan_3": 240.0,
+        "plan_2": 170.0,
+        "avulsa_round": 16.0,
+        "avulsa_one_way": 10.0
+      }
+    },
+    {
+      "id": "line_rita_noite",
+      "van_id": "van_rita",
+      "name": "Salto → Sorocaba",
+      "shift": "noite",
+      "departure_time": "17:50",
+      "return_time": "22:50",
+      "origin": {
+        "label": "Garagem · Salto",
+        "lat": -23.205,
+        "lng": -47.29
+      },
+      "destinations": [
+        "fac_uniso",
+        "fac_facens"
+      ],
+      "price_table": {
+        "plan_5": 400.0,
+        "plan_3": 290.0,
+        "plan_2": 210.0,
+        "avulsa_round": 20.0,
+        "avulsa_one_way": 12.0
+      }
+    }
+  ],
+  "plans": [
+    {
+      "id": "plan_op_ze_2",
+      "operator_id": "op_ze",
+      "name": "2 dias por semana",
+      "days_per_week": 2
+    },
+    {
+      "id": "plan_op_ze_3",
+      "operator_id": "op_ze",
+      "name": "3 dias por semana",
+      "days_per_week": 3
+    },
+    {
+      "id": "plan_op_ze_5",
+      "operator_id": "op_ze",
+      "name": "5 dias por semana",
+      "days_per_week": 5
+    },
+    {
+      "id": "plan_op_rita_2",
+      "operator_id": "op_rita",
+      "name": "2 dias por semana",
+      "days_per_week": 2
+    },
+    {
+      "id": "plan_op_rita_3",
+      "operator_id": "op_rita",
+      "name": "3 dias por semana",
+      "days_per_week": 3
+    },
+    {
+      "id": "plan_op_rita_5",
+      "operator_id": "op_rita",
+      "name": "5 dias por semana",
+      "days_per_week": 5
+    }
+  ],
+  "students": [
+    {
+      "id": "st_ana",
+      "operator_id": "op_ze",
+      "name": "Ana Beatriz Rocha",
+      "phone": "(15) 90000-0011",
+      "city": "Itu",
+      "neighborhood": "Jd. Paulista",
+      "pickup_label": "Jd. Paulista · ponto combinado",
+      "lat": -23.27258,
+      "lng": -47.29914,
+      "faculty_id": "fac_uniso",
+      "course": "Administração",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_bruno",
+      "operator_id": "op_ze",
+      "name": "Bruno Lima",
+      "phone": "(15) 90000-0012",
+      "city": "Itu",
+      "neighborhood": "Centro",
+      "pickup_label": "Centro · ponto combinado",
+      "lat": -23.26394,
+      "lng": -47.29128,
+      "faculty_id": "fac_facens",
+      "course": "Engenharia Mecânica",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_diego",
+      "operator_id": "op_ze",
+      "name": "Diego Souza",
+      "phone": "(15) 90000-0013",
+      "city": "Itu",
+      "neighborhood": "Rodoviária",
+      "pickup_label": "Rodoviária · ponto combinado",
+      "lat": -23.27294,
+      "lng": -47.30529,
+      "faculty_id": "fac_ufscar",
+      "course": "Administração",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_julia",
+      "operator_id": "op_ze",
+      "name": "Júlia Martins",
+      "phone": "(15) 90000-0014",
+      "city": "Itu",
+      "neighborhood": "Vila Nova",
+      "pickup_label": "Vila Nova · ponto combinado",
+      "lat": -23.26198,
+      "lng": -47.29796,
+      "faculty_id": "fac_uniso",
+      "course": "Direito",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_rafael",
+      "operator_id": "op_ze",
+      "name": "Rafael Oliveira",
+      "phone": "(15) 90000-0015",
+      "city": "Salto",
+      "neighborhood": "Centro",
+      "pickup_label": "Centro · ponto combinado",
+      "lat": -23.19407,
+      "lng": -47.28585,
+      "faculty_id": "fac_facens",
+      "course": "Engenharia de Computação",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_larissa",
+      "operator_id": "op_ze",
+      "name": "Larissa Ferreira",
+      "phone": "(15) 90000-0016",
+      "city": "Salto",
+      "neighborhood": "Jd. das Nações",
+      "pickup_label": "Jd. das Nações · ponto combinado",
+      "lat": -23.19523,
+      "lng": -47.281,
+      "faculty_id": "fac_uniso",
+      "course": "Enfermagem",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_pedro",
+      "operator_id": "op_ze",
+      "name": "Pedro Henrique Alves",
+      "phone": "(15) 90000-0017",
+      "city": "Itu",
+      "neighborhood": "Vila Martins",
+      "pickup_label": "Vila Martins · ponto combinado",
+      "lat": -23.25868,
+      "lng": -47.2973,
+      "faculty_id": "fac_facens",
+      "course": "Engenharia Civil",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_mariana",
+      "operator_id": "op_ze",
+      "name": "Mariana Costa",
+      "phone": "(15) 90000-0018",
+      "city": "Salto",
+      "neighborhood": "Vila Teixeira",
+      "pickup_label": "Vila Teixeira · ponto combinado",
+      "lat": -23.20602,
+      "lng": -47.28439,
+      "faculty_id": "fac_uniso",
+      "course": "Psicologia",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_lucas",
+      "operator_id": "op_ze",
+      "name": "Lucas Pereira",
+      "phone": "(15) 90000-0019",
+      "city": "Itu",
+      "neighborhood": "Parque Industrial",
+      "pickup_label": "Parque Industrial · ponto combinado",
+      "lat": -23.27276,
+      "lng": -47.29223,
+      "faculty_id": "fac_ufscar",
+      "course": "Ciências Econômicas",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_gabriela",
+      "operator_id": "op_ze",
+      "name": "Gabriela Santos",
+      "phone": "(15) 90000-0020",
+      "city": "Itu",
+      "neighborhood": "Bairro Brasil",
+      "pickup_label": "Bairro Brasil · ponto combinado",
+      "lat": -23.26531,
+      "lng": -47.29228,
+      "faculty_id": "fac_uniso",
+      "course": "Farmácia",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_matheus",
+      "operator_id": "op_ze",
+      "name": "Matheus Ribeiro",
+      "phone": "(15) 90000-0021",
+      "city": "Salto",
+      "neighborhood": "Jd. Arco-Íris",
+      "pickup_label": "Jd. Arco-Íris · ponto combinado",
+      "lat": -23.19623,
+      "lng": -47.28295,
+      "faculty_id": "fac_facens",
+      "course": "Engenharia Elétrica",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_beatriz",
+      "operator_id": "op_ze",
+      "name": "Beatriz Carvalho",
+      "phone": "(15) 90000-0022",
+      "city": "Itu",
+      "neighborhood": "Cidade Nova",
+      "pickup_label": "Cidade Nova · ponto combinado",
+      "lat": -23.27058,
+      "lng": -47.30467,
+      "faculty_id": "fac_uniso",
+      "course": "Pedagogia",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_vinicius",
+      "operator_id": "op_ze",
+      "name": "Vinícius Gomes",
+      "phone": "(15) 90000-0023",
+      "city": "Itu",
+      "neighborhood": "Jd. Corazza",
+      "pickup_label": "Jd. Corazza · ponto combinado",
+      "lat": -23.25364,
+      "lng": -47.28976,
+      "faculty_id": "fac_facens",
+      "course": "Engenharia de Produção",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_isabela",
+      "operator_id": "op_ze",
+      "name": "Isabela Araújo",
+      "phone": "(15) 90000-0024",
+      "city": "Salto",
+      "neighborhood": "Centro",
+      "pickup_label": "Centro · ponto combinado",
+      "lat": -23.19359,
+      "lng": -47.27591,
+      "faculty_id": "fac_uniso",
+      "course": "Administração",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_caio",
+      "operator_id": "op_ze",
+      "name": "Caio Mendes",
+      "phone": "(15) 90000-0025",
+      "city": "Itu",
+      "neighborhood": "Centro",
+      "pickup_label": "Centro · ponto combinado",
+      "lat": -23.2639,
+      "lng": -47.30852,
+      "faculty_id": "fac_ufscar",
+      "course": "Pedagogia",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_leticia",
+      "operator_id": "op_ze",
+      "name": "Letícia Nogueira",
+      "phone": "(15) 90000-0026",
+      "city": "Salto",
+      "neighborhood": "Vila Nova",
+      "pickup_label": "Vila Nova · ponto combinado",
+      "lat": -23.20381,
+      "lng": -47.28564,
+      "faculty_id": "fac_uniso",
+      "course": "Arquitetura",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_amanda",
+      "operator_id": "op_ze",
+      "name": "Amanda Ribeiro",
+      "phone": "(15) 90000-0027",
+      "city": "Votorantim",
+      "neighborhood": "Centro",
+      "pickup_label": "Centro · ponto combinado",
+      "lat": -23.54917,
+      "lng": -47.43974,
+      "faculty_id": "fac_ufscar",
+      "course": "Engenharia Florestal",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_henrique",
+      "operator_id": "op_ze",
+      "name": "Henrique Tavares",
+      "phone": "(15) 90000-0028",
+      "city": "Votorantim",
+      "neighborhood": "Jd. Paraíso",
+      "pickup_label": "Jd. Paraíso · ponto combinado",
+      "lat": -23.53632,
+      "lng": -47.43431,
+      "faculty_id": "fac_ufscar",
+      "course": "Ciência da Computação",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_camila",
+      "operator_id": "op_ze",
+      "name": "Camila Freitas",
+      "phone": "(15) 90000-0029",
+      "city": "Votorantim",
+      "neighborhood": "Vila Albertina",
+      "pickup_label": "Vila Albertina · ponto combinado",
+      "lat": -23.5429,
+      "lng": -47.44926,
+      "faculty_id": "fac_facens",
+      "course": "Engenharia Química",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_eduarda",
+      "operator_id": "op_ze",
+      "name": "Eduarda Lopes",
+      "phone": "(15) 90000-0030",
+      "city": "Votorantim",
+      "neighborhood": "Itapeva",
+      "pickup_label": "Itapeva · ponto combinado",
+      "lat": -23.53996,
+      "lng": -47.4418,
+      "faculty_id": "fac_ufscar",
+      "course": "Biologia",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_joao",
+      "operator_id": "op_ze",
+      "name": "João Vitor Cardoso",
+      "phone": "(15) 90000-0031",
+      "city": "Votorantim",
+      "neighborhood": "Centro",
+      "pickup_label": "Centro · ponto combinado",
+      "lat": -23.54631,
+      "lng": -47.44103,
+      "faculty_id": "fac_facens",
+      "course": "Engenharia Mecânica",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_natalia",
+      "operator_id": "op_ze",
+      "name": "Natália Pires",
+      "phone": "(15) 90000-0032",
+      "city": "Votorantim",
+      "neighborhood": "Jd. Toledo",
+      "pickup_label": "Jd. Toledo · ponto combinado",
+      "lat": -23.54271,
+      "lng": -47.43883,
+      "faculty_id": "fac_ufscar",
+      "course": "Física",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_otavio",
+      "operator_id": "op_ze",
+      "name": "Otávio Ramos",
+      "phone": "(15) 90000-0033",
+      "city": "Votorantim",
+      "neighborhood": "Vila Garcia",
+      "pickup_label": "Vila Garcia · ponto combinado",
+      "lat": -23.55304,
+      "lng": -47.43866,
+      "faculty_id": "fac_ufscar",
+      "course": "Engenharia de Produção",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_sofia",
+      "operator_id": "op_ze",
+      "name": "Sofia Almeida",
+      "phone": "(15) 90000-0034",
+      "city": "Votorantim",
+      "neighborhood": "Centro",
+      "pickup_label": "Centro · ponto combinado",
+      "lat": -23.5391,
+      "lng": -47.4366,
+      "faculty_id": "fac_facens",
+      "course": "Arquitetura",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_renan",
+      "operator_id": "op_ze",
+      "name": "Renan Duarte",
+      "phone": "(15) 90000-0035",
+      "city": "Votorantim",
+      "neighborhood": "Parque Bela Vista",
+      "pickup_label": "Parque Bela Vista · ponto combinado",
+      "lat": -23.5448,
+      "lng": -47.42963,
+      "faculty_id": "fac_ufscar",
+      "course": "Química",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_yara",
+      "operator_id": "op_ze",
+      "name": "Yara Fontes",
+      "phone": "(15) 90000-0036",
+      "city": "Votorantim",
+      "neighborhood": "Jd. Clarice",
+      "pickup_label": "Jd. Clarice · ponto combinado",
+      "lat": -23.54991,
+      "lng": -47.44056,
+      "faculty_id": "fac_facens",
+      "course": "Design",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_daniel",
+      "operator_id": "op_ze",
+      "name": "Daniel Moreira",
+      "phone": "(15) 90000-0037",
+      "city": "Votorantim",
+      "neighborhood": "Centro",
+      "pickup_label": "Centro · ponto combinado",
+      "lat": -23.53522,
+      "lng": -47.43926,
+      "faculty_id": "fac_ufscar",
+      "course": "Matemática",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_priscila",
+      "operator_id": "op_ze",
+      "name": "Priscila Teles",
+      "phone": "(15) 90000-0038",
+      "city": "Votorantim",
+      "neighborhood": "Vila Nova",
+      "pickup_label": "Vila Nova · ponto combinado",
+      "lat": -23.5442,
+      "lng": -47.44924,
+      "faculty_id": "fac_ufscar",
+      "course": "Turismo",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_rita_1",
+      "operator_id": "op_rita",
+      "name": "Fernanda Queiroz",
+      "phone": "(15) 90000-0039",
+      "city": "Salto",
+      "neighborhood": "Centro",
+      "pickup_label": "Centro · ponto combinado",
+      "lat": -23.20636,
+      "lng": -47.29506,
+      "faculty_id": "fac_uniso",
+      "course": "Nutrição",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_rita_2",
+      "operator_id": "op_rita",
+      "name": "Igor Batista",
+      "phone": "(15) 90000-0040",
+      "city": "Salto",
+      "neighborhood": "Jd. Saltense",
+      "pickup_label": "Jd. Saltense · ponto combinado",
+      "lat": -23.21022,
+      "lng": -47.2824,
+      "faculty_id": "fac_facens",
+      "course": "Engenharia Civil",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_rita_3",
+      "operator_id": "op_rita",
+      "name": "Helena Vidal",
+      "phone": "(15) 90000-0041",
+      "city": "Salto",
+      "neighborhood": "Vila Teixeira",
+      "pickup_label": "Vila Teixeira · ponto combinado",
+      "lat": -23.19179,
+      "lng": -47.29564,
+      "faculty_id": "fac_uniso",
+      "course": "Medicina Veterinária",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_rita_4",
+      "operator_id": "op_rita",
+      "name": "Murilo Antunes",
+      "phone": "(15) 90000-0042",
+      "city": "Salto",
+      "neighborhood": "Centro",
+      "pickup_label": "Centro · ponto combinado",
+      "lat": -23.19761,
+      "lng": -47.28756,
+      "faculty_id": "fac_uniso",
+      "course": "Educação Física",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_rita_5",
+      "operator_id": "op_rita",
+      "name": "Paula Siqueira",
+      "phone": "(15) 90000-0043",
+      "city": "Salto",
+      "neighborhood": "Jd. Elizabeth",
+      "pickup_label": "Jd. Elizabeth · ponto combinado",
+      "lat": -23.20069,
+      "lng": -47.29286,
+      "faculty_id": "fac_facens",
+      "course": "Design",
+      "status": "ativo",
+      "guardian_phone": null,
+      "created_at": "2026-08-01T10:00:00-03:00"
+    },
+    {
+      "id": "st_carla",
+      "operator_id": "op_ze",
+      "name": "Carla Dias",
+      "phone": "(15) 90000-0044",
+      "city": "Salto",
+      "neighborhood": "Vila Nova",
+      "pickup_label": "Vila Nova · ponto combinado",
+      "lat": -23.19181,
+      "lng": -47.28411,
+      "faculty_id": "fac_uniso",
+      "course": "Relações Internacionais",
+      "status": "interessado_avulsa",
+      "guardian_phone": null,
+      "interest_line_id": "line_itu_noite",
+      "created_at": "2026-09-15T10:00:00-03:00"
+    },
+    {
+      "id": "st_felipe",
+      "operator_id": "op_ze",
+      "name": "Felipe Moura",
+      "phone": "(15) 90000-0045",
+      "city": "Itu",
+      "neighborhood": "Centro",
+      "pickup_label": "Centro · ponto combinado",
+      "lat": -23.26515,
+      "lng": -47.29987,
+      "faculty_id": "fac_facens",
+      "course": "Engenharia de Computação",
+      "status": "interessado_avulsa",
+      "guardian_phone": null,
+      "interest_line_id": "line_itu_noite",
+      "created_at": "2026-09-15T10:00:00-03:00"
+    },
+    {
+      "id": "st_tamires",
+      "operator_id": "op_ze",
+      "name": "Tamires Rocha",
+      "phone": "(15) 90000-0046",
+      "city": "Votorantim",
+      "neighborhood": "Centro",
+      "pickup_label": "Centro · ponto combinado",
+      "lat": -23.53515,
+      "lng": -47.42808,
+      "faculty_id": "fac_ufscar",
+      "course": "Letras",
+      "status": "interessado_avulsa",
+      "guardian_phone": null,
+      "interest_line_id": "line_voto_manha",
+      "created_at": "2026-09-15T10:00:00-03:00"
+    }
+  ],
+  "schedules": [
+    {
+      "id": "sch_st_ana_1",
+      "student_id": "st_ana",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_ana_3",
+      "student_id": "st_ana",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_ana_4",
+      "student_id": "st_ana",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_bruno_1",
+      "student_id": "st_bruno",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_bruno_2",
+      "student_id": "st_bruno",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_bruno_3",
+      "student_id": "st_bruno",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_bruno_4",
+      "student_id": "st_bruno",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_bruno_5",
+      "student_id": "st_bruno",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_diego_2",
+      "student_id": "st_diego",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_ufscar",
+      "start": "19:00",
+      "end": "23:00"
+    },
+    {
+      "id": "sch_st_diego_4",
+      "student_id": "st_diego",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_ufscar",
+      "start": "19:00",
+      "end": "23:00"
+    },
+    {
+      "id": "sch_st_julia_1",
+      "student_id": "st_julia",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_julia_2",
+      "student_id": "st_julia",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_julia_3",
+      "student_id": "st_julia",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_julia_4",
+      "student_id": "st_julia",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_julia_5",
+      "student_id": "st_julia",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rafael_1",
+      "student_id": "st_rafael",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rafael_2",
+      "student_id": "st_rafael",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rafael_3",
+      "student_id": "st_rafael",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rafael_4",
+      "student_id": "st_rafael",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rafael_5",
+      "student_id": "st_rafael",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_larissa_1",
+      "student_id": "st_larissa",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_larissa_2",
+      "student_id": "st_larissa",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_larissa_3",
+      "student_id": "st_larissa",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_larissa_4",
+      "student_id": "st_larissa",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_larissa_5",
+      "student_id": "st_larissa",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_pedro_2",
+      "student_id": "st_pedro",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_pedro_3",
+      "student_id": "st_pedro",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_pedro_4",
+      "student_id": "st_pedro",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_mariana_1",
+      "student_id": "st_mariana",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_mariana_2",
+      "student_id": "st_mariana",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_mariana_3",
+      "student_id": "st_mariana",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_mariana_4",
+      "student_id": "st_mariana",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_mariana_5",
+      "student_id": "st_mariana",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_lucas_1",
+      "student_id": "st_lucas",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_ufscar",
+      "start": "19:00",
+      "end": "23:00"
+    },
+    {
+      "id": "sch_st_lucas_2",
+      "student_id": "st_lucas",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_ufscar",
+      "start": "19:00",
+      "end": "23:00"
+    },
+    {
+      "id": "sch_st_lucas_3",
+      "student_id": "st_lucas",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_ufscar",
+      "start": "19:00",
+      "end": "23:00"
+    },
+    {
+      "id": "sch_st_lucas_4",
+      "student_id": "st_lucas",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_ufscar",
+      "start": "19:00",
+      "end": "23:00"
+    },
+    {
+      "id": "sch_st_lucas_5",
+      "student_id": "st_lucas",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_ufscar",
+      "start": "19:00",
+      "end": "23:00"
+    },
+    {
+      "id": "sch_st_gabriela_1",
+      "student_id": "st_gabriela",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_gabriela_2",
+      "student_id": "st_gabriela",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_gabriela_4",
+      "student_id": "st_gabriela",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_matheus_1",
+      "student_id": "st_matheus",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_matheus_2",
+      "student_id": "st_matheus",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_matheus_3",
+      "student_id": "st_matheus",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_matheus_4",
+      "student_id": "st_matheus",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_matheus_5",
+      "student_id": "st_matheus",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_beatriz_3",
+      "student_id": "st_beatriz",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_beatriz_4",
+      "student_id": "st_beatriz",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_vinicius_1",
+      "student_id": "st_vinicius",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_vinicius_2",
+      "student_id": "st_vinicius",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_vinicius_3",
+      "student_id": "st_vinicius",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_vinicius_4",
+      "student_id": "st_vinicius",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_vinicius_5",
+      "student_id": "st_vinicius",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_isabela_1",
+      "student_id": "st_isabela",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_isabela_2",
+      "student_id": "st_isabela",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_isabela_3",
+      "student_id": "st_isabela",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_isabela_4",
+      "student_id": "st_isabela",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_isabela_5",
+      "student_id": "st_isabela",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_caio_1",
+      "student_id": "st_caio",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_ufscar",
+      "start": "19:00",
+      "end": "23:00"
+    },
+    {
+      "id": "sch_st_caio_3",
+      "student_id": "st_caio",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_ufscar",
+      "start": "19:00",
+      "end": "23:00"
+    },
+    {
+      "id": "sch_st_caio_5",
+      "student_id": "st_caio",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_ufscar",
+      "start": "19:00",
+      "end": "23:00"
+    },
+    {
+      "id": "sch_st_leticia_1",
+      "student_id": "st_leticia",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_leticia_2",
+      "student_id": "st_leticia",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_amanda_1",
+      "student_id": "st_amanda",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_amanda_2",
+      "student_id": "st_amanda",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_amanda_3",
+      "student_id": "st_amanda",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_amanda_4",
+      "student_id": "st_amanda",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_amanda_5",
+      "student_id": "st_amanda",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_henrique_1",
+      "student_id": "st_henrique",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_henrique_2",
+      "student_id": "st_henrique",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_henrique_3",
+      "student_id": "st_henrique",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_henrique_4",
+      "student_id": "st_henrique",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_henrique_5",
+      "student_id": "st_henrique",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_camila_1",
+      "student_id": "st_camila",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_camila_2",
+      "student_id": "st_camila",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_camila_3",
+      "student_id": "st_camila",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_camila_4",
+      "student_id": "st_camila",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_camila_5",
+      "student_id": "st_camila",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_eduarda_2",
+      "student_id": "st_eduarda",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_eduarda_4",
+      "student_id": "st_eduarda",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_joao_1",
+      "student_id": "st_joao",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_joao_2",
+      "student_id": "st_joao",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_joao_3",
+      "student_id": "st_joao",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_joao_4",
+      "student_id": "st_joao",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_joao_5",
+      "student_id": "st_joao",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_natalia_1",
+      "student_id": "st_natalia",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_natalia_3",
+      "student_id": "st_natalia",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_natalia_5",
+      "student_id": "st_natalia",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_otavio_1",
+      "student_id": "st_otavio",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_otavio_2",
+      "student_id": "st_otavio",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_otavio_3",
+      "student_id": "st_otavio",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_otavio_4",
+      "student_id": "st_otavio",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_otavio_5",
+      "student_id": "st_otavio",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_sofia_1",
+      "student_id": "st_sofia",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_sofia_2",
+      "student_id": "st_sofia",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_sofia_3",
+      "student_id": "st_sofia",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_sofia_4",
+      "student_id": "st_sofia",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_sofia_5",
+      "student_id": "st_sofia",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_renan_2",
+      "student_id": "st_renan",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_renan_3",
+      "student_id": "st_renan",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_renan_4",
+      "student_id": "st_renan",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_yara_1",
+      "student_id": "st_yara",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_yara_2",
+      "student_id": "st_yara",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_yara_3",
+      "student_id": "st_yara",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_yara_4",
+      "student_id": "st_yara",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_yara_5",
+      "student_id": "st_yara",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_facens",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_daniel_1",
+      "student_id": "st_daniel",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_daniel_2",
+      "student_id": "st_daniel",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_priscila_1",
+      "student_id": "st_priscila",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_priscila_2",
+      "student_id": "st_priscila",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_priscila_3",
+      "student_id": "st_priscila",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_priscila_4",
+      "student_id": "st_priscila",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_priscila_5",
+      "student_id": "st_priscila",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_rita_1_1",
+      "student_id": "st_rita_1",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_1_2",
+      "student_id": "st_rita_1",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_1_3",
+      "student_id": "st_rita_1",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_1_4",
+      "student_id": "st_rita_1",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_1_5",
+      "student_id": "st_rita_1",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_2_1",
+      "student_id": "st_rita_2",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_2_2",
+      "student_id": "st_rita_2",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_2_3",
+      "student_id": "st_rita_2",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_2_4",
+      "student_id": "st_rita_2",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_2_5",
+      "student_id": "st_rita_2",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_3_2",
+      "student_id": "st_rita_3",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_3_3",
+      "student_id": "st_rita_3",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_3_4",
+      "student_id": "st_rita_3",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_4_1",
+      "student_id": "st_rita_4",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_4_2",
+      "student_id": "st_rita_4",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_4_3",
+      "student_id": "st_rita_4",
+      "semester": "2026/2",
+      "weekday": 3,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_4_4",
+      "student_id": "st_rita_4",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_4_5",
+      "student_id": "st_rita_4",
+      "semester": "2026/2",
+      "weekday": 5,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_5_1",
+      "student_id": "st_rita_5",
+      "semester": "2026/2",
+      "weekday": 1,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_rita_5_4",
+      "student_id": "st_rita_5",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_carla_2",
+      "student_id": "st_carla",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_carla_4",
+      "student_id": "st_carla",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_uniso",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_felipe_2",
+      "student_id": "st_felipe",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_felipe_4",
+      "student_id": "st_felipe",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_facens",
+      "start": "19:00",
+      "end": "22:40"
+    },
+    {
+      "id": "sch_st_tamires_2",
+      "student_id": "st_tamires",
+      "semester": "2026/2",
+      "weekday": 2,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "id": "sch_st_tamires_4",
+      "student_id": "st_tamires",
+      "semester": "2026/2",
+      "weekday": 4,
+      "faculty_id": "fac_ufscar",
+      "start": "08:00",
+      "end": "12:00"
+    }
+  ],
+  "enrollments": [
+    {
+      "id": "enr_st_ana",
+      "student_id": "st_ana",
+      "line_id": "line_itu_noite",
+      "plan_days": 3,
+      "weekdays": [
+        1,
+        3,
+        4
+      ],
+      "monthly_price": 300.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_bruno",
+      "student_id": "st_bruno",
+      "line_id": "line_itu_noite",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 420.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_diego",
+      "student_id": "st_diego",
+      "line_id": "line_itu_noite",
+      "plan_days": 2,
+      "weekdays": [
+        2,
+        4
+      ],
+      "monthly_price": 220.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_julia",
+      "student_id": "st_julia",
+      "line_id": "line_itu_noite",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 420.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_rafael",
+      "student_id": "st_rafael",
+      "line_id": "line_itu_noite",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 420.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_larissa",
+      "student_id": "st_larissa",
+      "line_id": "line_itu_noite",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 420.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_pedro",
+      "student_id": "st_pedro",
+      "line_id": "line_itu_noite",
+      "plan_days": 3,
+      "weekdays": [
+        2,
+        3,
+        4
+      ],
+      "monthly_price": 300.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_mariana",
+      "student_id": "st_mariana",
+      "line_id": "line_itu_noite",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 420.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_lucas",
+      "student_id": "st_lucas",
+      "line_id": "line_itu_noite",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 420.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_gabriela",
+      "student_id": "st_gabriela",
+      "line_id": "line_itu_noite",
+      "plan_days": 3,
+      "weekdays": [
+        1,
+        2,
+        4
+      ],
+      "monthly_price": 300.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_matheus",
+      "student_id": "st_matheus",
+      "line_id": "line_itu_noite",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 420.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_beatriz",
+      "student_id": "st_beatriz",
+      "line_id": "line_itu_noite",
+      "plan_days": 2,
+      "weekdays": [
+        3,
+        4
+      ],
+      "monthly_price": 220.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_vinicius",
+      "student_id": "st_vinicius",
+      "line_id": "line_itu_noite",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 420.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_isabela",
+      "student_id": "st_isabela",
+      "line_id": "line_itu_noite",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 420.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_caio",
+      "student_id": "st_caio",
+      "line_id": "line_itu_noite",
+      "plan_days": 3,
+      "weekdays": [
+        1,
+        3,
+        5
+      ],
+      "monthly_price": 300.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_leticia",
+      "student_id": "st_leticia",
+      "line_id": "line_itu_noite",
+      "plan_days": 2,
+      "weekdays": [
+        1,
+        2
+      ],
+      "monthly_price": 220.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_amanda",
+      "student_id": "st_amanda",
+      "line_id": "line_voto_manha",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 320.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_henrique",
+      "student_id": "st_henrique",
+      "line_id": "line_voto_manha",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 320.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_camila",
+      "student_id": "st_camila",
+      "line_id": "line_voto_manha",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 320.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_eduarda",
+      "student_id": "st_eduarda",
+      "line_id": "line_voto_manha",
+      "plan_days": 2,
+      "weekdays": [
+        2,
+        4
+      ],
+      "monthly_price": 170.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_joao",
+      "student_id": "st_joao",
+      "line_id": "line_voto_manha",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 320.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_natalia",
+      "student_id": "st_natalia",
+      "line_id": "line_voto_manha",
+      "plan_days": 3,
+      "weekdays": [
+        1,
+        3,
+        5
+      ],
+      "monthly_price": 240.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_otavio",
+      "student_id": "st_otavio",
+      "line_id": "line_voto_manha",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 320.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_sofia",
+      "student_id": "st_sofia",
+      "line_id": "line_voto_manha",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 320.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_renan",
+      "student_id": "st_renan",
+      "line_id": "line_voto_manha",
+      "plan_days": 3,
+      "weekdays": [
+        2,
+        3,
+        4
+      ],
+      "monthly_price": 240.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_yara",
+      "student_id": "st_yara",
+      "line_id": "line_voto_manha",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 320.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_daniel",
+      "student_id": "st_daniel",
+      "line_id": "line_voto_manha",
+      "plan_days": 2,
+      "weekdays": [
+        1,
+        2
+      ],
+      "monthly_price": 170.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_priscila",
+      "student_id": "st_priscila",
+      "line_id": "line_voto_manha",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 320.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_rita_1",
+      "student_id": "st_rita_1",
+      "line_id": "line_rita_noite",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 400.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_rita_2",
+      "student_id": "st_rita_2",
+      "line_id": "line_rita_noite",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 400.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_rita_3",
+      "student_id": "st_rita_3",
+      "line_id": "line_rita_noite",
+      "plan_days": 3,
+      "weekdays": [
+        2,
+        3,
+        4
+      ],
+      "monthly_price": 290.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_rita_4",
+      "student_id": "st_rita_4",
+      "line_id": "line_rita_noite",
+      "plan_days": 5,
+      "weekdays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "monthly_price": 400.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    },
+    {
+      "id": "enr_st_rita_5",
+      "student_id": "st_rita_5",
+      "line_id": "line_rita_noite",
+      "plan_days": 2,
+      "weekdays": [
+        1,
+        4
+      ],
+      "monthly_price": 210.0,
+      "start_date": "2026-08-01",
+      "end_date": "2026-12-12",
+      "status": "ativa"
+    }
+  ],
+  "invoices": [
+    {
+      "id": "inv_202609_st_ana",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_ana",
+      "student_id": "st_ana",
+      "reference_month": "2026-09",
+      "amount": 300.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609ANA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406300.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62170513VF202609ANA016304623F",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-01T12:35:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_bruno",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_bruno",
+      "student_id": "st_bruno",
+      "reference_month": "2026-09",
+      "amount": 420.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609BRUNO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202609BRUNO0163042A02",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-02T18:19:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_diego",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_diego",
+      "student_id": "st_diego",
+      "reference_month": "2026-09",
+      "amount": 220.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609DIEGO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406220.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202609DIEGO016304BEDC",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-01T20:41:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_julia",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_julia",
+      "student_id": "st_julia",
+      "reference_month": "2026-09",
+      "amount": 420.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609JULIA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202609JULIA016304F0C4",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-01T19:30:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_rafael",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_rafael",
+      "student_id": "st_rafael",
+      "reference_month": "2026-09",
+      "amount": 420.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609RAFAEL01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609RAFAEL016304D859",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-02T14:12:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_larissa",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_larissa",
+      "student_id": "st_larissa",
+      "reference_month": "2026-09",
+      "amount": 420.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609LARISS01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609LARISS016304EF2E",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-03T21:17:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_pedro",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_pedro",
+      "student_id": "st_pedro",
+      "reference_month": "2026-09",
+      "amount": 300.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609PEDRO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406300.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202609PEDRO016304A08F",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-05T08:09:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_mariana",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_mariana",
+      "student_id": "st_mariana",
+      "reference_month": "2026-09",
+      "amount": 420.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609MARIAN01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609MARIAN0163048338",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-01T15:51:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_lucas",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_lucas",
+      "student_id": "st_lucas",
+      "reference_month": "2026-09",
+      "amount": 420.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609LUCAS01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202609LUCAS016304D026",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-01T15:23:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_gabriela",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_gabriela",
+      "student_id": "st_gabriela",
+      "reference_month": "2026-09",
+      "amount": 300.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609GABRIE01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406300.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609GABRIE016304E599",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-04T12:44:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_matheus",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_matheus",
+      "student_id": "st_matheus",
+      "reference_month": "2026-09",
+      "amount": 420.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609MATHEU01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609MATHEU016304689D",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-02T15:32:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_beatriz",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_beatriz",
+      "student_id": "st_beatriz",
+      "reference_month": "2026-09",
+      "amount": 220.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609BEATRI01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406220.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609BEATRI016304CA8D",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-02T20:27:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_vinicius",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_vinicius",
+      "student_id": "st_vinicius",
+      "reference_month": "2026-09",
+      "amount": 420.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609VINICI01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609VINICI016304EDDB",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-01T18:58:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_isabela",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_isabela",
+      "student_id": "st_isabela",
+      "reference_month": "2026-09",
+      "amount": 420.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609ISABEL01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609ISABEL016304350E",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-05T21:18:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_caio",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_caio",
+      "student_id": "st_caio",
+      "reference_month": "2026-09",
+      "amount": 300.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609CAIO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406300.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62180514VF202609CAIO016304512E",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-03T15:58:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_leticia",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_leticia",
+      "student_id": "st_leticia",
+      "reference_month": "2026-09",
+      "amount": 220.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609LETICI01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406220.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609LETICI016304FB57",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-05T15:44:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_amanda",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_amanda",
+      "student_id": "st_amanda",
+      "reference_month": "2026-09",
+      "amount": 320.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609AMANDA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609AMANDA016304DDA8",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-01T12:28:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_henrique",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_henrique",
+      "student_id": "st_henrique",
+      "reference_month": "2026-09",
+      "amount": 320.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609HENRIQ01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609HENRIQ016304B6BB",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-04T14:53:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_camila",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_camila",
+      "student_id": "st_camila",
+      "reference_month": "2026-09",
+      "amount": 320.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609CAMILA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609CAMILA0163046084",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-02T09:41:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_eduarda",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_eduarda",
+      "student_id": "st_eduarda",
+      "reference_month": "2026-09",
+      "amount": 170.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609EDUARD01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406170.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609EDUARD016304022C",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-03T15:23:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_joao",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_joao",
+      "student_id": "st_joao",
+      "reference_month": "2026-09",
+      "amount": 320.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609JOAO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62180514VF202609JOAO016304D9BF",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-05T11:47:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_natalia",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_natalia",
+      "student_id": "st_natalia",
+      "reference_month": "2026-09",
+      "amount": 240.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609NATALI01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406240.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609NATALI0163045C08",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-02T10:28:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_otavio",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_otavio",
+      "student_id": "st_otavio",
+      "reference_month": "2026-09",
+      "amount": 320.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609OTAVIO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609OTAVIO016304FC29",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-05T09:00:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_sofia",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_sofia",
+      "student_id": "st_sofia",
+      "reference_month": "2026-09",
+      "amount": 320.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609SOFIA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202609SOFIA016304B80C",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-02T17:34:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_renan",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_renan",
+      "student_id": "st_renan",
+      "reference_month": "2026-09",
+      "amount": 240.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609RENAN01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406240.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202609RENAN016304EC8F",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-05T17:50:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_yara",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_yara",
+      "student_id": "st_yara",
+      "reference_month": "2026-09",
+      "amount": 320.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609YARA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62180514VF202609YARA01630448D8",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-04T11:07:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_daniel",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_daniel",
+      "student_id": "st_daniel",
+      "reference_month": "2026-09",
+      "amount": 170.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609DANIEL01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406170.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609DANIEL016304A7BB",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-01T08:48:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202609_st_priscila",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_priscila",
+      "student_id": "st_priscila",
+      "reference_month": "2026-09",
+      "amount": 320.0,
+      "due_date": "2026-09-05",
+      "status": "paga",
+      "pix_txid": "VF202609PRISCI01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202609PRISCI01630424B0",
+      "sent_at": "2026-09-01T08:00:00-03:00",
+      "paid_at": "2026-09-01T12:42:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-09-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_ana",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_ana",
+      "student_id": "st_ana",
+      "reference_month": "2026-10",
+      "amount": 300.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610ANA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406300.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62170513VF202610ANA0163049F78",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-03T10:00:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_bruno",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_bruno",
+      "student_id": "st_bruno",
+      "reference_month": "2026-10",
+      "amount": 420.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610BRUNO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202610BRUNO01630477BC",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-03T18:37:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_diego",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_diego",
+      "student_id": "st_diego",
+      "reference_month": "2026-10",
+      "amount": 220.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610DIEGO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406220.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202610DIEGO016304E362",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-01T20:59:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_julia",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_julia",
+      "student_id": "st_julia",
+      "reference_month": "2026-10",
+      "amount": 420.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610JULIA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202610JULIA016304AD7A",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-02T19:46:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_rafael",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_rafael",
+      "student_id": "st_rafael",
+      "reference_month": "2026-10",
+      "amount": 420.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610RAFAEL01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610RAFAEL016304ED01",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-04T16:14:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_larissa",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_larissa",
+      "student_id": "st_larissa",
+      "reference_month": "2026-10",
+      "amount": 420.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610LARISS01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610LARISS016304DA76",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-02T17:08:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_pedro",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_pedro",
+      "student_id": "st_pedro",
+      "reference_month": "2026-10",
+      "amount": 300.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610PEDRO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406300.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202610PEDRO016304FD31",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-01T19:32:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_mariana",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_mariana",
+      "student_id": "st_mariana",
+      "reference_month": "2026-10",
+      "amount": 420.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610MARIAN01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610MARIAN016304B660",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-03T09:26:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_lucas",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_lucas",
+      "student_id": "st_lucas",
+      "reference_month": "2026-10",
+      "amount": 420.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610LUCAS01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202610LUCAS0163048D98",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-04T10:50:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_gabriela",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_gabriela",
+      "student_id": "st_gabriela",
+      "reference_month": "2026-10",
+      "amount": 300.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610GABRIE01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406300.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610GABRIE016304D0C1",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-01T12:32:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_matheus",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_matheus",
+      "student_id": "st_matheus",
+      "reference_month": "2026-10",
+      "amount": 420.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610MATHEU01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610MATHEU0163045DC5",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-02T14:51:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_beatriz",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_beatriz",
+      "student_id": "st_beatriz",
+      "reference_month": "2026-10",
+      "amount": 220.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610BEATRI01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406220.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610BEATRI016304FFD5",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-04T16:51:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_vinicius",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_vinicius",
+      "student_id": "st_vinicius",
+      "reference_month": "2026-10",
+      "amount": 420.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610VINICI01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610VINICI016304D883",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-04T14:00:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_isabela",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_isabela",
+      "student_id": "st_isabela",
+      "reference_month": "2026-10",
+      "amount": 420.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610ISABEL01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610ISABEL0163040056",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-05T14:56:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_caio",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_caio",
+      "student_id": "st_caio",
+      "reference_month": "2026-10",
+      "amount": 300.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610CAIO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406300.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62180514VF202610CAIO016304289C",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-05T08:53:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_leticia",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_leticia",
+      "student_id": "st_leticia",
+      "reference_month": "2026-10",
+      "amount": 220.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610LETICI01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406220.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610LETICI016304CE0F",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-03T18:22:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_amanda",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_amanda",
+      "student_id": "st_amanda",
+      "reference_month": "2026-10",
+      "amount": 320.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610AMANDA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610AMANDA016304E8F0",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-05T08:32:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_henrique",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_henrique",
+      "student_id": "st_henrique",
+      "reference_month": "2026-10",
+      "amount": 320.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610HENRIQ01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610HENRIQ01630483E3",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-02T13:43:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_camila",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_camila",
+      "student_id": "st_camila",
+      "reference_month": "2026-10",
+      "amount": 320.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610CAMILA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610CAMILA01630455DC",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-03T15:20:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_eduarda",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_eduarda",
+      "student_id": "st_eduarda",
+      "reference_month": "2026-10",
+      "amount": 170.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610EDUARD01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406170.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610EDUARD0163043774",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-05T15:29:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_joao",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_joao",
+      "student_id": "st_joao",
+      "reference_month": "2026-10",
+      "amount": 320.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610JOAO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62180514VF202610JOAO016304A00D",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-01T17:51:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_natalia",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_natalia",
+      "student_id": "st_natalia",
+      "reference_month": "2026-10",
+      "amount": 240.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610NATALI01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406240.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610NATALI0163046950",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-04T10:37:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_otavio",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_otavio",
+      "student_id": "st_otavio",
+      "reference_month": "2026-10",
+      "amount": 320.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610OTAVIO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610OTAVIO016304C971",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-01T11:27:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_sofia",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_sofia",
+      "student_id": "st_sofia",
+      "reference_month": "2026-10",
+      "amount": 320.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610SOFIA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202610SOFIA016304E5B2",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-01T13:29:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_renan",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_renan",
+      "student_id": "st_renan",
+      "reference_month": "2026-10",
+      "amount": 240.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610RENAN01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406240.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202610RENAN016304B131",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-01T11:43:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_yara",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_yara",
+      "student_id": "st_yara",
+      "reference_month": "2026-10",
+      "amount": 320.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610YARA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62180514VF202610YARA016304316A",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-05T16:25:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_daniel",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_daniel",
+      "student_id": "st_daniel",
+      "reference_month": "2026-10",
+      "amount": 170.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610DANIEL01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406170.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610DANIEL01630492E3",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-05T11:41:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202610_st_priscila",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_priscila",
+      "student_id": "st_priscila",
+      "reference_month": "2026-10",
+      "amount": 320.0,
+      "due_date": "2026-10-05",
+      "status": "paga",
+      "pix_txid": "VF202610PRISCI01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202610PRISCI01630411E8",
+      "sent_at": "2026-10-01T08:00:00-03:00",
+      "paid_at": "2026-10-04T08:41:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-10-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_ana",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_ana",
+      "student_id": "st_ana",
+      "reference_month": "2026-11",
+      "amount": 300.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611ANA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406300.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62170513VF202611ANA016304F03D",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-01T21:03:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_bruno",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_bruno",
+      "student_id": "st_bruno",
+      "reference_month": "2026-11",
+      "amount": 420.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611BRUNO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202611BRUNO01630474C9",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-02T21:48:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_diego",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_diego",
+      "student_id": "st_diego",
+      "reference_month": "2026-11",
+      "amount": 220.0,
+      "due_date": "2026-11-05",
+      "status": "atrasada",
+      "pix_txid": "VF202611DIEGO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406220.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202611DIEGO016304E017",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": null,
+      "paid_via": null,
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        },
+        {
+          "kind": "d0",
+          "sent_at": "2026-11-05T08:00:00-03:00"
+        },
+        {
+          "kind": "d+1",
+          "sent_at": "2026-11-06T08:00:00-03:00"
+        },
+        {
+          "kind": "d+3",
+          "sent_at": "2026-11-08T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_julia",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_julia",
+      "student_id": "st_julia",
+      "reference_month": "2026-11",
+      "amount": 420.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611JULIA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202611JULIA016304AE0F",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-04T15:45:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_rafael",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_rafael",
+      "student_id": "st_rafael",
+      "reference_month": "2026-11",
+      "amount": 420.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611RAFAEL01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611RAFAEL016304A862",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-05T10:41:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_larissa",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_larissa",
+      "student_id": "st_larissa",
+      "reference_month": "2026-11",
+      "amount": 420.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611LARISS01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611LARISS0163049F15",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-01T11:50:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_pedro",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_pedro",
+      "student_id": "st_pedro",
+      "reference_month": "2026-11",
+      "amount": 300.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611PEDRO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406300.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202611PEDRO016304FE44",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-01T10:10:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_mariana",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_mariana",
+      "student_id": "st_mariana",
+      "reference_month": "2026-11",
+      "amount": 420.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611MARIAN01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611MARIAN016304F303",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-04T14:17:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_lucas",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_lucas",
+      "student_id": "st_lucas",
+      "reference_month": "2026-11",
+      "amount": 420.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611LUCAS01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202611LUCAS0163048EED",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-02T16:26:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_gabriela",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_gabriela",
+      "student_id": "st_gabriela",
+      "reference_month": "2026-11",
+      "amount": 300.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611GABRIE01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406300.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611GABRIE01630495A2",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-05T14:19:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_matheus",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_matheus",
+      "student_id": "st_matheus",
+      "reference_month": "2026-11",
+      "amount": 420.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611MATHEU01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611MATHEU01630418A6",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-04T13:11:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_beatriz",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_beatriz",
+      "student_id": "st_beatriz",
+      "reference_month": "2026-11",
+      "amount": 220.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611BEATRI01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406220.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611BEATRI016304BAB6",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-03T15:31:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_vinicius",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_vinicius",
+      "student_id": "st_vinicius",
+      "reference_month": "2026-11",
+      "amount": 420.0,
+      "due_date": "2026-11-05",
+      "status": "atrasada",
+      "pix_txid": "VF202611VINICI01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611VINICI0163049DE0",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": null,
+      "paid_via": null,
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        },
+        {
+          "kind": "d0",
+          "sent_at": "2026-11-05T08:00:00-03:00"
+        },
+        {
+          "kind": "d+1",
+          "sent_at": "2026-11-06T08:00:00-03:00"
+        },
+        {
+          "kind": "d+3",
+          "sent_at": "2026-11-08T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_isabela",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_isabela",
+      "student_id": "st_isabela",
+      "reference_month": "2026-11",
+      "amount": 420.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611ISABEL01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406420.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611ISABEL0163044535",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-02T12:29:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_caio",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_caio",
+      "student_id": "st_caio",
+      "reference_month": "2026-11",
+      "amount": 300.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611CAIO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406300.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62180514VF202611CAIO016304F0D5",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-04T13:33:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_leticia",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_leticia",
+      "student_id": "st_leticia",
+      "reference_month": "2026-11",
+      "amount": 220.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611LETICI01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406220.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611LETICI0163048B6C",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-02T15:07:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_amanda",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_amanda",
+      "student_id": "st_amanda",
+      "reference_month": "2026-11",
+      "amount": 320.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611AMANDA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611AMANDA016304AD93",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-01T20:33:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_henrique",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_henrique",
+      "student_id": "st_henrique",
+      "reference_month": "2026-11",
+      "amount": 320.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611HENRIQ01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611HENRIQ016304C680",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-03T21:06:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_camila",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_camila",
+      "student_id": "st_camila",
+      "reference_month": "2026-11",
+      "amount": 320.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611CAMILA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611CAMILA01630410BF",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-04T11:00:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_eduarda",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_eduarda",
+      "student_id": "st_eduarda",
+      "reference_month": "2026-11",
+      "amount": 170.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611EDUARD01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406170.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611EDUARD0163047217",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-05T15:41:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_joao",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_joao",
+      "student_id": "st_joao",
+      "reference_month": "2026-11",
+      "amount": 320.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611JOAO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62180514VF202611JOAO0163047844",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-03T14:34:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_natalia",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_natalia",
+      "student_id": "st_natalia",
+      "reference_month": "2026-11",
+      "amount": 240.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611NATALI01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406240.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611NATALI0163042C33",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-04T08:22:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_otavio",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_otavio",
+      "student_id": "st_otavio",
+      "reference_month": "2026-11",
+      "amount": 320.0,
+      "due_date": "2026-11-05",
+      "status": "atrasada",
+      "pix_txid": "VF202611OTAVIO01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611OTAVIO0163048C12",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": null,
+      "paid_via": null,
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        },
+        {
+          "kind": "d0",
+          "sent_at": "2026-11-05T08:00:00-03:00"
+        },
+        {
+          "kind": "d+1",
+          "sent_at": "2026-11-06T08:00:00-03:00"
+        },
+        {
+          "kind": "d+3",
+          "sent_at": "2026-11-08T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_sofia",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_sofia",
+      "student_id": "st_sofia",
+      "reference_month": "2026-11",
+      "amount": 320.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611SOFIA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202611SOFIA016304E6C7",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-04T13:35:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_renan",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_renan",
+      "student_id": "st_renan",
+      "reference_month": "2026-11",
+      "amount": 240.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611RENAN01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406240.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62190515VF202611RENAN016304B244",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-01T20:34:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_yara",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_yara",
+      "student_id": "st_yara",
+      "reference_month": "2026-11",
+      "amount": 320.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611YARA01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62180514VF202611YARA016304E923",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-04T09:39:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_daniel",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_daniel",
+      "student_id": "st_daniel",
+      "reference_month": "2026-11",
+      "amount": 170.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611DANIEL01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406170.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611DANIEL016304D780",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-03T16:48:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_priscila",
+      "operator_id": "op_ze",
+      "enrollment_id": "enr_st_priscila",
+      "student_id": "st_priscila",
+      "reference_month": "2026-11",
+      "amount": 320.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611PRISCI01",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406320.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62200516VF202611PRISCI016304548B",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-01T19:13:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_rita_1",
+      "operator_id": "op_rita",
+      "enrollment_id": "enr_st_rita_1",
+      "student_id": "st_rita_1",
+      "reference_month": "2026-11",
+      "amount": 400.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611RITA_101",
+      "pix_payload": "00020101021226430014br.gov.bcb.pix0121rita.demo@exemplo.com5204000053039865406400.005802BR5923RITA MORAES TRANSPORTES6005SALTO62200516VF202611RITA_101630460B2",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-01T12:36:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_rita_2",
+      "operator_id": "op_rita",
+      "enrollment_id": "enr_st_rita_2",
+      "student_id": "st_rita_2",
+      "reference_month": "2026-11",
+      "amount": 400.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611RITA_201",
+      "pix_payload": "00020101021226430014br.gov.bcb.pix0121rita.demo@exemplo.com5204000053039865406400.005802BR5923RITA MORAES TRANSPORTES6005SALTO62200516VF202611RITA_2016304B830",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-03T18:35:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_rita_3",
+      "operator_id": "op_rita",
+      "enrollment_id": "enr_st_rita_3",
+      "student_id": "st_rita_3",
+      "reference_month": "2026-11",
+      "amount": 290.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611RITA_301",
+      "pix_payload": "00020101021226430014br.gov.bcb.pix0121rita.demo@exemplo.com5204000053039865406290.005802BR5923RITA MORAES TRANSPORTES6005SALTO62200516VF202611RITA_30163047D32",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-04T09:50:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_rita_4",
+      "operator_id": "op_rita",
+      "enrollment_id": "enr_st_rita_4",
+      "student_id": "st_rita_4",
+      "reference_month": "2026-11",
+      "amount": 400.0,
+      "due_date": "2026-11-05",
+      "status": "atrasada",
+      "pix_txid": "VF202611RITA_401",
+      "pix_payload": "00020101021226430014br.gov.bcb.pix0121rita.demo@exemplo.com5204000053039865406400.005802BR5923RITA MORAES TRANSPORTES6005SALTO62200516VF202611RITA_40163041915",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": null,
+      "paid_via": null,
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        },
+        {
+          "kind": "d0",
+          "sent_at": "2026-11-05T08:00:00-03:00"
+        },
+        {
+          "kind": "d+1",
+          "sent_at": "2026-11-06T08:00:00-03:00"
+        },
+        {
+          "kind": "d+3",
+          "sent_at": "2026-11-08T08:00:00-03:00"
+        }
+      ]
+    },
+    {
+      "id": "inv_202611_st_rita_5",
+      "operator_id": "op_rita",
+      "enrollment_id": "enr_st_rita_5",
+      "student_id": "st_rita_5",
+      "reference_month": "2026-11",
+      "amount": 210.0,
+      "due_date": "2026-11-05",
+      "status": "paga",
+      "pix_txid": "VF202611RITA_501",
+      "pix_payload": "00020101021226430014br.gov.bcb.pix0121rita.demo@exemplo.com5204000053039865406210.005802BR5923RITA MORAES TRANSPORTES6005SALTO62200516VF202611RITA_50163043500",
+      "sent_at": "2026-11-01T08:00:00-03:00",
+      "paid_at": "2026-11-03T09:27:00-03:00",
+      "paid_via": "pix",
+      "reminders": [
+        {
+          "kind": "d-2",
+          "sent_at": "2026-11-03T08:00:00-03:00"
+        }
+      ]
+    }
+  ],
+  "payments": [
+    {
+      "id": "pay_inv_202609_st_ana",
+      "txid": "VF202609ANA01",
+      "amount": 300.0,
+      "paid_at": "2026-09-01T12:35:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_ana",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_bruno",
+      "txid": "VF202609BRUNO01",
+      "amount": 420.0,
+      "paid_at": "2026-09-02T18:19:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_bruno",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_diego",
+      "txid": "VF202609DIEGO01",
+      "amount": 220.0,
+      "paid_at": "2026-09-01T20:41:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_diego",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_julia",
+      "txid": "VF202609JULIA01",
+      "amount": 420.0,
+      "paid_at": "2026-09-01T19:30:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_julia",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_rafael",
+      "txid": "VF202609RAFAEL01",
+      "amount": 420.0,
+      "paid_at": "2026-09-02T14:12:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_rafael",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_larissa",
+      "txid": "VF202609LARISS01",
+      "amount": 420.0,
+      "paid_at": "2026-09-03T21:17:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_larissa",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_pedro",
+      "txid": "VF202609PEDRO01",
+      "amount": 300.0,
+      "paid_at": "2026-09-05T08:09:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_pedro",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_mariana",
+      "txid": "VF202609MARIAN01",
+      "amount": 420.0,
+      "paid_at": "2026-09-01T15:51:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_mariana",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_lucas",
+      "txid": "VF202609LUCAS01",
+      "amount": 420.0,
+      "paid_at": "2026-09-01T15:23:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_lucas",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_gabriela",
+      "txid": "VF202609GABRIE01",
+      "amount": 300.0,
+      "paid_at": "2026-09-04T12:44:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_gabriela",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_matheus",
+      "txid": "VF202609MATHEU01",
+      "amount": 420.0,
+      "paid_at": "2026-09-02T15:32:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_matheus",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_beatriz",
+      "txid": "VF202609BEATRI01",
+      "amount": 220.0,
+      "paid_at": "2026-09-02T20:27:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_beatriz",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_vinicius",
+      "txid": "VF202609VINICI01",
+      "amount": 420.0,
+      "paid_at": "2026-09-01T18:58:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_vinicius",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_isabela",
+      "txid": "VF202609ISABEL01",
+      "amount": 420.0,
+      "paid_at": "2026-09-05T21:18:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_isabela",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_caio",
+      "txid": "VF202609CAIO01",
+      "amount": 300.0,
+      "paid_at": "2026-09-03T15:58:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_caio",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_leticia",
+      "txid": "VF202609LETICI01",
+      "amount": 220.0,
+      "paid_at": "2026-09-05T15:44:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_leticia",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_amanda",
+      "txid": "VF202609AMANDA01",
+      "amount": 320.0,
+      "paid_at": "2026-09-01T12:28:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_amanda",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_henrique",
+      "txid": "VF202609HENRIQ01",
+      "amount": 320.0,
+      "paid_at": "2026-09-04T14:53:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_henrique",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_camila",
+      "txid": "VF202609CAMILA01",
+      "amount": 320.0,
+      "paid_at": "2026-09-02T09:41:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_camila",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_eduarda",
+      "txid": "VF202609EDUARD01",
+      "amount": 170.0,
+      "paid_at": "2026-09-03T15:23:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_eduarda",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_joao",
+      "txid": "VF202609JOAO01",
+      "amount": 320.0,
+      "paid_at": "2026-09-05T11:47:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_joao",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_natalia",
+      "txid": "VF202609NATALI01",
+      "amount": 240.0,
+      "paid_at": "2026-09-02T10:28:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_natalia",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_otavio",
+      "txid": "VF202609OTAVIO01",
+      "amount": 320.0,
+      "paid_at": "2026-09-05T09:00:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_otavio",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_sofia",
+      "txid": "VF202609SOFIA01",
+      "amount": 320.0,
+      "paid_at": "2026-09-02T17:34:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_sofia",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_renan",
+      "txid": "VF202609RENAN01",
+      "amount": 240.0,
+      "paid_at": "2026-09-05T17:50:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_renan",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_yara",
+      "txid": "VF202609YARA01",
+      "amount": 320.0,
+      "paid_at": "2026-09-04T11:07:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_yara",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_daniel",
+      "txid": "VF202609DANIEL01",
+      "amount": 170.0,
+      "paid_at": "2026-09-01T08:48:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_daniel",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202609_st_priscila",
+      "txid": "VF202609PRISCI01",
+      "amount": 320.0,
+      "paid_at": "2026-09-01T12:42:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202609_st_priscila",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_ana",
+      "txid": "VF202610ANA01",
+      "amount": 300.0,
+      "paid_at": "2026-10-03T10:00:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_ana",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_bruno",
+      "txid": "VF202610BRUNO01",
+      "amount": 420.0,
+      "paid_at": "2026-10-03T18:37:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_bruno",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_diego",
+      "txid": "VF202610DIEGO01",
+      "amount": 220.0,
+      "paid_at": "2026-10-01T20:59:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_diego",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_julia",
+      "txid": "VF202610JULIA01",
+      "amount": 420.0,
+      "paid_at": "2026-10-02T19:46:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_julia",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_rafael",
+      "txid": "VF202610RAFAEL01",
+      "amount": 420.0,
+      "paid_at": "2026-10-04T16:14:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_rafael",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_larissa",
+      "txid": "VF202610LARISS01",
+      "amount": 420.0,
+      "paid_at": "2026-10-02T17:08:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_larissa",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_pedro",
+      "txid": "VF202610PEDRO01",
+      "amount": 300.0,
+      "paid_at": "2026-10-01T19:32:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_pedro",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_mariana",
+      "txid": "VF202610MARIAN01",
+      "amount": 420.0,
+      "paid_at": "2026-10-03T09:26:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_mariana",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_lucas",
+      "txid": "VF202610LUCAS01",
+      "amount": 420.0,
+      "paid_at": "2026-10-04T10:50:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_lucas",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_gabriela",
+      "txid": "VF202610GABRIE01",
+      "amount": 300.0,
+      "paid_at": "2026-10-01T12:32:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_gabriela",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_matheus",
+      "txid": "VF202610MATHEU01",
+      "amount": 420.0,
+      "paid_at": "2026-10-02T14:51:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_matheus",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_beatriz",
+      "txid": "VF202610BEATRI01",
+      "amount": 220.0,
+      "paid_at": "2026-10-04T16:51:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_beatriz",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_vinicius",
+      "txid": "VF202610VINICI01",
+      "amount": 420.0,
+      "paid_at": "2026-10-04T14:00:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_vinicius",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_isabela",
+      "txid": "VF202610ISABEL01",
+      "amount": 420.0,
+      "paid_at": "2026-10-05T14:56:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_isabela",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_caio",
+      "txid": "VF202610CAIO01",
+      "amount": 300.0,
+      "paid_at": "2026-10-05T08:53:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_caio",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_leticia",
+      "txid": "VF202610LETICI01",
+      "amount": 220.0,
+      "paid_at": "2026-10-03T18:22:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_leticia",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_amanda",
+      "txid": "VF202610AMANDA01",
+      "amount": 320.0,
+      "paid_at": "2026-10-05T08:32:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_amanda",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_henrique",
+      "txid": "VF202610HENRIQ01",
+      "amount": 320.0,
+      "paid_at": "2026-10-02T13:43:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_henrique",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_camila",
+      "txid": "VF202610CAMILA01",
+      "amount": 320.0,
+      "paid_at": "2026-10-03T15:20:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_camila",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_eduarda",
+      "txid": "VF202610EDUARD01",
+      "amount": 170.0,
+      "paid_at": "2026-10-05T15:29:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_eduarda",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_joao",
+      "txid": "VF202610JOAO01",
+      "amount": 320.0,
+      "paid_at": "2026-10-01T17:51:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_joao",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_natalia",
+      "txid": "VF202610NATALI01",
+      "amount": 240.0,
+      "paid_at": "2026-10-04T10:37:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_natalia",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_otavio",
+      "txid": "VF202610OTAVIO01",
+      "amount": 320.0,
+      "paid_at": "2026-10-01T11:27:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_otavio",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_sofia",
+      "txid": "VF202610SOFIA01",
+      "amount": 320.0,
+      "paid_at": "2026-10-01T13:29:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_sofia",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_renan",
+      "txid": "VF202610RENAN01",
+      "amount": 240.0,
+      "paid_at": "2026-10-01T11:43:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_renan",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_yara",
+      "txid": "VF202610YARA01",
+      "amount": 320.0,
+      "paid_at": "2026-10-05T16:25:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_yara",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_daniel",
+      "txid": "VF202610DANIEL01",
+      "amount": 170.0,
+      "paid_at": "2026-10-05T11:41:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_daniel",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202610_st_priscila",
+      "txid": "VF202610PRISCI01",
+      "amount": 320.0,
+      "paid_at": "2026-10-04T08:41:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202610_st_priscila",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_ana",
+      "txid": "VF202611ANA01",
+      "amount": 300.0,
+      "paid_at": "2026-11-01T21:03:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_ana",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_bruno",
+      "txid": "VF202611BRUNO01",
+      "amount": 420.0,
+      "paid_at": "2026-11-02T21:48:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_bruno",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_julia",
+      "txid": "VF202611JULIA01",
+      "amount": 420.0,
+      "paid_at": "2026-11-04T15:45:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_julia",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_rafael",
+      "txid": "VF202611RAFAEL01",
+      "amount": 420.0,
+      "paid_at": "2026-11-05T10:41:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_rafael",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_larissa",
+      "txid": "VF202611LARISS01",
+      "amount": 420.0,
+      "paid_at": "2026-11-01T11:50:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_larissa",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_pedro",
+      "txid": "VF202611PEDRO01",
+      "amount": 300.0,
+      "paid_at": "2026-11-01T10:10:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_pedro",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_mariana",
+      "txid": "VF202611MARIAN01",
+      "amount": 420.0,
+      "paid_at": "2026-11-04T14:17:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_mariana",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_lucas",
+      "txid": "VF202611LUCAS01",
+      "amount": 420.0,
+      "paid_at": "2026-11-02T16:26:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_lucas",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_gabriela",
+      "txid": "VF202611GABRIE01",
+      "amount": 300.0,
+      "paid_at": "2026-11-05T14:19:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_gabriela",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_matheus",
+      "txid": "VF202611MATHEU01",
+      "amount": 420.0,
+      "paid_at": "2026-11-04T13:11:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_matheus",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_beatriz",
+      "txid": "VF202611BEATRI01",
+      "amount": 220.0,
+      "paid_at": "2026-11-03T15:31:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_beatriz",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_isabela",
+      "txid": "VF202611ISABEL01",
+      "amount": 420.0,
+      "paid_at": "2026-11-02T12:29:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_isabela",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_caio",
+      "txid": "VF202611CAIO01",
+      "amount": 300.0,
+      "paid_at": "2026-11-04T13:33:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_caio",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_leticia",
+      "txid": "VF202611LETICI01",
+      "amount": 220.0,
+      "paid_at": "2026-11-02T15:07:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_leticia",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_amanda",
+      "txid": "VF202611AMANDA01",
+      "amount": 320.0,
+      "paid_at": "2026-11-01T20:33:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_amanda",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_henrique",
+      "txid": "VF202611HENRIQ01",
+      "amount": 320.0,
+      "paid_at": "2026-11-03T21:06:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_henrique",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_camila",
+      "txid": "VF202611CAMILA01",
+      "amount": 320.0,
+      "paid_at": "2026-11-04T11:00:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_camila",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_eduarda",
+      "txid": "VF202611EDUARD01",
+      "amount": 170.0,
+      "paid_at": "2026-11-05T15:41:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_eduarda",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_joao",
+      "txid": "VF202611JOAO01",
+      "amount": 320.0,
+      "paid_at": "2026-11-03T14:34:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_joao",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_natalia",
+      "txid": "VF202611NATALI01",
+      "amount": 240.0,
+      "paid_at": "2026-11-04T08:22:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_natalia",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_sofia",
+      "txid": "VF202611SOFIA01",
+      "amount": 320.0,
+      "paid_at": "2026-11-04T13:35:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_sofia",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_renan",
+      "txid": "VF202611RENAN01",
+      "amount": 240.0,
+      "paid_at": "2026-11-01T20:34:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_renan",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_yara",
+      "txid": "VF202611YARA01",
+      "amount": 320.0,
+      "paid_at": "2026-11-04T09:39:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_yara",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_daniel",
+      "txid": "VF202611DANIEL01",
+      "amount": 170.0,
+      "paid_at": "2026-11-03T16:48:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_daniel",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_priscila",
+      "txid": "VF202611PRISCI01",
+      "amount": 320.0,
+      "paid_at": "2026-11-01T19:13:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_priscila",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_rita_1",
+      "txid": "VF202611RITA_101",
+      "amount": 400.0,
+      "paid_at": "2026-11-01T12:36:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_rita_1",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_rita_2",
+      "txid": "VF202611RITA_201",
+      "amount": 400.0,
+      "paid_at": "2026-11-03T18:35:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_rita_2",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_rita_3",
+      "txid": "VF202611RITA_301",
+      "amount": 290.0,
+      "paid_at": "2026-11-04T09:50:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_rita_3",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_inv_202611_st_rita_5",
+      "txid": "VF202611RITA_501",
+      "amount": 210.0,
+      "paid_at": "2026-11-03T09:27:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": "inv_202611_st_rita_5",
+      "avulsa_booking_id": null
+    },
+    {
+      "id": "pay_av_001",
+      "txid": "VA20261008001",
+      "amount": 20.0,
+      "paid_at": "2026-10-08T14:11:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": null,
+      "avulsa_booking_id": "av_001"
+    },
+    {
+      "id": "pay_av_002",
+      "txid": "VA20261015002",
+      "amount": 20.0,
+      "paid_at": "2026-10-15T14:12:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": null,
+      "avulsa_booking_id": "av_002"
+    },
+    {
+      "id": "pay_av_003",
+      "txid": "VA20261022003",
+      "amount": 20.0,
+      "paid_at": "2026-10-22T14:13:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": null,
+      "avulsa_booking_id": "av_003"
+    },
+    {
+      "id": "pay_av_004",
+      "txid": "VA20261029004",
+      "amount": 20.0,
+      "paid_at": "2026-10-29T14:14:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": null,
+      "avulsa_booking_id": "av_004"
+    },
+    {
+      "id": "pay_av_005",
+      "txid": "VA20261103005",
+      "amount": 20.0,
+      "paid_at": "2026-11-03T14:15:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": null,
+      "avulsa_booking_id": "av_005"
+    },
+    {
+      "id": "pay_av_006",
+      "txid": "VA20261105006",
+      "amount": 20.0,
+      "paid_at": "2026-11-05T14:16:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": null,
+      "avulsa_booking_id": "av_006"
+    },
+    {
+      "id": "pay_av_007",
+      "txid": "VA20261110007",
+      "amount": 20.0,
+      "paid_at": "2026-11-10T14:17:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": null,
+      "avulsa_booking_id": "av_007"
+    },
+    {
+      "id": "pay_av_008",
+      "txid": "VA20261020008",
+      "amount": 16.0,
+      "paid_at": "2026-10-20T14:18:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": null,
+      "avulsa_booking_id": "av_008"
+    },
+    {
+      "id": "pay_av_009",
+      "txid": "VA20261104009",
+      "amount": 16.0,
+      "paid_at": "2026-11-04T14:19:00-03:00",
+      "source": "webhook_simulado",
+      "invoice_id": null,
+      "avulsa_booking_id": "av_009"
+    }
+  ],
+  "avulsa_bookings": [
+    {
+      "id": "av_001",
+      "trip_ref": {
+        "line_id": "line_itu_noite",
+        "date": "2026-10-08"
+      },
+      "student_id": "st_carla",
+      "kind": "ida_volta",
+      "price": 20.0,
+      "status": "pago",
+      "hold_until": null,
+      "pix_txid": "VA20261008001",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com520400005303986540520.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62170513VA202610080016304E8F2",
+      "paid_at": "2026-10-08T14:11:00-03:00"
+    },
+    {
+      "id": "av_002",
+      "trip_ref": {
+        "line_id": "line_itu_noite",
+        "date": "2026-10-15"
+      },
+      "student_id": "st_felipe",
+      "kind": "ida_volta",
+      "price": 20.0,
+      "status": "pago",
+      "hold_until": null,
+      "pix_txid": "VA20261015002",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com520400005303986540520.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62170513VA202610150026304BB67",
+      "paid_at": "2026-10-15T14:12:00-03:00"
+    },
+    {
+      "id": "av_003",
+      "trip_ref": {
+        "line_id": "line_itu_noite",
+        "date": "2026-10-22"
+      },
+      "student_id": "st_carla",
+      "kind": "ida_volta",
+      "price": 20.0,
+      "status": "pago",
+      "hold_until": null,
+      "pix_txid": "VA20261022003",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com520400005303986540520.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62170513VA202610220036304FB6A",
+      "paid_at": "2026-10-22T14:13:00-03:00"
+    },
+    {
+      "id": "av_004",
+      "trip_ref": {
+        "line_id": "line_itu_noite",
+        "date": "2026-10-29"
+      },
+      "student_id": "st_caio",
+      "kind": "ida_volta",
+      "price": 20.0,
+      "status": "pago",
+      "hold_until": null,
+      "pix_txid": "VA20261029004",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com520400005303986540520.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62170513VA2026102900463044A11",
+      "paid_at": "2026-10-29T14:14:00-03:00"
+    },
+    {
+      "id": "av_005",
+      "trip_ref": {
+        "line_id": "line_itu_noite",
+        "date": "2026-11-03"
+      },
+      "student_id": "st_felipe",
+      "kind": "ida_volta",
+      "price": 20.0,
+      "status": "pago",
+      "hold_until": null,
+      "pix_txid": "VA20261103005",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com520400005303986540520.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62170513VA202611030056304D81E",
+      "paid_at": "2026-11-03T14:15:00-03:00"
+    },
+    {
+      "id": "av_006",
+      "trip_ref": {
+        "line_id": "line_itu_noite",
+        "date": "2026-11-05"
+      },
+      "student_id": "st_carla",
+      "kind": "ida_volta",
+      "price": 20.0,
+      "status": "pago",
+      "hold_until": null,
+      "pix_txid": "VA20261105006",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com520400005303986540520.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62170513VA202611050066304B607",
+      "paid_at": "2026-11-05T14:16:00-03:00"
+    },
+    {
+      "id": "av_007",
+      "trip_ref": {
+        "line_id": "line_itu_noite",
+        "date": "2026-11-10"
+      },
+      "student_id": "st_leticia",
+      "kind": "ida_volta",
+      "price": 20.0,
+      "status": "pago",
+      "hold_until": null,
+      "pix_txid": "VA20261110007",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com520400005303986540520.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62170513VA202611100076304BFCB",
+      "paid_at": "2026-11-10T14:17:00-03:00"
+    },
+    {
+      "id": "av_008",
+      "trip_ref": {
+        "line_id": "line_voto_manha",
+        "date": "2026-10-20"
+      },
+      "student_id": "st_tamires",
+      "kind": "ida_volta",
+      "price": 16.0,
+      "status": "pago",
+      "hold_until": null,
+      "pix_txid": "VA20261020008",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com520400005303986540516.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62170513VA202610200086304A29A",
+      "paid_at": "2026-10-20T14:18:00-03:00"
+    },
+    {
+      "id": "av_009",
+      "trip_ref": {
+        "line_id": "line_voto_manha",
+        "date": "2026-11-04"
+      },
+      "student_id": "st_tamires",
+      "kind": "ida_volta",
+      "price": 16.0,
+      "status": "pago",
+      "hold_until": null,
+      "pix_txid": "VA20261104009",
+      "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com520400005303986540516.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62170513VA202611040096304AE84",
+      "paid_at": "2026-11-04T14:19:00-03:00"
+    }
+  ],
+  "expenses": [
+    {
+      "id": "exp_2026-09_van_itu_fuel",
+      "operator_id": "op_ze",
+      "van_id": "van_itu",
+      "date": "2026-09-10",
+      "category": "combustivel",
+      "description": "Diesel do mês",
+      "amount": 2597.4
+    },
+    {
+      "id": "exp_2026-09_van_itu_seg",
+      "operator_id": "op_ze",
+      "van_id": "van_itu",
+      "date": "2026-09-05",
+      "category": "seguro",
+      "description": "Seguro APP e RCF (parcela)",
+      "amount": 310.0
+    },
+    {
+      "id": "exp_2026-09_van_itu_man",
+      "operator_id": "op_ze",
+      "van_id": "van_itu",
+      "date": "2026-09-18",
+      "category": "manutencao",
+      "description": "Troca de óleo e filtros",
+      "amount": 644.37
+    },
+    {
+      "id": "exp_2026-09_van_voto_fuel",
+      "operator_id": "op_ze",
+      "van_id": "van_voto",
+      "date": "2026-09-10",
+      "category": "combustivel",
+      "description": "Diesel do mês",
+      "amount": 1515.58
+    },
+    {
+      "id": "exp_2026-09_van_voto_seg",
+      "operator_id": "op_ze",
+      "van_id": "van_voto",
+      "date": "2026-09-05",
+      "category": "seguro",
+      "description": "Seguro APP e RCF (parcela)",
+      "amount": 310.0
+    },
+    {
+      "id": "exp_2026-09_van_voto_man",
+      "operator_id": "op_ze",
+      "van_id": "van_voto",
+      "date": "2026-09-18",
+      "category": "manutencao",
+      "description": "Pastilhas de freio",
+      "amount": 590.05
+    },
+    {
+      "id": "exp_2026-10_van_itu_fuel",
+      "operator_id": "op_ze",
+      "van_id": "van_itu",
+      "date": "2026-10-10",
+      "category": "combustivel",
+      "description": "Diesel do mês",
+      "amount": 2587.01
+    },
+    {
+      "id": "exp_2026-10_van_itu_seg",
+      "operator_id": "op_ze",
+      "van_id": "van_itu",
+      "date": "2026-10-05",
+      "category": "seguro",
+      "description": "Seguro APP e RCF (parcela)",
+      "amount": 310.0
+    },
+    {
+      "id": "exp_2026-10_van_itu_man",
+      "operator_id": "op_ze",
+      "van_id": "van_itu",
+      "date": "2026-10-18",
+      "category": "manutencao",
+      "description": "Alinhamento e balanceamento",
+      "amount": 412.86
+    },
+    {
+      "id": "exp_2026-10_van_voto_fuel",
+      "operator_id": "op_ze",
+      "van_id": "van_voto",
+      "date": "2026-10-10",
+      "category": "combustivel",
+      "description": "Diesel do mês",
+      "amount": 1533.98
+    },
+    {
+      "id": "exp_2026-10_van_voto_seg",
+      "operator_id": "op_ze",
+      "van_id": "van_voto",
+      "date": "2026-10-05",
+      "category": "seguro",
+      "description": "Seguro APP e RCF (parcela)",
+      "amount": 310.0
+    },
+    {
+      "id": "exp_2026-10_van_voto_man",
+      "operator_id": "op_ze",
+      "van_id": "van_voto",
+      "date": "2026-10-18",
+      "category": "manutencao",
+      "description": "Alinhamento e balanceamento",
+      "amount": 727.27
+    },
+    {
+      "id": "exp_2026-11_van_itu_fuel",
+      "operator_id": "op_ze",
+      "van_id": "van_itu",
+      "date": "2026-11-10",
+      "category": "combustivel",
+      "description": "Diesel do mês",
+      "amount": 1138.32
+    },
+    {
+      "id": "exp_2026-11_van_itu_seg",
+      "operator_id": "op_ze",
+      "van_id": "van_itu",
+      "date": "2026-11-05",
+      "category": "seguro",
+      "description": "Seguro APP e RCF (parcela)",
+      "amount": 310.0
+    },
+    {
+      "id": "exp_2026-11_van_voto_fuel",
+      "operator_id": "op_ze",
+      "van_id": "van_voto",
+      "date": "2026-11-10",
+      "category": "combustivel",
+      "description": "Diesel do mês",
+      "amount": 626.98
+    },
+    {
+      "id": "exp_2026-11_van_voto_seg",
+      "operator_id": "op_ze",
+      "van_id": "van_voto",
+      "date": "2026-11-05",
+      "category": "seguro",
+      "description": "Seguro APP e RCF (parcela)",
+      "amount": 310.0
+    },
+    {
+      "id": "exp_2026-10_van_itu_parcela",
+      "operator_id": "op_ze",
+      "van_id": "van_itu",
+      "date": "2026-10-15",
+      "category": "parcela",
+      "description": "Parcela do financiamento",
+      "amount": 1890.0
+    },
+    {
+      "id": "exp_2026-09_van_itu_parcela",
+      "operator_id": "op_ze",
+      "van_id": "van_itu",
+      "date": "2026-09-15",
+      "category": "parcela",
+      "description": "Parcela do financiamento",
+      "amount": 1890.0
+    }
+  ],
+  "documents": [
+    {
+      "id": "doc_itu_crlv",
+      "operator_id": "op_ze",
+      "owner_type": "van",
+      "owner_id": "van_itu",
+      "type": "crlv",
+      "number": "CRLV-DEMO-0001",
+      "expires_at": "2027-03-31"
+    },
+    {
+      "id": "doc_itu_vist",
+      "operator_id": "op_ze",
+      "owner_type": "van",
+      "owner_id": "van_itu",
+      "type": "vistoria",
+      "number": "VIST-DEMO-0001",
+      "expires_at": "2026-11-23"
+    },
+    {
+      "id": "doc_itu_seg",
+      "operator_id": "op_ze",
+      "owner_type": "van",
+      "owner_id": "van_itu",
+      "type": "seguro",
+      "number": "APOL-DEMO-0001",
+      "expires_at": "2027-05-10"
+    },
+    {
+      "id": "doc_itu_artesp",
+      "operator_id": "op_ze",
+      "owner_type": "van",
+      "owner_id": "van_itu",
+      "type": "autorizacao_artesp",
+      "number": "ART-DEMO-0001",
+      "expires_at": "2027-02-15"
+    },
+    {
+      "id": "doc_voto_crlv",
+      "operator_id": "op_ze",
+      "owner_type": "van",
+      "owner_id": "van_voto",
+      "type": "crlv",
+      "number": "CRLV-DEMO-0002",
+      "expires_at": "2027-04-30"
+    },
+    {
+      "id": "doc_voto_vist",
+      "operator_id": "op_ze",
+      "owner_type": "van",
+      "owner_id": "van_voto",
+      "type": "vistoria",
+      "number": "VIST-DEMO-0002",
+      "expires_at": "2027-01-10"
+    },
+    {
+      "id": "doc_voto_seg",
+      "operator_id": "op_ze",
+      "owner_type": "van",
+      "owner_id": "van_voto",
+      "type": "seguro",
+      "number": "APOL-DEMO-0002",
+      "expires_at": "2027-06-01"
+    },
+    {
+      "id": "doc_voto_artesp",
+      "operator_id": "op_ze",
+      "owner_type": "van",
+      "owner_id": "van_voto",
+      "type": "autorizacao_artesp",
+      "number": "ART-DEMO-0002",
+      "expires_at": "2027-02-15"
+    },
+    {
+      "id": "doc_ze_cnh",
+      "operator_id": "op_ze",
+      "owner_type": "driver",
+      "owner_id": "drv_ze",
+      "type": "cnh",
+      "number": "CNH-DEMO-0001",
+      "expires_at": "2028-07-19"
+    },
+    {
+      "id": "doc_ze_curso",
+      "operator_id": "op_ze",
+      "owner_type": "driver",
+      "owner_id": "drv_ze",
+      "type": "curso_condutor",
+      "number": "CURSO-DEMO-0001",
+      "expires_at": "2027-09-01"
+    },
+    {
+      "id": "doc_edson_cnh",
+      "operator_id": "op_ze",
+      "owner_type": "driver",
+      "owner_id": "drv_edson",
+      "type": "cnh",
+      "number": "CNH-DEMO-0002",
+      "expires_at": "2026-12-02"
+    },
+    {
+      "id": "doc_edson_curso",
+      "operator_id": "op_ze",
+      "owner_type": "driver",
+      "owner_id": "drv_edson",
+      "type": "curso_condutor",
+      "number": "CURSO-DEMO-0002",
+      "expires_at": "2026-11-08"
+    }
+  ],
+  "holidays": [
+    {
+      "date": "2026-11-02",
+      "name": "Finados"
+    },
+    {
+      "date": "2026-11-15",
+      "name": "Proclamação da República"
+    },
+    {
+      "date": "2026-11-20",
+      "name": "Dia da Consciência Negra"
+    },
+    {
+      "date": "2026-12-25",
+      "name": "Natal"
+    }
+  ],
+  "calendar_exceptions": [
+    {
+      "id": "exc_001",
+      "operator_id": "op_ze",
+      "date": "2026-11-13",
+      "scope": "faculdade",
+      "ref_id": "fac_facens",
+      "kind": "sem_aula",
+      "note": "Facens: semana de provas, sem aula na sexta à noite"
+    }
+  ],
+  "messages": [
+    {
+      "id": "msg_0001",
+      "operator_id": "op_ze",
+      "student_id": "st_ana",
+      "direction": "out",
+      "kind": "cobranca",
+      "body": "Oi, Ana! Sua mensalidade de novembro da Van do Seu Zé é R$ 300,00, com vencimento em 05/11. Pix copia e cola:",
+      "buttons": [
+        "Copiar código"
+      ],
+      "payload": {
+        "invoice_id": "inv_202611_st_ana",
+        "pix_payload": "00020101021226460014br.gov.bcb.pix0124vanflow.demo@exemplo.com5204000053039865406300.005802BR5921JOSE ALMEIDA FRETADOS6003ITU62170513VF202611ANA016304F03D"
+      },
+      "created_at": "2026-11-01T08:00:00-03:00"
+    },
+    {
+      "id": "msg_0002",
+      "operator_id": "op_ze",
+      "student_id": "st_ana",
+      "direction": "out",
+      "kind": "recibo",
+      "body": "Recebemos R$ 300,00 referente à mensalidade de novembro. Obrigado!",
+      "buttons": [],
+      "payload": {
+        "invoice_id": "inv_202611_st_ana"
+      },
+      "created_at": "2026-11-01T21:03:00-03:00"
+    },
+    {
+      "id": "msg_0003",
+      "operator_id": "op_ze",
+      "student_id": "st_ana",
+      "direction": "out",
+      "kind": "confirmacao",
+      "body": "Oi, Ana! Amanhã (qua) você tem aula às 19h na Uniso. Vai na van?",
+      "buttons": [
+        "Vou",
+        "Não vou"
+      ],
+      "payload": {
+        "line_id": "line_itu_noite",
+        "date": "2026-11-11"
+      },
+      "created_at": "2026-11-10T21:00:00-03:00"
+    },
+    {
+      "id": "msg_0004",
+      "operator_id": "op_ze",
+      "student_id": "st_ana",
+      "direction": "in",
+      "kind": "texto",
+      "body": "Vou",
+      "buttons": [],
+      "payload": {
+        "button": "Vou"
+      },
+      "created_at": "2026-11-10T21:02:00-03:00"
+    },
+    {
+      "id": "msg_0005",
+      "operator_id": "op_ze",
+      "student_id": "st_ana",
+      "direction": "out",
+      "kind": "texto",
+      "body": "Combinado! Saída às 17h40 no Jd. Paulista · ponto combinado. Até amanhã.",
+      "buttons": [],
+      "payload": {},
+      "created_at": "2026-11-10T21:02:00-03:00"
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead_ent_1",
+      "kind": "operador",
+      "name": "Operador entrevistado #1",
+      "whatsapp": null,
+      "city": "Itu",
+      "vans_count": 1,
+      "faculties": "UFSCar, Uniso, Facens",
+      "message": null,
+      "source": "entrevista",
+      "created_at": "2026-10-20T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ent_2",
+      "kind": "operador",
+      "name": "Operador entrevistado #2",
+      "whatsapp": null,
+      "city": "Cerquilho",
+      "vans_count": 2,
+      "faculties": "UFSCar, Uniso, Facens",
+      "message": null,
+      "source": "entrevista",
+      "created_at": "2026-10-20T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ent_3",
+      "kind": "operador",
+      "name": "Operador entrevistado #3",
+      "whatsapp": null,
+      "city": "Votorantim",
+      "vans_count": 1,
+      "faculties": "UFSCar, Uniso, Facens",
+      "message": null,
+      "source": "entrevista",
+      "created_at": "2026-10-20T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ent_4",
+      "kind": "operador",
+      "name": "Operador entrevistado #4",
+      "whatsapp": null,
+      "city": "Cerquilho",
+      "vans_count": 4,
+      "faculties": "UFSCar, Uniso, Facens",
+      "message": null,
+      "source": "entrevista",
+      "created_at": "2026-10-20T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ent_5",
+      "kind": "operador",
+      "name": "Operador entrevistado #5",
+      "whatsapp": null,
+      "city": "Itu",
+      "vans_count": 1,
+      "faculties": "UFSCar, Uniso, Facens",
+      "message": null,
+      "source": "entrevista",
+      "created_at": "2026-10-20T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ent_6",
+      "kind": "operador",
+      "name": "Operador entrevistado #6",
+      "whatsapp": null,
+      "city": "Itu",
+      "vans_count": 2,
+      "faculties": "UFSCar, Uniso, Facens",
+      "message": null,
+      "source": "entrevista",
+      "created_at": "2026-10-20T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ent_7",
+      "kind": "operador",
+      "name": "Operador entrevistado #7",
+      "whatsapp": null,
+      "city": "Itu",
+      "vans_count": 3,
+      "faculties": "UFSCar, Uniso, Facens",
+      "message": null,
+      "source": "entrevista",
+      "created_at": "2026-10-20T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_1",
+      "kind": "operador",
+      "name": "Motorista indicado #1",
+      "whatsapp": null,
+      "city": "Salto",
+      "vans_count": 1,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_2",
+      "kind": "operador",
+      "name": "Motorista indicado #2",
+      "whatsapp": null,
+      "city": "Votorantim",
+      "vans_count": 1,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_3",
+      "kind": "operador",
+      "name": "Motorista indicado #3",
+      "whatsapp": null,
+      "city": "Itu",
+      "vans_count": 3,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_4",
+      "kind": "operador",
+      "name": "Motorista indicado #4",
+      "whatsapp": null,
+      "city": "Tatuí",
+      "vans_count": 2,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_5",
+      "kind": "operador",
+      "name": "Motorista indicado #5",
+      "whatsapp": null,
+      "city": "Porto Feliz",
+      "vans_count": 1,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_6",
+      "kind": "operador",
+      "name": "Motorista indicado #6",
+      "whatsapp": null,
+      "city": "Votorantim",
+      "vans_count": 2,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_7",
+      "kind": "operador",
+      "name": "Motorista indicado #7",
+      "whatsapp": null,
+      "city": "Tatuí",
+      "vans_count": 3,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_8",
+      "kind": "operador",
+      "name": "Motorista indicado #8",
+      "whatsapp": null,
+      "city": "Tietê",
+      "vans_count": 3,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_9",
+      "kind": "operador",
+      "name": "Motorista indicado #9",
+      "whatsapp": null,
+      "city": "Tatuí",
+      "vans_count": 1,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_10",
+      "kind": "operador",
+      "name": "Motorista indicado #10",
+      "whatsapp": null,
+      "city": "Cerquilho",
+      "vans_count": 1,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_11",
+      "kind": "operador",
+      "name": "Motorista indicado #11",
+      "whatsapp": null,
+      "city": "Tatuí",
+      "vans_count": 1,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_12",
+      "kind": "operador",
+      "name": "Motorista indicado #12",
+      "whatsapp": null,
+      "city": "Tatuí",
+      "vans_count": 2,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_13",
+      "kind": "operador",
+      "name": "Motorista indicado #13",
+      "whatsapp": null,
+      "city": "Cerquilho",
+      "vans_count": 3,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_14",
+      "kind": "operador",
+      "name": "Motorista indicado #14",
+      "whatsapp": null,
+      "city": "Itu",
+      "vans_count": 3,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_15",
+      "kind": "operador",
+      "name": "Motorista indicado #15",
+      "whatsapp": null,
+      "city": "Votorantim",
+      "vans_count": 2,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_16",
+      "kind": "operador",
+      "name": "Motorista indicado #16",
+      "whatsapp": null,
+      "city": "Tietê",
+      "vans_count": 1,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_17",
+      "kind": "operador",
+      "name": "Motorista indicado #17",
+      "whatsapp": null,
+      "city": "Cerquilho",
+      "vans_count": 1,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_ind_18",
+      "kind": "operador",
+      "name": "Motorista indicado #18",
+      "whatsapp": null,
+      "city": "Porto Feliz",
+      "vans_count": 1,
+      "faculties": null,
+      "message": null,
+      "source": "indicacao",
+      "created_at": "2026-10-24T12:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_land_1",
+      "kind": "operador",
+      "name": "José Almeida",
+      "whatsapp": "(15) 90000-0001",
+      "city": "Itu",
+      "vans_count": 2,
+      "faculties": "Uniso, Facens, UFSCar",
+      "message": "Quero testar nas duas vans",
+      "source": "landing",
+      "created_at": "2026-10-27T09:40:00-03:00",
+      "converted_operator_id": "op_ze"
+    },
+    {
+      "id": "lead_land_2",
+      "kind": "operador",
+      "name": "Rita Moraes",
+      "whatsapp": "(15) 90000-0002",
+      "city": "Salto",
+      "vans_count": 1,
+      "faculties": "Uniso, Facens",
+      "message": null,
+      "source": "landing",
+      "created_at": "2026-11-04T14:20:00-03:00",
+      "converted_operator_id": "op_rita"
+    },
+    {
+      "id": "lead_est_1",
+      "kind": "estudante",
+      "name": "Marina Lopes",
+      "whatsapp": "(15) 90000-0901",
+      "city": "Itu",
+      "vans_count": null,
+      "faculties": "Uniso",
+      "message": null,
+      "source": "landing",
+      "created_at": "2026-11-06T19:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_est_2",
+      "kind": "estudante",
+      "name": "Rodrigo Prado",
+      "whatsapp": "(15) 90000-0902",
+      "city": "Votorantim",
+      "vans_count": null,
+      "faculties": "UFSCar",
+      "message": null,
+      "source": "landing",
+      "created_at": "2026-11-07T19:00:00-03:00",
+      "converted_operator_id": null
+    },
+    {
+      "id": "lead_est_3",
+      "kind": "estudante",
+      "name": "Aline Torres",
+      "whatsapp": "(15) 90000-0903",
+      "city": "Salto",
+      "vans_count": null,
+      "faculties": "Facens",
+      "message": null,
+      "source": "landing",
+      "created_at": "2026-11-08T19:00:00-03:00",
+      "converted_operator_id": null
+    }
+  ],
+  "startup_baseline": {
+    "fonte": "Validação de mercado, outubro de 2026 (docs/04-validacao.md). Dados reais agregados.",
+    "estudantes_responderam": 87,
+    "estudantes_usam_van": 60,
+    "operadores_entrevistados": 7,
+    "vans_dos_entrevistados": 14,
+    "confirmariam_whatsapp_pct": 89,
+    "usariam_plano_2_3_dias_pct": 82,
+    "pagariam_avulsa_pct": 75,
+    "operadores_aceitam_preco": "5 de 7",
+    "operadores_deixaram_contato": "7 de 7",
+    "motoristas_indicados": 18,
+    "metas_piloto": {
+      "ativacao": 3,
+      "retencao": "2 de 3",
+      "receita": "2 de 3 pagando",
+      "avulsas_por_van_semana": 1,
+      "indicacao": 1
+    },
+    "som": {
+      "vans_meta": 30,
+      "mrr_meta": 1797.0,
+      "arr_meta": 21564.0
+    },
+    "mercado": {
+      "tam_empresas": 63923,
+      "tam_rs_ano": 45900000,
+      "sam_empresas": 16607,
+      "sam_rs_ano": 11900000,
+      "som_rs_ano": 21564
+    },
+    "preco_por_van": 59.9,
+    "ltv_12_meses": 718.8
+  }
+}
